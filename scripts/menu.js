@@ -163,9 +163,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Renderizar menús
-    renderMenuItems(menuItems.platosCriollos, 'platos-criollos');
-    renderMenuItems(menuItems.bebidas, 'bebidas');
+    // Filtros de menú
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remover active de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Añadir active al botón clickeado
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            if (filter === 'all') {
+                document.getElementById('platos-criollos').style.display = 'grid';
+                document.getElementById('bebidas').style.display = 'grid';
+            } else {
+                document.getElementById('platos-criollos').style.display = 
+                    filter === 'platos-criollos' ? 'grid' : 'none';
+                document.getElementById('bebidas').style.display = 
+                    filter === 'bebidas' ? 'grid' : 'none';
+            }
+        });
+    });
 
     // Carrito de compras
     let cart = [];
@@ -221,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('minus')) {
             const itemId = parseInt(e.target.getAttribute('data-id'));
-                        const input = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
+            const input = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
             if (parseInt(input.value) > 1) {
                 input.value = parseInt(input.value) - 1;
             }
@@ -402,5 +421,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Inicializar
+    renderMenuItems(menuItems.platosCriollos, 'platos-criollos');
+    renderMenuItems(menuItems.bebidas, 'bebidas');
     loadCart();
 });

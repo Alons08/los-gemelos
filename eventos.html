@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/eventos.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <link rel="icon" href="images/logo-gemelos.png">
 </head>
 <body>
@@ -59,7 +61,7 @@
                             <span>Sin costo adicional</span>
                         </li>
                     </ul>
-                    <a href="#reservar" class="btn btn-primary">Reservar Mesa</a>
+                    <a href="#contacto-eventos" class="btn btn-primary">Reservar Mesa</a>
                 </div>
             </div>
         </div>
@@ -86,7 +88,7 @@
                             <span><i class="fas fa-users"></i> Grupos de 10+</span>
                             <span><i class="fas fa-percent"></i> 10% descuento</span>
                         </div>
-                        <a href="#reservar" class="btn btn-outline">Más información</a>
+                        <a href="#contacto-eventos" class="btn btn-outline">Más información</a>
                     </div>
                 </div>
                 
@@ -101,7 +103,7 @@
                             <span><i class="fas fa-wine-glass-alt"></i> Copa de vino incluida</span>
                             <span><i class="fas fa-candle-holder"></i> Ambiente especial</span>
                         </div>
-                        <a href="#reservar" class="btn btn-outline">Más información</a>
+                        <a href="#contacto-eventos" class="btn btn-outline">Más información</a>
                     </div>
                 </div>
                 
@@ -116,64 +118,44 @@
                             <span><i class="fas fa-home"></i> Área privada disponible</span>
                             <span><i class="fas fa-child"></i> Menú infantil</span>
                         </div>
-                        <a href="#reservar" class="btn btn-outline">Más información</a>
+                        <a href="#contacto-eventos" class="btn btn-outline">Más información</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reservation Form -->
-    <section class="reservation section-padding" id="reservar">
+    <!-- Contacto para Eventos -->
+    <section class="event-contact section-padding" id="contacto-eventos">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Reserva tu Evento</h2>
                 <div class="divider"></div>
-                <p class="section-description">Completa el formulario y nos pondremos en contacto contigo</p>
+                <p class="section-description">Contáctanos para reservar tu evento especial</p>
             </div>
             
-            <form class="reservation-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Nombre Completo</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Teléfono</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="event-type">Tipo de Evento</label>
-                        <select id="event-type" required>
-                            <option value="">Seleccione...</option>
-                            <option value="domingo-musical">Domingo Musical</option>
-                            <option value="cumpleanos">Cumpleaños</option>
-                            <option value="romantica">Cena Romántica</option>
-                            <option value="familiar">Reunión Familiar</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Fecha</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="people">Número de Personas</label>
-                        <input type="number" id="people" min="1" required>
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="message">Mensaje Adicional</label>
-                        <textarea id="message" rows="4"></textarea>
-                    </div>
+            <div class="contact-options">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Llámanos</h3>
+                    <p>+57 300 1234567</p>
+                    <a href="tel:+573001234567" class="btn btn-outline">Llamar ahora</a>
                 </div>
-                <div class="form-submit">
-                    <button type="submit" class="btn btn-primary">Enviar Reserva</button>
+                
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Envíanos un mensaje</p>
+                    <a href="https://wa.me/573001234567" class="btn btn-outline" target="_blank">Contactar</a>
                 </div>
-            </form>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Correo</h3>
+                    <p>eventos@losgemelos.com</p>
+                    <a href="mailto:eventos@losgemelos.com" class="btn btn-outline">Enviar email</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -181,6 +163,8 @@
     <div id="footer"></div>
 
     <script src="scripts/main.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/footer.js"></script>
     <script src="scripts/eventos.js"></script>
     <script>
         fetch('fragments/navbar.html')

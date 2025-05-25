@@ -10,6 +10,13 @@ window.addEventListener('load', function() {
 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Animaciones al inicio
+    const animateElements = document.querySelectorAll('[data-animation]');
+    animateElements.forEach(element => {
+        const animation = element.getAttribute('data-animation');
+        element.classList.add('animate__animated', animation);
+    });
+
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -39,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Scroll animations
-    const animateElements = document.querySelectorAll('[data-animation]');
-    
     const animateOnScroll = function() {
         animateElements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -48,13 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if(elementPosition < windowHeight - 100) {
                 const animation = element.getAttribute('data-animation');
-                element.classList.add(animation);
+                element.classList.add('animate__animated', animation);
             }
         });
     };
     
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Trigger once on load
 });
 
 // Smooth scrolling for anchor links

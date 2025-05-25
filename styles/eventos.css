@@ -62,11 +62,13 @@
     font-size: 3rem;
     margin-bottom: 2rem;
     color: var(--primary);
+    font-family: var(--font-secondary);
 }
 
 .event-details p {
     font-size: 1.6rem;
     margin-bottom: 3rem;
+    line-height: 1.8;
 }
 
 .event-info {
@@ -106,6 +108,8 @@
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .event-card:hover {
@@ -137,12 +141,14 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--primary);
+    font-family: var(--font-secondary);
 }
 
 .event-card-content p {
     font-size: 1.4rem;
     color: var(--gray);
     margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .event-meta {
@@ -163,56 +169,48 @@
     margin-right: 0.5rem;
 }
 
-/* Reservation Form */
-.reservation-form {
-    max-width: 800px;
-    margin: 0 auto;
+/* Event Contact */
+.event-contact {
+    background-color: var(--bg-light);
 }
 
-.form-grid {
+.contact-options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 1.2rem 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1.4rem;
+.contact-card {
+    background-color: var(--light);
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.2);
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
-.form-submit {
-    text-align: center;
+.contact-card i {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.contact-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-secondary);
+}
+
+.contact-card p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    color: var(--gray);
 }
 
 /* Responsive */
@@ -223,5 +221,27 @@
     
     .event-details {
         order: -1;
+    }
+    
+    .events-hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .event-details h3 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-info li {
+        font-size: 1.4rem;
+    }
+    
+    .event-card-content {
+        padding: 1.5rem;
+    }
+    
+    .contact-options {
+        grid-template-columns: 1fr;
     }
 }
