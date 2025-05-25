@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 // Cerrar navbar móvil si está abierto
-                const navbarMenu = document.querySelector('.navbar-menu');
+                const navbarMenu = document.getElementById('navbar-menu');
                 if (navbarMenu.classList.contains('active')) {
                     navbarMenu.classList.remove('active');
-                    document.querySelector('.navbar-toggle').classList.remove('active');
+                    document.getElementById('navbar-toggle').classList.remove('active');
                 }
             }
         }
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Inicializar navbar
 function initNavbar() {
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbarMenu = document.getElementById('navbar-menu');
     
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', () => {
