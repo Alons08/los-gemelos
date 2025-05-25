@@ -12,42 +12,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-brand">
-                <img src="images/logo-gemelos.png" alt="Los Gemelos" class="logo">
-            </div>
-            <div class="navbar-links">
-                <a href="#home" class="nav-link">Inicio</a>
-                <a href="#about" class="nav-link">Nosotros</a>
-                <a href="#menu" class="nav-link">Menú</a>
-                <a href="#events" class="nav-link">Eventos</a>
-                <a href="#contact" class="nav-link">Contacto</a>
-            </div>
-            <div class="navbar-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar importado -->
+    <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="animate-fade-in">Los Gemelos</h1>
             <p class="animate-fade-in-delay">Auténtica comida criolla en un ambiente campestre</p>
-            <a href="#menu" class="btn btn-primary animate-fade-in-delay-2 pulse">Ver Menú</a>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary animate-fade-in-delay-2">Ver Carta</a>
+                <a href="#contact" class="btn btn-outline animate-fade-in-delay-2">Contacto</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title" data-title="Nuestra Historia">Conoce Nuestra Tradición</h2>
+            <h2 class="section-title">Nosotros</h2>
             <div class="about-content">
                 <div class="about-text animate-on-scroll slide-left">
                     <p>Los Gemelos es un restaurante campestre familiar que ofrece los sabores más auténticos de la cocina criolla peruana. Desde 2010, nos hemos dedicado a preservar las recetas tradicionales con ingredientes frescos y de la más alta calidad.</p>
-                    <p>Nuestro local campestre está diseñado para ofrecer una experiencia única, donde la buena comida se combina con la naturaleza y el aire libre. Contamos con amplios jardines y áreas verdes para que disfrutes con familia y amigos.</p>
                     <p>Ven y disfruta de nuestros platos en un ambiente acogedor rodeado de naturaleza, con música en vivo todos los domingos.</p>
                 </div>
                 <div class="about-image animate-on-scroll slide-right">
@@ -60,7 +46,7 @@
     <!-- Menu Section -->
     <section class="menu" id="menu">
         <div class="container">
-            <h2 class="section-title" data-title="Nuestra Especialidad">Platos Criollos</h2>
+            <h2 class="section-title">Nuestro Menú</h2>
             
             <div class="menu-tabs">
                 <button class="tab-btn active animate-on-scroll slide-left" data-category="comidas">Comidas</button>
@@ -80,16 +66,15 @@
     <!-- Events Section -->
     <section class="events" id="events">
         <div class="container">
-            <h2 class="section-title" data-title="Vive la Experiencia">Eventos Especiales</h2>
+            <h2 class="section-title">Eventos</h2>
             <div class="event-card animate-on-scroll zoom-in">
-                <div class="event-icon float">
+                <div class="event-icon">
                     <i class="fas fa-music"></i>
                 </div>
                 <div class="event-details">
                     <h3>Música en Vivo</h3>
-                    <p>Todos los domingos disfruta de la mejor música criolla en vivo mientras degustas nuestros platos. Contamos con los mejores artistas locales que te harán vibrar con lo mejor de nuestra música tradicional.</p>
+                    <p>Todos los domingos disfruta de la mejor música criolla en vivo mientras degustas nuestros platos.</p>
                     <p class="event-time">12:00 PM - 5:00 PM</p>
-                    <p class="event-note">¡Entrada libre para todos nuestros clientes!</p>
                 </div>
             </div>
         </div>
@@ -98,55 +83,26 @@
     <!-- Contact & Map Section -->
     <section class="contact-map" id="contact">
         <div class="container">
-            <h2 class="section-title" data-title="Visítanos">Contacto</h2>
+            <h2 class="section-title">Contacto</h2>
             <div class="contact-content">
                 <div class="contact-info animate-on-scroll slide-left">
-                    <h3>Ven a disfrutar de nuestra comida</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Av. Los Gemelos 123, Lima, Perú</p>
                     <p><i class="fas fa-phone"></i> +51 987 654 321</p>
-                    <p><i class="fas fa-envelope"></i> info@losgemelos.com</p>
                     <p><i class="fas fa-clock"></i> Lunes a Domingo: 11:00 AM - 10:00 PM</p>
-                    <a href="https://wa.me/51987654321" class="btn btn-whatsapp shake">
-                        <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+                    <a href="https://wa.me/51987654321" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
                 <div class="map-container animate-on-scroll slide-right">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.965646038693!2d-76.9915426846746!3d-12.04604544543002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAyJzQ1LjgiUyA3NsKwNTknMjEuNiJX!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" 
-                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-section">
-                <img src="images/logo-gemelos.png" alt="Los Gemelos" class="footer-logo">
-                <p>Auténtica comida criolla en un ambiente campestre</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Horario</h3>
-                <p>Lunes a Viernes: 11am - 8pm</p>
-                <p>Sábado y Domingo: 10am - 9pm</p>
-                <p>Domingos: Música en vivo 12pm - 5pm</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <p><i class="fas fa-phone"></i> +51 987 654 321</p>
-                <p><i class="fas fa-envelope"></i> info@losgemelos.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Av. Los Gemelos 123, Lima</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Los Gemelos. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <!-- Footer importado -->
+    <div id="footer-placeholder"></div>
 
     <!-- Floating Cart Button -->
     <button class="floating-cart-btn" id="cart-btn">

@@ -1,19 +1,16 @@
 // Cargar navbar y footer
 function loadFragments() {
-    const navbarPlaceholder = document.getElementById('navbar-placeholder');
-    const footerPlaceholder = document.getElementById('footer-placeholder');
-    
     fetch('fragments/navbar.html')
         .then(response => response.text())
         .then(data => {
-            navbarPlaceholder.innerHTML = data;
+            document.getElementById('navbar-placeholder').innerHTML = data;
             setupNavbar();
         });
     
     fetch('fragments/footer.html')
         .then(response => response.text())
         .then(data => {
-            footerPlaceholder.innerHTML = data;
+            document.getElementById('footer-placeholder').innerHTML = data;
         });
 }
 
@@ -29,7 +26,9 @@ function setupNavbar() {
     // Cerrar navbar al hacer clic en un enlace (para móviles)
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
-            navbarLinks.classList.remove('active');
+            if (window.innerWidth <= 768) {
+                navbarLinks.classList.remove('active');
+            }
         });
     });
 }
@@ -45,7 +44,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
-                top: targetElement.offsetTop - 80,
+                top: targetElement.offsetTop - document.querySelector('.navbar').offsetHeight,
                 behavior: 'smooth'
             });
         }
@@ -54,26 +53,86 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Animaciones al hacer scroll
 function setupScrollAnimations() {
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
-                observer.unobserve(entry.target);
             }
         });
     }, {
         threshold: 0.1
     });
     
-    animateElements.forEach(element => {
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
         observer.observe(element);
     });
+}
+
+// Cargar menú de productos
+function loadMenu() {
+    const comidasContainer = document.getElementById('comidas');
+    const bebidasContainer = document.getElementById('bebidas');
+    
+    products.comidas.forEach(product => {
+        comidasContainer.appendChild(createProductCard(product));
+    });
+    
+    products.bebidas.forEach(product => {
+        bebidasContainer.appendChild(createProductCard(product));
+    });
+    
+    // Manejar tabs
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            document.querySelectorAll('.menu-items').forEach(container => {
+                container.classList.add('hidden');
+            });
+            
+            document.getElementById(tab.dataset.category).classList.remove('hidden');
+        });
+    });
+}
+
+// Función para crear tarjeta de producto
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    card.innerHTML = `
+        <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            ${!product.available ? '<div class="sold-out">Agotado</div>' : ''}
+        </div>
+        <div class="product-details">
+            <h3>${product.name}</h3>
+            <p class="price">S/ ${product.price.toFixed(2)}</p>
+            <p class="description">${product.description}</p>
+            
+            ${product.available ? `
+            <div class="product-actions">
+                <div class="quantity-selector">
+                    <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                    <input type="number" value="1" min="1" class="quantity-input">
+                    <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                </div>
+                <button class="btn btn-add" data-id="${product.id}">
+                    Agregar
+                </button>
+            </div>
+            ` : ''}
+        </div>
+    `;
+    
+    return card;
 }
 
 // Inicializar todo cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     loadFragments();
     setupScrollAnimations();
+    loadMenu();
 });
