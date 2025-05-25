@@ -4,40 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Los Gemelos - Restaurante Campestre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Navbar importado -->
     <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="animate-fade-in">Los Gemelos</h1>
-            <p class="animate-fade-in-delay">Auténtica comida criolla en un ambiente campestre</p>
-            <div class="hero-buttons">
-                <a href="#menu" class="btn btn-primary animate-fade-in-delay-2">Ver Carta</a>
-                <a href="#contact" class="btn btn-outline animate-fade-in-delay-2">Contacto</a>
-            </div>
+            <h1 class="hero-title">Los Gemelos</h1>
+            <p class="hero-subtitle">Sabores auténticos en un ambiente campestre</p>
+            <a href="#menu" class="btn btn-primary pulse">Ver Menú</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Nosotros</h2>
+            <h2 class="section-title">Nuestra Historia</h2>
             <div class="about-content">
-                <div class="about-text animate-on-scroll slide-left">
-                    <p>Los Gemelos es un restaurante campestre familiar que ofrece los sabores más auténticos de la cocina criolla peruana. Desde 2010, nos hemos dedicado a preservar las recetas tradicionales con ingredientes frescos y de la más alta calidad.</p>
-                    <p>Ven y disfruta de nuestros platos en un ambiente acogedor rodeado de naturaleza, con música en vivo todos los domingos.</p>
+                <div class="about-text">
+                    <p>Los Gemelos es un restaurante campestre que nació del amor por la comida criolla y la tradición familiar. Desde 2010, hemos servido platillos auténticos preparados con ingredientes frescos y recetas heredadas de generación en generación.</p>
+                    <p>Nuestro ambiente acogedor y los domingos con música en vivo hacen de Los Gemelos el lugar perfecto para disfrutar en familia.</p>
                 </div>
-                <div class="about-image animate-on-scroll slide-right">
-                    <img src="images/restaurant-exterior.jpg" alt="Exterior del restaurante">
+                <div class="about-image">
+                    <img src="images/restaurant-exterior.jpg" alt="Exterior del restaurante" class="zoom-on-hover">
                 </div>
             </div>
         </div>
@@ -46,19 +41,14 @@
     <!-- Menu Section -->
     <section class="menu" id="menu">
         <div class="container">
-            <h2 class="section-title">Nuestro Menú</h2>
-            
-            <div class="menu-tabs">
-                <button class="tab-btn active animate-on-scroll slide-left" data-category="comidas">Comidas</button>
-                <button class="tab-btn animate-on-scroll slide-right" data-category="bebidas">Bebidas</button>
+            <h2 class="section-title">Nuestra Carta</h2>
+            <div class="menu-filters">
+                <button class="filter-btn active" data-category="all">Todo</button>
+                <button class="filter-btn" data-category="comidas">Comidas Criollas</button>
+                <button class="filter-btn" data-category="bebidas">Bebidas</button>
             </div>
-            
-            <div class="menu-items" id="comidas">
-                <!-- Los productos se cargarán dinámicamente con JavaScript -->
-            </div>
-            
-            <div class="menu-items hidden" id="bebidas">
-                <!-- Las bebidas se cargarán dinámicamente con JavaScript -->
+            <div class="menu-items" id="menu-items">
+                <!-- Los productos se cargarán dinámicamente desde JS -->
             </div>
         </div>
     </section>
@@ -66,36 +56,41 @@
     <!-- Events Section -->
     <section class="events" id="events">
         <div class="container">
-            <h2 class="section-title">Eventos</h2>
-            <div class="event-card animate-on-scroll zoom-in">
+            <h2 class="section-title">Eventos Especiales</h2>
+            <div class="event-card">
                 <div class="event-icon">
                     <i class="fas fa-music"></i>
                 </div>
                 <div class="event-details">
-                    <h3>Música en Vivo</h3>
-                    <p>Todos los domingos disfruta de la mejor música criolla en vivo mientras degustas nuestros platos.</p>
-                    <p class="event-time">12:00 PM - 5:00 PM</p>
+                    <h3>Domingos Musicales</h3>
+                    <p>Todos los domingos disfruta de nuestra deliciosa comida criolla acompañada de música en vivo desde las 2pm hasta las 6pm.</p>
+                    <p class="event-time"><i class="fas fa-clock"></i> 2:00 PM - 6:00 PM</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Map Section -->
-    <section class="contact-map" id="contact">
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
+            <h2 class="section-title">Visítanos</h2>
             <div class="contact-content">
-                <div class="contact-info animate-on-scroll slide-left">
-                    <p><i class="fas fa-map-marker-alt"></i> Av. Los Gemelos 123, Lima, Perú</p>
-                    <p><i class="fas fa-phone"></i> +51 987 654 321</p>
-                    <p><i class="fas fa-clock"></i> Lunes a Domingo: 11:00 AM - 10:00 PM</p>
-                    <a href="https://wa.me/51987654321" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. Campestre 123, Zona Rural</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+51 987 654 321</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Lunes a Domingo: 10:00 AM - 8:00 PM</p>
+                    </div>
                 </div>
-                <div class="map-container animate-on-scroll slide-right">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.965646038693!2d-76.9915426846746!3d-12.04604544543002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAyJzQ1LjgiUyA3NsKwNTknMjEuNiJX!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" 
-                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.0000000000005!2d-76.00000000000001!3d-12.000000000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAwJzAwLjAiUyA3NsKwMDAnMDAuMCJX!5e0!3m2!1sen!2spe!4v1620000000000!5m2!1sen!2spe" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -107,7 +102,7 @@
     <!-- Floating Cart Button -->
     <button class="floating-cart-btn" id="cart-btn">
         <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
+        <span class="cart-count" id="cart-count">0</span>
     </button>
 
     <!-- Cart Modal -->
@@ -115,20 +110,23 @@
         <div class="cart-content">
             <div class="cart-header">
                 <h3>Tu Pedido</h3>
-                <button class="close-cart">&times;</button>
+                <button class="close-cart" id="close-cart">&times;</button>
             </div>
-            <div class="cart-items">
-                <!-- Los items del carrito se cargarán aquí -->
+            <div class="cart-items" id="cart-items">
+                <!-- Los items del carrito se cargarán dinámicamente -->
             </div>
             <div class="cart-total">
-                <p>Total: <span id="cart-total-price">S/ 0.00</span></p>
+                <p>Total: <span id="cart-total">S/ 0.00</span></p>
             </div>
-            <button class="btn btn-primary" id="checkout-btn">Confirmar Pedido</button>
+            <div class="cart-actions">
+                <button class="btn btn-outline" id="clear-cart">Vaciar Carrito</button>
+                <button class="btn btn-primary" id="checkout">Realizar Pedido</button>
+            </div>
         </div>
     </div>
 
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
+    <!-- Notification Toast -->
+    <div class="toast" id="toast"></div>
 
     <script src="scripts/products.js"></script>
     <script src="scripts/cart.js"></script>
