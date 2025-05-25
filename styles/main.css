@@ -165,6 +165,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     width: 30px;
     height: 21px;
+    z-index: 1001;
 }
 
 .navbar-toggle span {
@@ -174,6 +175,18 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--secondary-color);
     border-radius: 3px;
     transition: all 0.3s ease;
+}
+
+.navbar-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -454,37 +467,72 @@ h1, h2, h3, h4, h5, h6 {
 .footer {
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 60px 0 0;
+    padding: 40px 0 0;
+    font-size: 0.9rem;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
 }
 
 .footer-logo {
-    height: 70px;
-    margin-bottom: 20px;
+    height: 60px;
+    margin-bottom: 15px;
 }
 
-.footer p {
-    margin-bottom: 20px;
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-section p {
+    margin-bottom: 10px;
     opacity: 0.8;
+}
+
+.footer-section a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-section a:hover {
+    opacity: 1;
+    color: var(--primary-color);
 }
 
 .social-icons {
     display: flex;
     gap: 15px;
+    margin-top: 15px;
 }
 
 .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     color: var(--white);
@@ -496,54 +544,16 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-3px);
 }
 
-.footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.footer-section h3::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 2px;
-    background-color: var(--primary-color);
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-    color: var(--white);
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.footer-section ul li a:hover {
-    opacity: 1;
-    color: var(--primary-color);
-    padding-left: 5px;
-}
-
 .footer-bottom {
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 20px 0;
+    padding: 15px 0;
     text-align: center;
 }
 
 .footer-bottom p {
     margin: 0;
     opacity: 0.7;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 /* Floating Cart Button */
@@ -766,6 +776,7 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: flex-start;
         padding-top: 30px;
         transition: all 0.3s ease;
+        z-index: 1000;
     }
     
     .navbar-menu.active {
@@ -775,10 +786,12 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-links {
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
     
     .nav-link {
-        margin: 10px 0;
+        margin: 15px 0;
+        font-size: 1.2rem;
     }
     
     .navbar-toggle {
@@ -799,6 +812,15 @@ h1, h2, h3, h4, h5, h6 {
     
     .menu-items {
         grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
     }
 }
 
