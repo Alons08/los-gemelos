@@ -800,6 +800,27 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 0;
 }
 
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--success-color);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1002;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
 /* Responsive Styles */
 @media (max-width: 992px) {
     .about-content, .contact-content {
@@ -835,8 +856,8 @@ h1, h2, h3, h4, h5, h6 {
         background-color: var(--navbar-mobile-bg);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        padding-top: 30px;
+        justify-content: center;
+        padding: 20px;
         transition: all 0.3s ease;
         z-index: 1000;
         overflow-y: auto;
@@ -844,21 +865,20 @@ h1, h2, h3, h4, h5, h6 {
     
     .navbar-menu.active {
         left: 0;
-        padding: 20px;
     }
     
     .navbar-links {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        gap: 15px;
+        gap: 25px;
     }
     
     .nav-link {
         color: var(--white);
-        margin: 10px 0;
-        font-size: 1.2rem;
-        padding: 10px 20px;
+        margin: 0;
+        font-size: 1.3rem;
+        padding: 12px 25px;
     }
     
     .nav-link:hover {
