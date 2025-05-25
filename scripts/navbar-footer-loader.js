@@ -1,34 +1,31 @@
-// Cargar navbar
-fetch('fragments/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-        setupNavbar();
-    });
-
-// Cargar footer
-fetch('fragments/footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-container').innerHTML = data;
-    });
-
-function setupNavbar() {
-    const toggle = document.querySelector('.navbar-toggle');
-    const navbarLinks = document.querySelector('.navbar-links');
+// Función para cargar fragmentos HTML
+async function loadFragment(url, elementId) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const html = await response.text();
+    document.getElementById(elementId).innerHTML = html;
     
-    toggle.addEventListener('click', () => {
-        navbarLinks.classList.toggle('active');
-        toggle.querySelector('i').classList.toggle('fa-bars');
-        toggle.querySelector('i').classList.toggle('fa-times');
-    });
-    
-    // Cerrar menú al hacer clic en un enlace (para móviles)
-    document.querySelectorAll('.navbar-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navbarLinks.classList.remove('active');
-            toggle.querySelector('i').classList.remove('fa-times');
-            toggle.querySelector('i').classList.add('fa-bars');
+    // Si es el navbar, inicializar el toggle
+    if (elementId === 'navbar-placeholder') {
+      const toggle = document.getElementById('navbar-toggle');
+      const menu = document.getElementById('navbar-menu');
+      
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          menu.classList.toggle('active');
         });
-    });
+      }
+    }
+  } catch (error) {
+    console.error(`Error loading ${url}:`, error);
+  }
 }
+
+// Cargar navbar y footer cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  loadFragment('fragments/navbar.html', 'navbar-placeholder');
+  loadFragment('fragments/footer.html', 'footer-placeholder');
+});

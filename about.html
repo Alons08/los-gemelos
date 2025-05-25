@@ -1,82 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nosotros - Los Gemelos</title>
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/about.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros - Los Gemelos</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="navbar-container"></div>
+  <!-- Navbar se cargará aquí -->
+  <div id="navbar-placeholder"></div>
 
-    <section class="about-hero">
-        <div class="about-hero-content">
-            <h1>Nuestra Historia</h1>
-        </div>
-        <div class="about-hero-overlay"></div>
+  <main>
+    <!-- About Banner -->
+    <section class="about-banner">
+      <div class="container">
+        <h1 class="fade-in">Nuestra Historia</h1>
+      </div>
     </section>
 
-    <section class="about-content">
-        <div class="about-story">
-            <h2>Los Gemelos</h2>
-            <p>Fundado en 2010 por los hermanos Miguel y Raúl, "Los Gemelos" comenzó como un pequeño puesto de comida que servía platos criollos tradicionales. Con el tiempo, gracias a la calidad de nuestros ingredientes y el amor por la cocina peruana, fuimos creciendo hasta convertirnos en el restaurante campestre que somos hoy.</p>
-            <p>Nuestro nombre proviene del cariñoso apodo que la gente nos daba a los hermanos fundadores, y decidimos mantenerlo como homenaje a nuestros humildes comienzos.</p>
-            <p>Hoy en día, seguimos comprometidos con ofrecer auténticos sabores peruanos en un ambiente familiar y acogedor.</p>
+    <!-- History Section -->
+    <section class="history-section container">
+      <div class="history-content">
+        <div class="history-text">
+          <h2 class="section-title">Los Gemelos</h2>
+          <p>Fundado en 1995 por los hermanos Miguel y Raúl, "Los Gemelos" nació como un pequeño local familiar con la visión de ofrecer auténtica comida criolla en un ambiente campestre que evocara los sabores y tradiciones de nuestra tierra.</p>
+          <p>Lo que comenzó como un modesto negocio familiar, hoy se ha convertido en un referente gastronómico de la zona, manteniendo siempre nuestra esencia y compromiso con la calidad.</p>
+          <p>Cada plato que servimos lleva el sello de nuestra abuela, quien nos enseñó que la buena comida se hace con ingredientes frescos, mucho amor y paciencia.</p>
         </div>
-
-        <div class="about-values">
-            <div class="value-card">
-                <i class="fas fa-seedling"></i>
-                <h3>Ingredientes Frescos</h3>
-                <p>Trabajamos con proveedores locales para garantizar la frescura y calidad de nuestros productos.</p>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-heart"></i>
-                <h3>Pasión por la Cocina</h3>
-                <p>Cada plato se prepara con el mismo amor y dedicación que nos caracteriza desde el primer día.</p>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-users"></i>
-                <h3>Tradición Familiar</h3>
-                <p>Mantenemos las recetas tradicionales que han pasado de generación en generación.</p>
-            </div>
+        <div class="history-image">
+          <img src="../images/exterior.jpg" alt="Exterior del restaurante" class="slide-up">
         </div>
+      </div>
     </section>
 
-    <section class="location">
-        <h2>Ubicación</h2>
-        <div class="location-container">
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.234567890123!2d-76.987654321!3d-12.3456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDIwJzQ0LjQiUyA3NsKwNTknMTUuNiJX!5e0!3m2!1ses!2spe!4v1234567890123!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="location-info">
-                <h3>Horario de Atención</h3>
-                <p>Lunes a Viernes: 11:00 am - 9:00 pm</p>
-                <p>Sábados y Domingos: 10:00 am - 10:00 pm</p>
-                
-                <h3>Contacto</h3>
-                <p><i class="fas fa-phone"></i> <a href="tel:+51987654321">987 654 321</a></p>
-                <p><i class="fas fa-envelope"></i> info@losgemelos.com</p>
-                
-                <div class="social-links">
-                    <a href="https://facebook.com/losgemelos" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/losgemelos" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/51987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <h2 class="section-title">Nuestros Valores</h2>
+        <div class="values-grid">
+          <div class="value-card slide-up">
+            <i class="fas fa-seedling"></i>
+            <h3>Ingredientes Frescos</h3>
+            <p>Utilizamos productos locales y de temporada para garantizar la máxima calidad y frescura.</p>
+          </div>
+          <div class="value-card slide-up">
+            <i class="fas fa-heart"></i>
+            <h3>Pasión por Servir</h3>
+            <p>Cada cliente es tratado como un miembro más de nuestra familia.</p>
+          </div>
+          <div class="value-card slide-up">
+            <i class="fas fa-history"></i>
+            <h3>Tradición</h3>
+            <p>Mantenemos vivas las recetas tradicionales transmitidas por generaciones.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <div id="footer-container"></div>
+    <!-- Location Section -->
+    <section class="location-section container">
+      <h2 class="section-title">Ubicación</h2>
+      <div class="location-content">
+        <div class="map-container slide-up">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.965943584504!2d-76.9437856851876!3d-12.046377791467032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAyJzQ3LjAiUyA3NsKwNTYnMzEuOSJX!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="contact-info slide-up">
+          <h3>Contáctanos</h3>
+          <ul>
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:+51987654321">+51 987 654 321</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:contacto@losgemelos.com">contacto@losgemelos.com</a>
+            </li>
+            <li>
+              <i class="fas fa-clock"></i>
+              <p>Lunes a Domingo: 11:00 am - 10:00 pm</p>
+            </li>
+            <li class="social-links">
+              <a href="https://facebook.com/losgemelos" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://instagram.com/losgemelos" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/51987654321" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script src="scripts/navbar-footer-loader.js"></script>
-    <script src="scripts/about.js"></script>
+  <!-- Footer se cargará aquí -->
+  <div id="footer-placeholder"></div>
+
+  <script src="scripts/navbar-footer-loader.js"></script>
+  <script src="scripts/about.js"></script>
 </body>
 </html>

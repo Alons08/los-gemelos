@@ -1,193 +1,195 @@
+/* Hero Section */
 .hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--text-light);
-    overflow: hidden;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hero-bg.jpg') no-repeat center center;
+  background-size: cover;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--light-text);
+  position: relative;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
 
 .hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--light-text);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+/* About Preview */
+.about-preview {
+  padding: 5rem 0;
 }
 
-.features {
-    background-color: var(--light-color);
-    padding: 4rem 0;
+.about-preview-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
-.feature-card {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    margin-bottom: 2rem;
+.about-text {
+  flex: 1;
 }
 
-.feature-card i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+.about-text p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-.feature-card h3 {
-    color: var(--primary-color);
+.about-image {
+  flex: 1;
 }
 
-.highlight {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    background-color: white;
-    padding: 3rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    margin: 4rem auto;
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.highlight-image {
-    flex: 1;
-    height: 400px;
-    background: url('../images/pepian-pavita.jpg') no-repeat center center/cover;
-    border-radius: 10px;
+.about-image img:hover {
+  transform: scale(1.02);
 }
 
-.highlight-content {
-    flex: 1;
+/* Events Preview */
+.events-preview {
+  background-color: var(--secondary-color);
+  padding: 5rem 0;
 }
 
-.highlight h2 {
-    color: var(--secondary-color);
-    font-size: 1.8rem;
+.events-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.highlight h3 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
+.event-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 400px;
+  text-align: center;
 }
 
-.testimonials {
-    background-color: var(--light-color);
-    text-align: center;
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.testimonial-container {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
+.event-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
 
-.testimonial {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    max-width: 400px;
-    text-align: left;
-    transition: var(--transition);
+.event-card h3 {
+  margin: 1rem 0;
+  color: var(--primary-color);
 }
 
-.testimonial-author {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
+.event-card p {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-color);
 }
 
-.author-rating {
-    color: var(--accent-color);
+/* Featured Dishes */
+.featured-dishes {
+  padding: 5rem 0;
 }
 
-.cta {
-    text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/cta-bg.jpg') no-repeat center center/cover;
-    color: var(--text-light);
-    padding: 5rem 0;
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-.cta h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.dish-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.cta p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+.dish-card:hover {
+  transform: translateY(-10px);
 }
 
-@media (max-width: 992px) {
-    .highlight {
-        flex-direction: column;
-    }
-    
-    .highlight-image {
-        width: 100%;
-    }
+.dish-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
 
+.dish-card h3 {
+  padding: 1rem 1rem 0;
+  color: var(--primary-color);
+}
+
+.dish-card p {
+  padding: 0 1rem;
+  color: var(--text-color);
+}
+
+.price {
+  display: block;
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
-    
-    .hero p {
-        font-size: 1.2rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .highlight {
-        padding: 2rem;
-    }
-    
-    .highlight h3 {
-        font-size: 1.8rem;
-    }
+  .hero {
+    height: 60vh;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .about-preview-content {
+    flex-direction: column;
+  }
+  
+  .about-image {
+    order: -1;
+  }
+  
+  .dishes-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,358 +1,422 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Productos disponibles
-    const productos = {
-        comidas: [
-            {
-                id: 1,
-                nombre: "Picante de Cuy 1/2",
-                descripcion: "Tradicional plato andino preparado con cuy fresco, papas y ají mirasol.",
-                precio: 35.00,
-                imagen: "images/platillos/picante-de-cuy.jpg",
-                disponible: true
-            },
-            {
-                id: 2,
-                nombre: "Chicharrón de Chancho",
-                descripcion: "Crujiente chicharrón de cerdo acompañado de camote frito, maíz y salsa criolla.",
-                precio: 28.00,
-                imagen: "images/platillos/chicharron-de-chancho.jpg",
-                disponible: true
-            },
-            {
-                id: 3,
-                nombre: "Frejolada de Pato",
-                descripcion: "Delicioso frejol colado con pierna de pato, acompañado de arroz y salsa criolla.",
-                precio: 32.00,
-                imagen: "images/platillos/frejolada-de-pato.jpg",
-                disponible: true
-            },
-            {
-                id: 4,
-                nombre: "Cabrito Norteno",
-                descripcion: "Exquisito cabrito al estilo norteño, cocido a fuego lento con especias.",
-                precio: 38.00,
-                imagen: "images/platillos/cabrito-norteno.jpg",
-                disponible: false
-            },
-            {
-                id: 5,
-                nombre: "Costillar",
-                descripcion: "Costillar de cerdo glaseado con salsa agridulce, acompañado de puré de manzana.",
-                precio: 34.00,
-                imagen: "images/platillos/costillar.jpg",
-                disponible: true
-            },
-            {
-                id: 6,
-                nombre: "Pepian Pavita de Corral",
-                descripcion: "Pepian preparado con pavita de corral, acompañado de arroz y papas doradas.",
-                precio: 36.00,
-                imagen: "images/platillos/pepian-pavita.jpg",
-                disponible: true
-            },
-            {
-                id: 7,
-                nombre: "Chancho a la Caja China",
-                descripcion: "Lechón cocido a la caja china, servido con tamalitos verdes y salsa criolla.",
-                precio: 40.00,
-                imagen: "images/platillos/chancho-a-la-caja-china.jpg",
-                disponible: true
-            },
-            {
-                id: 8,
-                nombre: "Caldo de Gallina",
-                descripcion: "Reconfortante caldo preparado con gallina de corral, fideos y hierbas aromáticas.",
-                precio: 22.00,
-                imagen: "images/platillos/caldo-de-gallina.jpg",
-                disponible: true
-            },
-            {
-                id: 9,
-                nombre: "Ceviche",
-                descripcion: "Clásico ceviche peruano preparado con pescado fresco, limón, ají y camote.",
-                precio: 30.00,
-                imagen: "images/platillos/ceviche.jpg",
-                disponible: true
-            },
-            {
-                id: 10,
-                nombre: "Chicharrón de Pescado",
-                descripcion: "Filetes de pescado empanizados y fritos, acompañados de yuca y salsa tártara.",
-                precio: 28.00,
-                imagen: "images/platillos/chicharron-de-pescado.jpg",
-                disponible: false
-            }
-        ],
-        bebidas: [
-            {
-                id: 11,
-                nombre: "Gaseosas 1/2L",
-                descripcion: "Refrescos de 500ml en diferentes sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
-                precio: 5.00,
-                imagen: "images/bebidas/gaseosas.jpg",
-                disponible: true
-            },
-            {
-                id: 12,
-                nombre: "Cervezas",
-                descripcion: "Cervezas nacionales e internacionales: Cristal, Pilsen, Heineken, Corona.",
-                precio: 8.00,
-                imagen: "images/bebidas/cervezas.jpg",
-                disponible: true
-            },
-            {
-                id: 13,
-                nombre: "Agua Mineral",
-                descripcion: "Agua mineral sin gas de 500ml.",
-                precio: 3.00,
-                imagen: "images/bebidas/agua-mineral.jpg",
-                disponible: true
-            }
-        ]
-    };
+document.addEventListener('DOMContentLoaded', () => {
+  // Datos de los productos (comidas y bebidas)
+  const productos = {
+    comidas: [
+      {
+        id: 1,
+        nombre: "Lomo Saltado",
+        descripcion: "Clásico peruano con carne, cebolla, tomate y papas fritas.",
+        precio: 35.00,
+        imagen: "../images/comida1.jpg",
+        disponible: true
+      },
+      {
+        id: 2,
+        nombre: "Seco de Cordero",
+        descripcion: "Tierno cordero cocido con culantro y frejoles.",
+        precio: 40.00,
+        imagen: "../images/comida2.jpg",
+        disponible: true
+      },
+      {
+        id: 3,
+        nombre: "Ceviche Clásico",
+        descripcion: "Fresco pescado marinado en limón con cebolla y ají.",
+        precio: 30.00,
+        imagen: "../images/comida3.jpg",
+        disponible: true
+      },
+      {
+        id: 4,
+        nombre: "Aji de Gallina",
+        descripcion: "Pollo desmenuzado en crema de ají amarillo con pan francés.",
+        precio: 32.00,
+        imagen: "../images/comida1.jpg",
+        disponible: true
+      },
+      {
+        id: 5,
+        nombre: "Arroz con Pato",
+        descripcion: "Arroz cocido con pato, culantro y cerveza negra.",
+        precio: 38.00,
+        imagen: "../images/comida2.jpg",
+        disponible: false
+      },
+      {
+        id: 6,
+        nombre: "Causa Limeña",
+        descripcion: "Puré de papa amarilla con relleno de pollo o atún.",
+        precio: 28.00,
+        imagen: "../images/comida3.jpg",
+        disponible: true
+      }
+    ],
+    bebidas: [
+      {
+        id: 101,
+        nombre: "Chicha Morada",
+        descripcion: "Refrescante bebida a base de maíz morado.",
+        precio: 8.00,
+        imagen: "../images/bebida1.jpg",
+        disponible: true
+      },
+      {
+        id: 102,
+        nombre: "Inca Kola",
+        descripcion: "La bebida gaseosa más popular del Perú.",
+        precio: 7.00,
+        imagen: "../images/bebida2.jpg",
+        disponible: true
+      },
+      {
+        id: 103,
+        nombre: "Pisco Sour",
+        descripcion: "Cóctel peruano a base de pisco, limón, clara de huevo y jarabe de goma.",
+        precio: 25.00,
+        imagen: "../images/bebida1.jpg",
+        disponible: true
+      },
+      {
+        id: 104,
+        nombre: "Jugo de Maracuyá",
+        descripcion: "Refrescante jugo natural de maracuyá.",
+        precio: 10.00,
+        imagen: "../images/bebida2.jpg",
+        disponible: false
+      },
+      {
+        id: 105,
+        nombre: "Cerveza Artesanal",
+        descripcion: "Selección de cervezas artesanales locales.",
+        precio: 15.00,
+        imagen: "../images/bebida1.jpg",
+        disponible: true
+      }
+    ]
+  };
 
-    // Cargar productos en la página
-    function cargarProductos(categoria) {
-        const menuGrid = document.querySelector(`#${categoria} .menu-grid`);
-        menuGrid.innerHTML = '';
-        
-        productos[categoria].forEach(producto => {
-            const productoHTML = `
-                <div class="menu-item ${producto.disponible ? '' : 'agotado'}">
-                    <div class="item-image" style="background-image: url('${producto.imagen}')">
-                        ${producto.disponible ? '' : '<span class="agotado-label">Agotado</span>'}
-                    </div>
-                    <div class="item-info">
-                        <h3>${producto.nombre}</h3>
-                        <p>${producto.descripcion}</p>
-                        <div class="item-price">S/. ${producto.precio.toFixed(2)}</div>
-                        ${producto.disponible ? `
-                        <div class="item-actions">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1">
-                                <button class="quantity-btn plus">+</button>
-                            </div>
-                            <button class="add-to-cart" data-id="${producto.id}" data-categoria="${categoria}">Agregar</button>
-                        </div>
-                        ` : ''}
-                    </div>
-                </div>
-            `;
-            menuGrid.innerHTML += productoHTML;
-        });
-    }
+  // Variables del carrito
+  let carrito = [];
+  const carritoItems = document.getElementById('cart-items');
+  const cartTotalPrice = document.getElementById('cart-total-price');
+  const cartCount = document.querySelector('.cart-count');
+  const cartToggle = document.getElementById('cart-toggle');
+  const closeCart = document.getElementById('close-cart');
+  const cartSidebar = document.querySelector('.cart-sidebar');
+  const cartOverlay = document.querySelector('.cart-overlay');
+  const clearCartBtn = document.getElementById('clear-cart');
+  const checkoutBtn = document.getElementById('checkout');
+  const menuTabs = document.querySelectorAll('.menu-tab');
+  const menuCategories = document.querySelectorAll('.menu-category');
 
-    // Cambiar entre categorías
-    const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            const category = button.dataset.category;
-            document.querySelectorAll('.menu-items').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(category).classList.remove('hidden');
-        });
-    });
-
-    // Inicializar carrito
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  // Cargar productos en la página
+  function cargarProductos() {
+    const comidasGrid = document.getElementById('comidas-grid');
+    const bebidasGrid = document.getElementById('bebidas-grid');
     
-    // Actualizar contador del carrito
-    function actualizarContadorCarrito() {
-        const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
-        document.querySelector('.cart-count').textContent = totalItems;
+    // Limpiar grids
+    if (comidasGrid) comidasGrid.innerHTML = '';
+    if (bebidasGrid) bebidasGrid.innerHTML = '';
+    
+    // Cargar comidas
+    productos.comidas.forEach(comida => {
+      const comidaElement = crearProductoElemento(comida);
+      if (comidasGrid) comidasGrid.appendChild(comidaElement);
+    });
+    
+    // Cargar bebidas
+    productos.bebidas.forEach(bebida => {
+      const bebidaElement = crearProductoElemento(bebida);
+      if (bebidasGrid) bebidasGrid.appendChild(bebidaElement);
+    });
+  }
+  
+  // Crear elemento HTML para un producto
+  function crearProductoElemento(producto) {
+    const productoElement = document.createElement('div');
+    productoElement.className = 'menu-item slide-up';
+    
+    let disponibilidadHTML = '';
+    if (!producto.disponible) {
+      disponibilidadHTML = '<span class="out-of-stock">AGOTADO</span>';
     }
     
-    // Mostrar/ocultar carrito
-    const cartButton = document.querySelector('.cart-button');
-    const cartSidebar = document.querySelector('.cart-sidebar');
-    const cartOverlay = document.querySelector('.cart-overlay');
-    const closeCart = document.querySelector('.close-cart');
+    productoElement.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}" class="menu-item-img">
+      ${disponibilidadHTML}
+      <div class="menu-item-content">
+        <h3 class="menu-item-title">${producto.nombre}</h3>
+        <p class="menu-item-description">${producto.descripcion}</p>
+        <span class="menu-item-price">S/ ${producto.precio.toFixed(2)}</span>
+        <div class="menu-item-actions">
+          <div class="quantity-control">
+            <button class="quantity-btn minus">-</button>
+            <input type="number" class="quantity-input" value="1" min="1" ${!producto.disponible ? 'disabled' : ''}>
+            <button class="quantity-btn plus">+</button>
+          </div>
+          <button class="add-to-cart" ${!producto.disponible ? 'disabled' : ''}>
+            ${producto.disponible ? 'Agregar' : 'No disponible'}
+          </button>
+        </div>
+      </div>
+    `;
     
-    cartButton.addEventListener('click', () => {
-        cartSidebar.classList.add('active');
-        cartOverlay.classList.add('active');
-        actualizarCarrito();
-    });
-    
-    closeCart.addEventListener('click', () => {
-        cartSidebar.classList.remove('active');
-        cartOverlay.classList.remove('active');
-    });
-    
-    cartOverlay.addEventListener('click', () => {
-        cartSidebar.classList.remove('active');
-        cartOverlay.classList.remove('active');
-    });
-    
-    // Actualizar vista del carrito
-    function actualizarCarrito() {
-        const cartItems = document.querySelector('.cart-items');
-        const cartTotal = document.querySelector('.cart-total span');
-        
-        cartItems.innerHTML = '';
-        
-        if (carrito.length === 0) {
-            cartItems.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
-            cartTotal.textContent = 'S/. 0.00';
-            return;
+    // Agregar eventos a los botones
+    if (producto.disponible) {
+      const addToCartBtn = productoElement.querySelector('.add-to-cart');
+      const minusBtn = productoElement.querySelector('.minus');
+      const plusBtn = productoElement.querySelector('.plus');
+      const quantityInput = productoElement.querySelector('.quantity-input');
+      
+      minusBtn.addEventListener('click', () => {
+        if (parseInt(quantityInput.value) > 1) {
+          quantityInput.value = parseInt(quantityInput.value) - 1;
         }
+      });
+      
+      plusBtn.addEventListener('click', () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+      });
+      
+      addToCartBtn.addEventListener('click', () => {
+        agregarAlCarrito(producto, parseInt(quantityInput.value));
+        quantityInput.value = 1;
         
-        let total = 0;
-        
-        carrito.forEach(item => {
-            const producto = [...productos.comidas, ...productos.bebidas].find(p => p.id === item.id);
-            
-            if (producto) {
-                const subtotal = producto.precio * item.cantidad;
-                total += subtotal;
-                
-                const cartItemHTML = `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h4>${producto.nombre}</h4>
-                            <p>S/. ${producto.precio.toFixed(2)} x ${item.cantidad}</p>
-                        </div>
-                        <div class="cart-item-subtotal">S/. ${subtotal.toFixed(2)}</div>
-                        <div class="cart-item-actions">
-                            <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                `;
-                cartItems.innerHTML += cartItemHTML;
-            }
-        });
-        
-        cartTotal.textContent = `S/. ${total.toFixed(2)}`;
-        
-        // Configurar botón de WhatsApp
-        const checkoutBtn = document.querySelector('.checkout-btn');
-        const mensaje = generarMensajeWhatsApp();
-        checkoutBtn.href = `https://wa.me/51987654321?text=${encodeURIComponent(mensaje)}`;
-        
-        // Agregar eventos a los botones de eliminar
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const id = parseInt(e.currentTarget.dataset.id);
-                carrito = carrito.filter(item => item.id !== id);
-                localStorage.setItem('carrito', JSON.stringify(carrito));
-                actualizarCarrito();
-                actualizarContadorCarrito();
-            });
-        });
+        // Efecto visual al agregar
+        addToCartBtn.textContent = '¡Agregado!';
+        setTimeout(() => {
+          addToCartBtn.textContent = 'Agregar';
+        }, 1000);
+      });
     }
     
-    // Generar mensaje para WhatsApp
-    function generarMensajeWhatsApp() {
-        let mensaje = '¡Hola! Quiero hacer el siguiente pedido:\n\n';
-        
-        carrito.forEach(item => {
-            const producto = [...productos.comidas, ...productos.bebidas].find(p => p.id === item.id);
-            if (producto) {
-                mensaje += `- ${producto.nombre} x${item.cantidad} (S/. ${(producto.precio * item.cantidad).toFixed(2)})\n`;
-            }
-        });
-        
-        const total = carrito.reduce((sum, item) => {
-            const producto = [...productos.comidas, ...productos.bebidas].find(p => p.id === item.id);
-            return sum + (producto ? producto.precio * item.cantidad : 0);
-        }, 0);
-        
-        mensaje += `\nTotal: S/. ${total.toFixed(2)}\n\n`;
-        mensaje += '¡Gracias!';
-        
-        return mensaje;
+    return productoElement;
+  }
+  
+  // Agregar producto al carrito
+  function agregarAlCarrito(producto, cantidad) {
+    const productoExistente = carrito.find(item => item.id === producto.id);
+    
+    if (productoExistente) {
+      productoExistente.cantidad += cantidad;
+    } else {
+      carrito.push({
+        ...producto,
+        cantidad: cantidad
+      });
     }
     
-    // Vaciar carrito
-    document.querySelector('.clear-cart').addEventListener('click', () => {
+    actualizarCarrito();
+    mostrarNotificacion(`${cantidad} ${producto.nombre} agregado(s) al carrito`);
+  }
+  
+  // Actualizar la visualización del carrito
+  function actualizarCarrito() {
+    // Guardar en localStorage
+    localStorage.setItem('carritoLosGemelos', JSON.stringify(carrito));
+    
+    // Actualizar contador
+    const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+    cartCount.textContent = totalItems;
+    
+    // Actualizar lista de productos
+    carritoItems.innerHTML = '';
+    
+    if (carrito.length === 0) {
+      carritoItems.innerHTML = '<div class="empty-cart"><p>Tu carrito está vacío</p></div>';
+      cartTotalPrice.textContent = 'S/ 0.00';
+      return;
+    }
+    
+    let total = 0;
+    
+    carrito.forEach(item => {
+      const itemElement = document.createElement('div');
+      itemElement.className = 'cart-item';
+      
+      itemElement.innerHTML = `
+        <img src="${item.imagen}" alt="${item.nombre}" class="cart-item-img">
+        <div class="cart-item-details">
+          <h4 class="cart-item-title">${item.nombre}</h4>
+          <p class="cart-item-price">S/ ${item.precio.toFixed(2)}</p>
+          <div class="cart-item-quantity">
+            <button class="decrease">-</button>
+            <span>${item.cantidad}</span>
+            <button class="increase">+</button>
+          </div>
+        </div>
+        <button class="cart-item-remove"><i class="fas fa-trash"></i></button>
+      `;
+      
+      // Agregar eventos a los botones
+      const decreaseBtn = itemElement.querySelector('.decrease');
+      const increaseBtn = itemElement.querySelector('.increase');
+      const removeBtn = itemElement.querySelector('.cart-item-remove');
+      const quantitySpan = itemElement.querySelector('.cart-item-quantity span');
+      
+      decreaseBtn.addEventListener('click', () => {
+        if (item.cantidad > 1) {
+          item.cantidad--;
+          quantitySpan.textContent = item.cantidad;
+        } else {
+          carrito = carrito.filter(cartItem => cartItem.id !== item.id);
+          itemElement.remove();
+        }
+        actualizarCarrito();
+      });
+      
+      increaseBtn.addEventListener('click', () => {
+        item.cantidad++;
+        quantitySpan.textContent = item.cantidad;
+        actualizarCarrito();
+      });
+      
+      removeBtn.addEventListener('click', () => {
+        carrito = carrito.filter(cartItem => cartItem.id !== item.id);
+        itemElement.remove();
+        actualizarCarrito();
+        mostrarNotificacion(`${item.nombre} eliminado del carrito`);
+      });
+      
+      carritoItems.appendChild(itemElement);
+      total += item.precio * item.cantidad;
+    });
+    
+    cartTotalPrice.textContent = `S/ ${total.toFixed(2)}`;
+  }
+  
+  // Mostrar notificación
+  function mostrarNotificacion(mensaje) {
+    const notificacion = document.createElement('div');
+    notificacion.className = 'notification';
+    notificacion.textContent = mensaje;
+    
+    document.body.appendChild(notificacion);
+    
+    setTimeout(() => {
+      notificacion.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      notificacion.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(notificacion);
+      }, 300);
+    }, 3000);
+    
+    // Estilo para la notificación
+    const estilo = document.createElement('style');
+    estilo.textContent = `
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 5px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .notification.show {
+        opacity: 1;
+      }
+    `;
+    document.head.appendChild(estilo);
+  }
+  
+  // Cargar carrito desde localStorage
+  function cargarCarrito() {
+    const carritoGuardado = localStorage.getItem('carritoLosGemelos');
+    if (carritoGuardado) {
+      carrito = JSON.parse(carritoGuardado);
+      actualizarCarrito();
+    }
+  }
+  
+  // Eventos del carrito
+  cartToggle.addEventListener('click', () => {
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+  
+  closeCart.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  
+  cartOverlay.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  
+  clearCartBtn.addEventListener('click', () => {
+    if (carrito.length > 0) {
+      if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
         carrito = [];
-        localStorage.setItem('carrito', JSON.stringify(carrito));
         actualizarCarrito();
-        actualizarContadorCarrito();
-    });
-    
-    // Agregar producto al carrito
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('add-to-cart')) {
-            const button = e.target;
-            const id = parseInt(button.dataset.id);
-            const categoria = button.dataset.categoria;
-            const quantityInput = button.closest('.item-actions').querySelector('.quantity-input');
-            const cantidad = parseInt(quantityInput.value);
-            
-            // Verificar si el producto ya está en el carrito
-            const itemIndex = carrito.findIndex(item => item.id === id);
-            
-            if (itemIndex >= 0) {
-                // Actualizar cantidad si ya existe
-                carrito[itemIndex].cantidad += cantidad;
-            } else {
-                // Agregar nuevo item
-                carrito.push({
-                    id: id,
-                    cantidad: cantidad,
-                    categoria: categoria
-                });
-            }
-            
-            // Guardar en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            
-            // Actualizar contador
-            actualizarContadorCarrito();
-            
-            // Mostrar notificación
-            const producto = [...productos.comidas, ...productos.bebidas].find(p => p.id === id);
-            if (producto) {
-                showNotification(`${cantidad} ${producto.nombre} agregado(s) al carrito`);
-            }
-            
-            // Resetear cantidad
-            quantityInput.value = 1;
-        }
-        
-        // Controlar cantidad
-        if (e.target.classList.contains('quantity-btn')) {
-            const button = e.target;
-            const input = button.closest('.quantity-control').querySelector('.quantity-input');
-            let value = parseInt(input.value);
-            
-            if (button.classList.contains('plus')) {
-                value++;
-            } else if (button.classList.contains('minus') && value > 1) {
-                value--;
-            }
-            
-            input.value = value;
-        }
-    });
-    
-    // Mostrar notificación
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
+        mostrarNotificacion('Carrito vaciado');
+      }
+    }
+  });
+  
+  checkoutBtn.addEventListener('click', () => {
+    if (carrito.length === 0) {
+      mostrarNotificacion('El carrito está vacío');
+      return;
     }
     
-    // Cargar productos iniciales
-    cargarProductos('comidas');
-    cargarProductos('bebidas');
-    actualizarContadorCarrito();
+    // Crear mensaje para WhatsApp
+    let mensaje = '¡Hola! Quiero hacer un pedido:%0A%0A';
+    
+    carrito.forEach(item => {
+      mensaje += `- ${item.nombre} x${item.cantidad} (S/ ${(item.precio * item.cantidad).toFixed(2)})%0A`;
+    });
+    
+    mensaje += `%0ATotal: S/ ${carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0).toFixed(2)}`;
+    mensaje += '%0A%0A¡Gracias!';
+    
+    // Abrir WhatsApp
+    window.open(`https://wa.me/51987654321?text=${mensaje}`, '_blank');
+  });
+  
+  // Cambiar entre categorías de menú
+  menuTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Remover clase active de todas las pestañas
+      menuTabs.forEach(t => t.classList.remove('active'));
+      
+      // Agregar clase active a la pestaña clickeada
+      tab.classList.add('active');
+      
+      // Ocultar todas las categorías
+      menuCategories.forEach(cat => cat.classList.remove('active'));
+      
+      // Mostrar la categoría correspondiente
+      const categoryId = tab.getAttribute('data-category');
+      document.getElementById(categoryId).classList.add('active');
+    });
+  });
+  
+  // Inicializar
+  cargarProductos();
+  cargarCarrito();
+  
+  // Animaciones para los productos
+  setTimeout(() => {
+    const productElements = document.querySelectorAll('.menu-item');
+    productElements.forEach((el, index) => {
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+  }, 300);
 });

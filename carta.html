@@ -1,79 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta - Los Gemelos</title>
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/carta.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta - Los Gemelos</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/carta.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="navbar-container"></div>
+  <!-- Navbar se cargará aquí -->
+  <div id="navbar-placeholder"></div>
 
-    <section class="menu-hero">
-        <div class="menu-hero-content">
-            <h1>Nuestra Carta</h1>
-            <p>Descubre nuestros deliciosos platos criollos</p>
-        </div>
-        <div class="menu-hero-overlay"></div>
+  <main>
+    <!-- Menu Banner -->
+    <section class="menu-banner">
+      <div class="container">
+        <h1 class="fade-in">Nuestra Carta</h1>
+      </div>
     </section>
 
-    <section class="menu-categories">
-        <div class="category-tabs">
-            <button class="tab-button active" data-category="comidas">Comidas</button>
-            <button class="tab-button" data-category="bebidas">Bebidas</button>
+    <!-- Menu Navigation -->
+    <section class="menu-navigation">
+      <div class="container">
+        <div class="menu-tabs">
+          <button class="menu-tab active" data-category="comidas">Comidas Criollas</button>
+          <button class="menu-tab" data-category="bebidas">Bebidas</button>
         </div>
-
-        <div class="menu-items" id="comidas">
-            <h2 class="category-title">Platos Criollos</h2>
-            
-            <div class="menu-grid">
-                <!-- Los items se cargarán dinámicamente desde carta.js -->
-            </div>
-        </div>
-
-        <div class="menu-items hidden" id="bebidas">
-            <h2 class="category-title">Bebidas</h2>
-            
-            <div class="menu-grid">
-                <!-- Los items se cargarán dinámicamente desde carta.js -->
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- Carrito flotante -->
-    <div class="cart-button">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
+    <!-- Menu Items -->
+    <section class="menu-items container">
+      <!-- Comidas Criollas -->
+      <div class="menu-category active" id="comidas">
+        <h2 class="section-title">Comidas Criollas</h2>
+        <div class="items-grid" id="comidas-grid">
+          <!-- Los elementos se cargarán dinámicamente desde carta.js -->
+        </div>
+      </div>
+
+      <!-- Bebidas -->
+      <div class="menu-category" id="bebidas">
+        <h2 class="section-title">Bebidas</h2>
+        <div class="items-grid" id="bebidas-grid">
+          <!-- Los elementos se cargarán dinámicamente desde carta.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Notes -->
+    <section class="special-notes">
+      <div class="container">
+        <div class="notes-box slide-up">
+          <h3><i class="fas fa-info-circle"></i> Notas Importantes</h3>
+          <ul>
+            <li>Los precios están sujetos a cambios sin previo aviso.</li>
+            <li>Algunos platos pueden contener ingredientes que causan alergias. Consulte con nuestro personal.</li>
+            <li>Imágenes ilustrativas. El producto final puede variar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shopping Cart -->
+  <div class="cart-button">
+    <button id="cart-toggle">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count">0</span>
+    </button>
+  </div>
+
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Tu Pedido</h3>
+      <button id="close-cart"><i class="fas fa-times"></i></button>
     </div>
-
-    <div class="cart-sidebar">
-        <div class="cart-header">
-            <h3>Tu Pedido</h3>
-            <button class="close-cart"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-items">
-            <!-- Los items del carrito se cargarán dinámicamente -->
-        </div>
-        <div class="cart-total">
-            <h4>Total: <span>S/. 0.00</span></h4>
-        </div>
-        <div class="cart-actions">
-            <button class="btn-secondary clear-cart">Vaciar Carrito</button>
-            <a href="#" class="btn-primary checkout-btn">Realizar Pedido</a>
-        </div>
+    <div class="cart-items" id="cart-items">
+      <!-- Los elementos del carrito se cargarán dinámicamente -->
     </div>
-    <div class="cart-overlay"></div>
+    <div class="cart-total">
+      <p>Total: <span id="cart-total-price">S/ 0.00</span></p>
+    </div>
+    <div class="cart-actions">
+      <button id="clear-cart" class="btn btn-clear">Vaciar Carrito</button>
+      <button id="checkout" class="btn btn-primary">Realizar Pedido</button>
+    </div>
+  </div>
+  <div class="cart-overlay"></div>
 
-    <div id="footer-container"></div>
+  <!-- Footer se cargará aquí -->
+  <div id="footer-placeholder"></div>
 
-    <script src="scripts/navbar-footer-loader.js"></script>
-    <script src="scripts/carta.js"></script>
+  <script src="scripts/navbar-footer-loader.js"></script>
+  <script src="scripts/carta.js"></script>
 </body>
 </html>
