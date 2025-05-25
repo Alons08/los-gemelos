@@ -1,33 +1,79 @@
-// Efectos de animación para elementos con clases específicas
-document.addEventListener('DOMContentLoaded', () => {
-  const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.slide-up, .fade-in');
+// Cargar navbar y footer
+function loadFragments() {
+    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    const footerPlaceholder = document.getElementById('footer-placeholder');
     
-    elements.forEach(element => {
-      const elementPosition = element.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (elementPosition < windowHeight - 100) {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-      }
+    fetch('fragments/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            navbarPlaceholder.innerHTML = data;
+            setupNavbar();
+        });
+    
+    fetch('fragments/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            footerPlaceholder.innerHTML = data;
+        });
+}
+
+// Configurar navbar responsive
+function setupNavbar() {
+    const toggleBtn = document.querySelector('.navbar-toggle');
+    const navbarLinks = document.querySelector('.navbar-links');
+    
+    toggleBtn.addEventListener('click', () => {
+        navbarLinks.classList.toggle('active');
     });
-  };
-  
-  // Ejecutar al cargar y al hacer scroll
-  animateOnScroll();
-  window.addEventListener('scroll', animateOnScroll);
-  
-  // Inicializar elementos con animaciones
-  const animatedElements = document.querySelectorAll('.slide-up, .fade-in');
-  animatedElements.forEach(el => {
-    if (el.classList.contains('slide-up')) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    } else if (el.classList.contains('fade-in')) {
-      el.style.opacity = '0';
-      el.style.transition = 'opacity 1s ease';
-    }
-  });
+    
+    // Cerrar navbar al hacer clic en un enlace (para móviles)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navbarLinks.classList.remove('active');
+        });
+    });
+}
+
+// Smooth scrolling para anclas
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Animaciones al hacer scroll
+function setupScrollAnimations() {
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Inicializar todo cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    loadFragments();
+    setupScrollAnimations();
 });

@@ -1,98 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Los Gemelos - Restaurante Campestre</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/navbar.css">
-  <link rel="stylesheet" href="styles/footer.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Gemelos - Restaurante Campestre</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <!-- Navbar se cargará aquí -->
-  <div id="navbar-placeholder"></div>
+    <!-- Navbar importado -->
+    <div id="navbar-placeholder"></div>
 
-  <main>
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-content">
-        <img src="images/logo.png" alt="Logo Los Gemelos" class="hero-logo slide-up">
-        <h1 class="fade-in">Bienvenidos a Los Gemelos</h1>
-        <p class="fade-in">Auténtica comida criolla en un ambiente campestre</p>
-        <a href="carta.html" class="btn fade-in">Ver nuestra carta</a>
-      </div>
+        <div class="hero-content">
+            <h1 class="animate-fade-in">Los Gemelos</h1>
+            <p class="animate-fade-in-delay">Auténtica comida criolla en un ambiente campestre</p>
+            <a href="#menu" class="btn btn-primary animate-fade-in-delay-2">Ver Menú</a>
+        </div>
     </section>
 
-    <!-- About Preview -->
-    <section class="about-preview container">
-      <div class="about-preview-content">
-        <div class="about-text">
-          <h2 class="section-title">Nuestra Historia</h2>
-          <p>Desde 1995, Los Gemelos ha sido un referente de la gastronomía criolla en un ambiente campestre que te hará sentir como en casa.</p>
-          <a href="about.html" class="btn">Conócenos más</a>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>Nuestra Historia</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Los Gemelos es un restaurante campestre familiar que ofrece los sabores más auténticos de la cocina criolla peruana. Desde 2010, nos hemos dedicado a preservar las recetas tradicionales con ingredientes frescos y de la más alta calidad.</p>
+                    <p>Ven y disfruta de nuestros platos en un ambiente acogedor rodeado de naturaleza, con música en vivo todos los domingos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/restaurant-exterior.jpg" alt="Exterior del restaurante" class="animate-zoom-in">
+                </div>
+            </div>
         </div>
-        <div class="about-image">
-          <img src="images/interior.jpg" alt="Interior del restaurante" class="slide-up">
-        </div>
-      </div>
     </section>
 
-    <!-- Special Events -->
-    <section class="events-preview">
-      <div class="container">
-        <h2 class="section-title">Eventos Especiales</h2>
-        <div class="events-grid">
-          <div class="event-card slide-up">
-            <img src="images/evento1.jpg" alt="Música en vivo">
-            <h3>Música en Vivo</h3>
-            <p>Todos los domingos disfruta de la mejor música criolla mientras degustas nuestros platos.</p>
-            <a href="eventos.html" class="btn">Ver más eventos</a>
-          </div>
-          <div class="event-card slide-up">
-            <img src="images/evento2.jpg" alt="Eventos especiales">
-            <h3>Eventos Privados</h3>
-            <p>Celebra tus ocasiones especiales en nuestro espacio campestre.</p>
-            <a href="eventos.html" class="btn">Más información</a>
-          </div>
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2>Nuestra Carta</h2>
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="comidas">Comidas Criollas</button>
+                <button class="tab-btn" data-category="bebidas">Bebidas</button>
+            </div>
+            
+            <div class="menu-items" id="comidas">
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
+            </div>
+            
+            <div class="menu-items hidden" id="bebidas">
+                <!-- Las bebidas se cargarán dinámicamente con JavaScript -->
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Featured Dishes -->
-    <section class="featured-dishes container">
-      <h2 class="section-title">Nuestros Platos Destacados</h2>
-      <div class="dishes-grid">
-        <div class="dish-card slide-up">
-          <img src="images/comida1.jpg" alt="Lomo saltado">
-          <h3>Lomo Saltado</h3>
-          <p>Clásico peruano con carne, cebolla, tomate y papas fritas.</p>
-          <span class="price">S/ 35.00</span>
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <h2>Eventos Especiales</h2>
+            <div class="event-card">
+                <div class="event-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="event-details">
+                    <h3>Música en Vivo</h3>
+                    <p>Todos los domingos disfruta de la mejor música criolla en vivo mientras degustas nuestros platos.</p>
+                    <p class="event-time">12:00 PM - 5:00 PM</p>
+                </div>
+            </div>
         </div>
-        <div class="dish-card slide-up">
-          <img src="images/comida2.jpg" alt="Seco de cordero">
-          <h3>Seco de Cordero</h3>
-          <p>Tierno cordero cocido con culantro y frejoles.</p>
-          <span class="price">S/ 40.00</span>
-        </div>
-        <div class="dish-card slide-up">
-          <img src="images/comida3.jpg" alt="Ceviche">
-          <h3>Ceviche Clásico</h3>
-          <p>Fresco pescado marinado en limón con cebolla y ají.</p>
-          <span class="price">S/ 30.00</span>
-        </div>
-      </div>
-      <div class="text-center">
-        <a href="carta.html" class="btn">Ver carta completa</a>
-      </div>
     </section>
-  </main>
 
-  <!-- Footer se cargará aquí -->
-  <div id="footer-placeholder"></div>
+    <!-- Footer importado -->
+    <div id="footer-placeholder"></div>
 
-  <script src="scripts/navbar-footer-loader.js"></script>
-  <script src="scripts/main.js"></script>
+    <!-- Floating Cart Button -->
+    <button class="floating-cart-btn" id="cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </button>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Tu Pedido</h3>
+                <button class="close-cart">&times;</button>
+            </div>
+            <div class="cart-items">
+                <!-- Los items del carrito se cargarán aquí -->
+            </div>
+            <div class="cart-total">
+                <p>Total: <span id="cart-total-price">S/ 0.00</span></p>
+            </div>
+            <button class="btn btn-primary" id="checkout-btn">Confirmar Pedido</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="scripts/products.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
