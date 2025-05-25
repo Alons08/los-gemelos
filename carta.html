@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta - Los Gemelos</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/carta.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <section class="menu-hero">
+        <div class="menu-hero-content">
+            <h1>Nuestra Carta</h1>
+            <p>Descubre nuestros deliciosos platos criollos</p>
+        </div>
+        <div class="menu-hero-overlay"></div>
+    </section>
+
+    <section class="menu-categories">
+        <div class="category-tabs">
+            <button class="tab-button active" data-category="comidas">Comidas</button>
+            <button class="tab-button" data-category="bebidas">Bebidas</button>
+        </div>
+
+        <div class="menu-items" id="comidas">
+            <h2 class="category-title">Platos Criollos</h2>
+            
+            <div class="menu-grid">
+                <!-- Los items se cargarán dinámicamente desde carta.js -->
+            </div>
+        </div>
+
+        <div class="menu-items hidden" id="bebidas">
+            <h2 class="category-title">Bebidas</h2>
+            
+            <div class="menu-grid">
+                <!-- Los items se cargarán dinámicamente desde carta.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrito flotante -->
+    <div class="cart-button">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Pedido</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <!-- Los items del carrito se cargarán dinámicamente -->
+        </div>
+        <div class="cart-total">
+            <h4>Total: <span>S/. 0.00</span></h4>
+        </div>
+        <div class="cart-actions">
+            <button class="btn-secondary clear-cart">Vaciar Carrito</button>
+            <a href="#" class="btn-primary checkout-btn">Realizar Pedido</a>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <div id="footer-container"></div>
+
+    <script src="scripts/navbar-footer-loader.js"></script>
+    <script src="scripts/carta.js"></script>
+</body>
+</html>

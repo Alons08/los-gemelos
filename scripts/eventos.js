@@ -1,35 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Efecto de acordeón para las descripciones de eventos
+    // Animación para las tarjetas de eventos
     const eventCards = document.querySelectorAll('.event-card');
-    eventCards.forEach(card => {
-        const description = card.querySelector('.event-description');
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'read-more-btn';
-        toggleBtn.innerHTML = 'Leer más <i class="fas fa-chevron-down"></i>';
-        
-        // Solo aplica si la descripción es muy larga
-        if (description.scrollHeight > 80) {
-            description.style.maxHeight = '80px';
-            description.style.overflow = 'hidden';
-            description.parentNode.insertBefore(toggleBtn, description.nextSibling);
-
-            toggleBtn.addEventListener('click', function() {
-                if (description.style.maxHeight === '80px') {
-                    description.style.maxHeight = description.scrollHeight + 'px';
-                    toggleBtn.innerHTML = 'Leer menos <i class="fas fa-chevron-up"></i>';
-                } else {
-                    description.style.maxHeight = '80px';
-                    toggleBtn.innerHTML = 'Leer más <i class="fas fa-chevron-down"></i>';
-                }
-            });
-        }
+    eventCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 200);
     });
-
-    // Galería interactiva
+    
+    // Efecto hover para las tarjetas de eventos
+    eventCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Galería de eventos pasados
     const galleryItems = document.querySelectorAll('.gallery-item');
     galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            this.classList.toggle('zoomed');
+        item.addEventListener('mouseenter', () => {
+            item.querySelector('.gallery-overlay').style.opacity = '1';
+        });
+        item.addEventListener('mouseleave', () => {
+            item.querySelector('.gallery-overlay').style.opacity = '0';
         });
     });
 });
