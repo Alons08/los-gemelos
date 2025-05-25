@@ -17,18 +17,104 @@ const products = {
             image: "images/menu/chicharron-chancho.jpg",
             available: true
         },
-        // ... otros platos
+        {
+            id: 3,
+            name: "Frejolada de Pato",
+            price: 32.00,
+            description: "Delicioso estofado de pato con frejoles canarios, servido con arroz y salsa criolla.",
+            image: "images/menu/frejolada-pato.jpg",
+            available: true
+        },
+        {
+            id: 4,
+            name: "Cabrito Norteño",
+            price: 38.00,
+            description: "Exquisito cabrito en salsa de ají panca y especias, acompañado de frijoles y yuca.",
+            image: "images/menu/cabrito-norteno.jpg",
+            available: true
+        },
+        {
+            id: 5,
+            name: "Costillar",
+            price: 40.00,
+            description: "Costillar de cerdo al horno con salsa barbacoa, servido con puré de papas y ensalada.",
+            image: "images/menu/costillar.jpg",
+            available: true
+        },
+        {
+            id: 6,
+            name: "Pepian Pavita de Corral",
+            price: 30.00,
+            description: "Pavo criollo en salsa de maní y ají mirasol, acompañado de arroz y papa amarilla.",
+            image: "images/menu/pepian-pavita.jpg",
+            available: true
+        },
+        {
+            id: 7,
+            name: "Chancho a la Caja China",
+            price: 45.00,
+            description: "Lechón asado a la caja china, servido con camote al horno y ensalada criolla.",
+            image: "images/menu/chancho-caja-china.jpg",
+            available: true
+        },
+        {
+            id: 8,
+            name: "Caldo de Gallina",
+            price: 22.00,
+            description: "Reconfortante caldo preparado con gallina criolla, fideos, papa y hierbabuena.",
+            image: "images/menu/caldo-gallina.jpg",
+            available: true
+        },
+        {
+            id: 9,
+            name: "Ceviche",
+            price: 30.00,
+            description: "Clásico ceviche peruano con pescado fresco, limón, cebolla, ají y camote.",
+            image: "images/menu/ceviche.jpg",
+            available: true
+        },
+        {
+            id: 10,
+            name: "Chicharrón de Pescado",
+            price: 26.00,
+            description: "Filete de pescado empanizado y frito, servido con yuca frita y salsa criolla.",
+            image: "images/menu/chicharron-pescado.jpg",
+            available: true
+        }
     ],
     bebidas: [
         {
             id: 101,
-            name: "Gaseosa 1L",
+            name: "Gaseosas 1L",
             price: 8.00,
             description: "Refresco de 1 litro. Sabores: Coca Cola, Inca Kola, Sprite.",
-            image: "images/menu/gaseosa.jpg",
+            image: "images/menu/gaseosa-1l.jpg",
             available: true
         },
-        // ... otras bebidas
+        {
+            id: 102,
+            name: "Gaseosa 1/2 L",
+            price: 5.00,
+            description: "Refresco de 500ml. Sabores: Coca Cola, Inca Kola, Sprite.",
+            image: "images/menu/gaseosa-500ml.jpg",
+            available: true
+        },
+        {
+            id: 103,
+            name: "Cervezas",
+            price: 10.00,
+            description: "Cerveza nacional. Marcas: Cristal, Pilsen Callao, Cusqueña.",
+            image: "images/menu/cerveza.jpg",
+            available: true
+        },
+        {
+            id: 104,
+            name: "Agua Mineral",
+            price: 4.00,
+            description: "Agua mineral sin gas de 500ml.",
+            image: "images/menu/agua-mineral.jpg",
+            available: true
+        }
     ]
 };
 
