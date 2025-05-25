@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar scroll animations
     initScrollAnimations();
     
-    // Manejar clics en enlaces del navbar para desplazamiento suave
+    // Manejar clics en enlaces del navbar
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-link')) {
             e.preventDefault();
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Inicializar navbar
+// Inicializar navbar - FUNCIÓN MODIFICADA
 function initNavbar() {
     const navbarToggle = document.getElementById('navbar-toggle');
     const navbarMenu = document.getElementById('navbar-menu');
@@ -51,6 +51,14 @@ function initNavbar() {
         navbarToggle.addEventListener('click', () => {
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
+            
+            // Forzar redibujado para asegurar centrado
+            if (navbarMenu.classList.contains('active')) {
+                navbarMenu.style.display = 'flex';
+                setTimeout(() => {
+                    navbarMenu.style.display = '';
+                }, 10);
+            }
         });
     }
     
