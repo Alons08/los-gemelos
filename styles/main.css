@@ -226,8 +226,11 @@ h1, h2, h3, h4, h5, h6 {
     animation: fadeInUp 1s ease;
 }
 
-.btn-primary.pulse {
-    text-decoration: none;
+.hero .btn-primary.pulse {
+    border-radius: 30px;
+    padding: 12px 30px;
+    width: auto;
+    display: inline-block;
 }
 
 /* About Section */
@@ -267,6 +270,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     margin-bottom: 30px;
     gap: 15px;
+    flex-wrap: nowrap;
 }
 
 .filter-btn {
@@ -393,10 +397,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .availability {
     font-size: 0.85rem;
-    padding: 4px 8px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-weight: 600;
     display: inline-block;
+    width: auto;
+    max-width: 100px;
 }
 
 .available {
@@ -455,11 +461,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-info {
     flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
 .info-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 15px;
 }
 
@@ -558,15 +567,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-icons a:nth-child(1) {
-    background-color: #3b5998; /* Facebook */
+    background-color: #3b5998;
 }
 
 .social-icons a:nth-child(2) {
-    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); /* Instagram */
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
 }
 
 .social-icons a:nth-child(3) {
-    background-color: #25D366; /* WhatsApp */
+    display: none;
 }
 
 .social-icons a:hover {
@@ -643,6 +652,16 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     font-size: 0.8rem;
     font-weight: bold;
+}
+
+@keyframes cartPulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+.cart-pulse {
+    animation: cartPulse 1s;
 }
 
 /* Cart Modal */
@@ -775,25 +794,10 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid #eee;
 }
 
-/* Toast Notification */
-.toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background-color: var(--success-color);
-    color: var(--white);
-    padding: 15px 25px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1002;
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+.empty-cart {
+    text-align: center;
+    color: var(--gray);
+    padding: 20px 0;
 }
 
 /* Responsive Styles */
@@ -840,19 +844,21 @@ h1, h2, h3, h4, h5, h6 {
     
     .navbar-menu.active {
         left: 0;
+        padding: 20px;
     }
     
     .navbar-links {
         flex-direction: column;
         align-items: center;
         width: 100%;
+        gap: 15px;
     }
     
     .nav-link {
         color: var(--white);
         margin: 10px 0;
-        font-size: 1.1rem;
-        padding: 12px 20px;
+        font-size: 1.2rem;
+        padding: 10px 20px;
     }
     
     .nav-link:hover {
