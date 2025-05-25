@@ -1,80 +1,68 @@
 // Preloader
 window.addEventListener('load', function() {
     const preloader = document.querySelector('.preloader');
-    preloader.style.opacity = '0';
-    preloader.style.visibility = 'hidden';
     setTimeout(() => {
-        preloader.style.display = 'none';
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
     }, 500);
 });
 
-// Mobile menu toggle
+// Cargar fragments
 document.addEventListener('DOMContentLoaded', function() {
-    // Animaciones al inicio
-    const animateElements = document.querySelectorAll('[data-animation]');
-    animateElements.forEach(element => {
-        const animation = element.getAttribute('data-animation');
-        element.classList.add('animate__animated', animation);
-    });
+    // Función para cargar fragments
+    const loadFragment = (elementId, filePath) => {
+        if(document.getElementById(elementId)) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                    // Actualizar año en footer
+                    if(elementId === 'footer') {
+                        document.getElementById('current-year').textContent = new Date().getFullYear();
+                    }
+                    // Inicializar navbar después de cargar
+                    if(elementId === 'navbar') {
+                        initNavbar();
+                    }
+                })
+                .catch(error => console.error('Error loading fragment:', error));
+        }
+    };
 
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if(hamburger) {
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
+    // Cargar navbar y footer
+    loadFragment('navbar', 'fragments/navbar.html');
+    loadFragment('footer', 'fragments/footer.html');
+
+    // Inicializar navbar
+    function initNavbar() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if(hamburger) {
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Cerrar menu al hacer clic en un link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
         });
     }
 
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-
-    // Sticky header on scroll
+    // Sticky header
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.header');
         if(window.scrollY > 100) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
-        }
-    });
-
-    // Scroll animations
-    const animateOnScroll = function() {
-        animateElements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if(elementPosition < windowHeight - 100) {
-                const animation = element.getAttribute('data-animation');
-                element.classList.add('animate__animated', animation);
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', animateOnScroll);
-});
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
-            });
         }
     });
 });

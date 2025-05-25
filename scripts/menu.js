@@ -1,428 +1,174 @@
+const menuItems = [
+    {
+        id: 1,
+        name: "Picante de Cuy 1/2",
+        description: "Delicioso cuy cocinado al estilo tradicional con ají y especias.",
+        price: 35.00,
+        image: "images/platillos/picante-de-cuy.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 2,
+        name: "Chicharrón de Chancho",
+        description: "Crujiente chicharrón de cerdo acompañado de mote y salsa criolla.",
+        price: 28.00,
+        image: "images/platillos/chicharron-de-chancho.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 3,
+        name: "Frejolada de Pato",
+        description: "Frejoles cocidos con pato y especias, un plato lleno de sabor.",
+        price: 32.00,
+        image: "images/platillos/frejolada-de-pato.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 4,
+        name: "Cabrito Norteño",
+        description: "Exquisito cabrito preparado al estilo norteño con guarniciones.",
+        price: 38.00,
+        image: "images/platillos/cabrito-norteno.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 5,
+        name: "Costillar",
+        description: "Costillar de cerdo asado lentamente para un sabor incomparable.",
+        price: 40.00,
+        image: "images/platillos/costillar.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 6,
+        name: "Pepian Pavita de Corral",
+        description: "Pavita criolla en salsa de pepian con maní y especias.",
+        price: 36.00,
+        image: "images/platillos/pepian-pavita.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 7,
+        name: "Chancho a la Caja China",
+        description: "Cerdo entero cocinado a la caja china, ideal para compartir.",
+        price: 120.00,
+        image: "images/platillos/chancho-caja-china.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 8,
+        name: "Caldo de Gallina",
+        description: "Reconfortante caldo de gallina criolla con fideos y hierbas.",
+        price: 18.00,
+        image: "images/platillos/caldo-gallina.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 9,
+        name: "Ceviche",
+        description: "Fresco ceviche de pescado con limón, cebolla y ají limo.",
+        price: 25.00,
+        image: "images/platillos/ceviche.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 10,
+        name: "Chicharrón de Pescado",
+        description: "Pescado frito en trozos crujientes acompañado de yuca y salsa.",
+        price: 28.00,
+        image: "images/platillos/chicharron-pescado.jpg",
+        available: true,
+        category: "comida"
+    },
+    {
+        id: 11,
+        name: "Gaseosa 1L",
+        description: "Refresco de 1 litro en varios sabores.",
+        price: 8.00,
+        image: "images/platillos/gaseosa-1l.jpg",
+        available: true,
+        category: "bebida"
+    },
+    {
+        id: 12,
+        name: "Gaseosa 1/2 L",
+        description: "Refresco de 1/2 litro en varios sabores.",
+        price: 5.00,
+        image: "images/platillos/gaseosa-500ml.jpg",
+        available: true,
+        category: "bebida"
+    },
+    {
+        id: 13,
+        name: "Cerveza",
+        description: "Cerveza nacional e internacional.",
+        price: 10.00,
+        image: "images/platillos/cerveza.jpg",
+        available: true,
+        category: "bebida"
+    },
+    {
+        id: 14,
+        name: "Agua Mineral",
+        description: "Agua mineral sin gas de 500ml.",
+        price: 3.50,
+        image: "images/platillos/agua-mineral.jpg",
+        available: true,
+        category: "bebida"
+    }
+];
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Productos del menú
-    const menuItems = {
-        platosCriollos: [
-            {
-                id: 1,
-                name: "Picante de Cuy 1/2",
-                price: 35.00,
-                description: "Tradicional plato andino preparado con cuy fresco, papas amarillas, maní y ají panca. Acompañado de arroz y ensalada.",
-                image: "images/menu/picante-cuy.jpg",
-                available: true
-            },
-            {
-                id: 2,
-                name: "Chicharrón de Chancho",
-                price: 28.00,
-                description: "Crujiente chicharrón de cerdo acompañado de camote frito, zarza criolla y mote.",
-                image: "images/menu/chicharron.jpg",
-                available: true
-            },
-            {
-                id: 3,
-                name: "Frejolada de Pato",
-                price: 32.00,
-                description: "Delicioso pato cocido a la olla con frejoles canarios, culantro y especias. Servido con arroz y salsa criolla.",
-                image: "images/menu/frejolada-pato.jpg",
-                available: true
-            },
-            {
-                id: 4,
-                name: "Cabrito Norteño",
-                price: 38.00,
-                description: "Tierno cabrito cocinado en salsa de ají panca y especias, acompañado de frijoles, yuca y plátano maduro.",
-                image: "images/menu/cabrito.jpg",
-                available: false
-            },
-            {
-                id: 5,
-                name: "Costillar",
-                price: 40.00,
-                description: "Costillar de cerdo marinado y cocido a la parrilla, servido con papas doradas y ensalada fresca.",
-                image: "images/menu/costillar.jpg",
-                available: true
-            },
-            {
-                id: 6,
-                name: "Pepian Pavita de Corral",
-                price: 30.00,
-                description: "Pavita cocida en salsa de maní y ají mirasol, acompañada de arroz y papa amarilla.",
-                image: "images/menu/pepian.jpg",
-                available: true
-            },
-            {
-                id: 7,
-                name: "Chancho a la Caja China",
-                price: 45.00,
-                description: "Exquisito chancho horneado a la caja china por 8 horas, servido con camote, ensalada y salsas especiales.",
-                image: "images/menu/caja-china.jpg",
-                available: true
-            },
-            {
-                id: 8,
-                name: "Caldo de Gallina",
-                price: 22.00,
-                description: "Reconfortante caldo preparado con gallina criolla, fideos, papa, huevo y hierbas aromáticas.",
-                image: "images/menu/caldo-gallina.jpg",
-                available: true
-            },
-            {
-                id: 9,
-                name: "Ceviche",
-                price: 28.00,
-                description: "Fresco ceviche de pescado marinado en limón, con cebolla, ají limo, camote y cancha serrana.",
-                image: "images/menu/ceviche.jpg",
-                available: false
-            },
-            {
-                id: 10,
-                name: "Chicharrón de Pescado",
-                price: 26.00,
-                description: "Filete de pescado empanizado y frito al punto perfecto, servido con yuca frita y salsa tártara.",
-                image: "images/menu/chicharron-pescado.jpg",
-                available: true
-            }
-        ],
-        bebidas: [
-            {
-                id: 11,
-                name: "Caseosas 1L",
-                price: 8.00,
-                description: "Refresco gaseoso de 1 litro en diversos sabores: cola, naranja, limón, etc.",
-                image: "images/menu/gaseosa.jpg",
-                available: true
-            },
-            {
-                id: 12,
-                name: "Caseosa 1/2 L",
-                price: 5.00,
-                description: "Refresco gaseoso de 500ml en diversos sabores.",
-                image: "images/menu/gaseosa-mediana.jpg",
-                available: true
-            },
-            {
-                id: 13,
-                name: "Cervezas",
-                price: 10.00,
-                description: "Cerveza nacional e internacional en botella de 625ml.",
-                image: "images/menu/cerveza.jpg",
-                available: true
-            },
-            {
-                id: 14,
-                name: "Agua Mineral",
-                price: 4.00,
-                description: "Agua mineral sin gas de 500ml.",
-                image: "images/menu/agua.jpg",
-                available: true
-            }
-        ]
-    };
+    renderMenuItems();
+    initCart();
+});
 
-    // Renderizar productos
-    function renderMenuItems(items, containerId) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-
-        items.forEach(item => {
-            const menuItem = document.createElement('div');
-            menuItem.className = 'menu-item animate__animated';
-            menuItem.setAttribute('data-animation', 'animate__fadeInUp');
-            
-            let availableControls = '';
-            if (item.available) {
-                availableControls = `
-                    <div class="menu-item-footer">
-                        <div class="quantity-controls">
-                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
-                            <input type="number" class="quantity-input" value="1" min="1" data-id="${item.id}">
-                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
-                        </div>
-                        <button class="add-to-cart" data-id="${item.id}">Agregar</button>
+function renderMenuItems() {
+    const foodContainer = document.querySelector('.menu-food');
+    const drinkContainer = document.querySelector('.menu-drinks');
+    
+    menuItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = `menu-item ${item.available ? '' : 'unavailable'}`;
+        menuItem.innerHTML = `
+            <div class="menu-item-image">
+                <img src="${item.image}" alt="${item.name}">
+                ${!item.available ? '<span class="sold-out">AGOTADO</span>' : ''}
+            </div>
+            <div class="menu-item-info">
+                <h3>${item.name}</h3>
+                <p class="description">${item.description}</p>
+                <p class="price">S/ ${item.price.toFixed(2)}</p>
+                ${item.available ? `
+                <div class="menu-item-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn plus">+</button>
                     </div>
-                `;
-            } else {
-                availableControls = '<span class="sold-out">AGOTADO</span>';
-            }
-
-            menuItem.innerHTML = `
-                <div class="menu-item-image">
-                    <img src="${item.image}" alt="${item.name}">
+                    <button class="add-to-cart" data-id="${item.id}">Agregar</button>
                 </div>
-                <div class="menu-item-content">
-                    <div class="menu-item-header">
-                        <h3 class="menu-item-title">${item.name}</h3>
-                        <span class="menu-item-price">S/ ${item.price.toFixed(2)}</span>
-                    </div>
-                    <p class="menu-item-description">${item.description}</p>
-                    ${availableControls}
-                </div>
-            `;
-
-            container.appendChild(menuItem);
-        });
-    }
-
-    // Filtros de menú
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remover active de todos los botones
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Añadir active al botón clickeado
-            button.classList.add('active');
-            
-            const filter = button.getAttribute('data-filter');
-            
-            if (filter === 'all') {
-                document.getElementById('platos-criollos').style.display = 'grid';
-                document.getElementById('bebidas').style.display = 'grid';
-            } else {
-                document.getElementById('platos-criollos').style.display = 
-                    filter === 'platos-criollos' ? 'grid' : 'none';
-                document.getElementById('bebidas').style.display = 
-                    filter === 'bebidas' ? 'grid' : 'none';
-            }
-        });
-    });
-
-    // Carrito de compras
-    let cart = [];
-
-    // Elementos del DOM
-    const cartBtn = document.getElementById('cart-btn');
-    const cartOverlay = document.getElementById('cart-overlay');
-    const closeCartBtn = document.getElementById('close-cart');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalElement = document.getElementById('cart-total');
-    const cartQuantityElement = document.getElementById('cart-quantity');
-    const checkoutBtn = document.getElementById('checkout-btn');
-
-    // Abrir carrito
-    cartBtn.addEventListener('click', function() {
-        cartOverlay.classList.add('active');
-        renderCartItems();
-    });
-
-    // Cerrar carrito
-    closeCartBtn.addEventListener('click', function() {
-        cartOverlay.classList.remove('active');
-    });
-
-    // Cerrar al hacer clic fuera
-    cartOverlay.addEventListener('click', function(e) {
-        if (e.target === cartOverlay) {
-            cartOverlay.classList.remove('active');
-        }
-    });
-
-    // Añadir al carrito
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('add-to-cart')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const quantityInput = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
-            const quantity = parseInt(quantityInput.value);
-            
-            addToCart(itemId, quantity);
-        }
-    });
-
-    // Aumentar cantidad
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('plus')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const input = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
-            input.value = parseInt(input.value) + 1;
-        }
-    });
-
-    // Disminuir cantidad
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('minus')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const input = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
-    });
-
-    // Añadir producto al carrito
-    function addToCart(itemId, quantity) {
-        // Buscar el producto en ambos arrays
-        let product = [...menuItems.platosCriollos, ...menuItems.bebidas].find(item => item.id === itemId);
-        
-        if (!product) return;
-        
-        // Verificar si ya está en el carrito
-        const existingItem = cart.find(item => item.id === itemId);
-        
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push({
-                ...product,
-                quantity: quantity
-            });
-        }
-        
-        updateCart();
-        showAddToCartNotification(product.name, quantity);
-    }
-
-    // Mostrar notificación de agregado al carrito
-    function showAddToCartNotification(productName, quantity) {
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification animate__animated animate__fadeInUp';
-        notification.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <span>${quantity} ${quantity > 1 ? 'unidades' : 'unidad'} de ${productName} añadido${quantity > 1 ? 's' : ''} al carrito</span>
+                ` : ''}
+            </div>
         `;
         
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('animate__fadeOutDown');
-            setTimeout(() => notification.remove(), 500);
-        }, 3000);
-    }
-
-    // Renderizar items del carrito
-    function renderCartItems() {
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = `
-                <div class="cart-empty">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>Tu carrito está vacío</p>
-                </div>
-            `;
-            checkoutBtn.disabled = true;
-            return;
-        }
-        
-        checkoutBtn.disabled = false;
-        
-        cartItemsContainer.innerHTML = '';
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.className = 'cart-item';
-            cartItem.innerHTML = `
-                <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
-                <div class="cart-item-details">
-                    <h4 class="cart-item-name">${item.name}</h4>
-                    <p class="cart-item-price">S/ ${item.price.toFixed(2)}</p>
-                    <div class="cart-item-quantity">
-                        <button class="decrease-quantity" data-id="${item.id}">-</button>
-                        <input type="number" value="${item.quantity}" min="1" data-id="${item.id}">
-                        <button class="increase-quantity" data-id="${item.id}">+</button>
-                    </div>
-                    <span class="remove-item" data-id="${item.id}">Eliminar</span>
-                </div>
-            `;
-            
-            cartItemsContainer.appendChild(cartItem);
-        });
-        
-        updateCartTotal();
-    }
-
-    // Actualizar cantidad en el carrito
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('increase-quantity')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const item = cart.find(item => item.id === itemId);
-            if (item) item.quantity += 1;
-            updateCart();
-        }
-        
-        if (e.target.classList.contains('decrease-quantity')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const item = cart.find(item => item.id === itemId);
-            if (item && item.quantity > 1) {
-                item.quantity -= 1;
-                updateCart();
-            }
-        }
-        
-        if (e.target.classList.contains('remove-item')) {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            cart = cart.filter(item => item.id !== itemId);
-            updateCart();
+        if (item.category === 'comida') {
+            foodContainer.appendChild(menuItem);
+        } else {
+            drinkContainer.appendChild(menuItem);
         }
     });
+}
 
-    // Actualizar input de cantidad en el carrito
-    cartItemsContainer.addEventListener('change', function(e) {
-        if (e.target.tagName === 'INPUT' && e.target.type === 'number') {
-            const itemId = parseInt(e.target.getAttribute('data-id'));
-            const newQuantity = parseInt(e.target.value);
-            
-            if (newQuantity > 0) {
-                const item = cart.find(item => item.id === itemId);
-                if (item) item.quantity = newQuantity;
-                updateCart();
-            }
-        }
-    });
-
-    // Actualizar total y cantidad del carrito
-    function updateCart() {
-        renderCartItems();
-        
-        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartQuantityElement.textContent = totalQuantity;
-        
-        // Guardar en localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    // Calcular total del carrito
-    function updateCartTotal() {
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotalElement.textContent = `S/ ${total.toFixed(2)}`;
-    }
-
-    // Finalizar compra
-    checkoutBtn.addEventListener('click', function() {
-        if (cart.length === 0) return;
-        
-        const now = new Date();
-        const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
-        
-        let message = `*Pedido - Los Gemelos Restaurante Campestre*%0A%0A`;
-        message += `*Fecha:* ${dateStr}%0A%0A`;
-        message += `*Detalle del pedido:*%0A%0A`;
-        
-        cart.forEach(item => {
-            message += `- ${item.name} (${item.quantity} x S/ ${item.price.toFixed(2)})%0A`;
-        });
-        
-        message += `%0A*Total:* S/ ${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}%0A%0A`;
-        message += `*Notas adicionales:* (escriba aquí cualquier indicación especial)`;
-        
-        const phoneNumber = '+51987654321'; // Reemplazar con número real
-        const url = `https://wa.me/${phoneNumber}?text=${message}`;
-        
-        window.open(url, '_blank');
-        
-        // Vaciar carrito después de enviar
-        cart = [];
-        updateCart();
-    });
-
-    // Cargar carrito desde localStorage al iniciar
-    function loadCart() {
-        const savedCart = localStorage.getItem('cart');
-        if (savedCart) {
-            cart = JSON.parse(savedCart);
-            updateCart();
-        }
-    }
-
-    // Inicializar
-    renderMenuItems(menuItems.platosCriollos, 'platos-criollos');
-    renderMenuItems(menuItems.bebidas, 'bebidas');
-    loadCart();
-});
+function initCart() {
+    // Implementación del carrito en cart.js
+}
