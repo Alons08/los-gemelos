@@ -31,6 +31,13 @@ body {
     overflow-x: hidden;
 }
 
+body.navbar-open,
+body.cart-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -110,13 +117,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
     z-index: 1000;
-    transition: all 0.3s ease;
     height: 70px;
-}
-
-.navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -220,7 +221,6 @@ h1, h2, h3, h4, h5, h6 {
 .hero-title {
     font-size: 4rem;
     margin-bottom: 20px;
-    animation: fadeInDown 1s ease;
     color: var(--white);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -228,7 +228,6 @@ h1, h2, h3, h4, h5, h6 {
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 30px;
-    animation: fadeInUp 1s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -309,8 +308,8 @@ h1, h2, h3, h4, h5, h6 {
 .menu-item {
     position: relative;
     display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 20px;
+    grid-template-columns: 120px 1fr;
+    gap: 15px;
     background-color: var(--white);
     border-radius: 10px;
     overflow: hidden;
@@ -324,7 +323,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .menu-item-img {
     width: 100%;
-    height: 150px;
+    height: 120px;
     object-fit: cover;
     grid-row: 1;
 }
@@ -463,7 +462,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Contact Section */
 .contact {
-    padding: 60px 0;
+    padding: 80px 0;
     background-color: var(--background-light);
 }
 
@@ -506,7 +505,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-map {
     flex: 1;
-    height: 450px;
+    height: 500px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -534,12 +533,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .footer-logo {
     height: 60px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .social-section h4 {
@@ -586,10 +589,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .social-icons a:nth-child(2) {
     background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-}
-
-.social-icons a:nth-child(3) {
-    display: none;
 }
 
 .social-icons a:hover {
@@ -668,16 +667,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-@keyframes cartPulse {
-    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-}
-
-.cart-pulse {
-    animation: cartPulse 1s;
-}
-
 /* Cart Modal */
 .cart-modal {
     position: fixed;
@@ -691,7 +680,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1001;
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    overflow-y: auto;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -705,6 +694,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
 }
 
 .cart-header {
@@ -804,12 +794,12 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: 10px;
     margin-top: auto;
-    padding-top: 15px;
+    padding: 15px 0;
     border-top: 1px solid #eee;
     position: sticky;
     bottom: 0;
     background: var(--white);
-    padding-bottom: 20px;
+    z-index: 1;
 }
 
 .empty-cart {
@@ -899,10 +889,6 @@ h1, h2, h3, h4, h5, h6 {
         padding: 15px 0;
     }
     
-    .nav-link:hover {
-        color: var(--primary-color);
-    }
-    
     .menu-items {
         grid-template-columns: 1fr;
     }
@@ -917,7 +903,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .contact-map {
-        height: 450px;
+        height: 500px;
         margin-top: 30px;
     }
 
@@ -941,7 +927,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 480px) {
     .contact-map {
-        height: 400px;
+        height: 450px;
     }
     
     .social-icons a {

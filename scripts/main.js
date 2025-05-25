@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar scroll animations
     initScrollAnimations();
     
-    // Manejar clics en enlaces del navbar
+    // Manejar clics en enlaces del navbar para desplazamiento suave
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-link')) {
             e.preventDefault();
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Cerrar navbar móvil si está abierto
                 const navbarMenu = document.getElementById('navbar-menu');
                 if (navbarMenu.classList.contains('active')) {
+                    document.body.classList.remove('navbar-open');
                     navbarMenu.classList.remove('active');
                     document.getElementById('navbar-toggle').classList.remove('active');
                 }
@@ -42,22 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Inicializar navbar - FUNCIÓN MODIFICADA
+// Inicializar navbar
 function initNavbar() {
     const navbarToggle = document.getElementById('navbar-toggle');
     const navbarMenu = document.getElementById('navbar-menu');
     
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', () => {
+            const isOpening = !navbarMenu.classList.contains('active');
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             
-            // Forzar redibujado para asegurar centrado
-            if (navbarMenu.classList.contains('active')) {
-                navbarMenu.style.display = 'flex';
-                setTimeout(() => {
-                    navbarMenu.style.display = '';
-                }, 10);
+            // Bloquear/desbloquear scroll
+            if (isOpening) {
+                document.body.classList.add('navbar-open');
+            } else {
+                document.body.classList.remove('navbar-open');
             }
         });
     }
@@ -92,3 +93,29 @@ function initScrollAnimations() {
         observer.observe(element);
     });
 }
+
+// Bloquear scroll cuando el carrito está abierto
+document.addEventListener('DOMContentLoaded', () => {
+    const cartBtn = document.getElementById('cart-btn');
+    const cartModal = document.getElementById('cart-modal');
+    const closeCart = document.getElementById('close-cart');
+    
+    if (cartBtn && cartModal && closeCart) {
+        cartBtn.addEventListener('click', () => {
+            document.body.classList.add('cart-open');
+            cartModal.classList.add('active');
+        });
+        
+        closeCart.addEventListener('click', () => {
+            document.body.classList.remove('cart-open');
+            cartModal.classList.remove('active');
+        });
+        
+        // Prevenir scroll del body cuando el carrito está abierto
+        cartModal.addEventListener('scroll', (e) => {
+            if (cartModal.scrollTop + cartModal.clientHeight >= cartModal.scrollHeight) {
+                cartModal.scrollTop = cartModal.scrollHeight - cartModal.clientHeight;
+            }
+        });
+    }
+});
