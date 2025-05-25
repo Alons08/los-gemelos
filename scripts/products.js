@@ -129,13 +129,11 @@ const products = [
 ];
 
 // Función para renderizar los productos
-function renderProducts(category = 'all') {
+function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
     menuItemsContainer.innerHTML = '';
 
-    const filteredProducts = category === 'all' 
-        ? products 
-        : products.filter(product => product.category === category);
+    const filteredProducts = products.filter(product => product.category === category);
 
     filteredProducts.forEach(product => {
         const productElement = document.createElement('div');
@@ -184,7 +182,9 @@ document.querySelectorAll('.filter-btn').forEach(button => {
     });
 });
 
-// Inicializar productos
+// Inicializar productos mostrando comidas criollas por defecto
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
+    renderProducts('comidas');
+    // Activar el botón de comidas
+    document.querySelector('.filter-btn[data-category="comidas"]').classList.add('active');
 });
