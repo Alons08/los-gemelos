@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú | Los Gemelos</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/menu.css">
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <section class="menu-page">
+        <h1>Nuestro Menú</h1>
+        
+        <div class="menu-section">
+            <h2>Platos Criollos</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/platos/picante-cuy.jpg" alt="Picante de Cuy">
+                    <div class="item-info">
+                        <h3>Picante de Cuy 1/2</h3>
+                        <p>Delicioso cuy preparado al estilo tradicional con ají y especias</p>
+                        <span class="price">S/ 35.00</span>
+                    </div>
+                </div>
+                <!-- Más platos -->
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Bebidas</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="images/bebidas/gaseosas.jpg" alt="Gaseosas">
+                    <div class="item-info">
+                        <h3>Gaseosas 1L</h3>
+                        <p>Variedad de sabores</p>
+                        <span class="price">S/ 8.00</span>
+                    </div>
+                </div>
+                <!-- Más bebidas -->
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script>
+        fetch('fragments/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar').innerHTML = data);
+        
+        fetch('fragments/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+    <script src="scripts/menu.js"></script>
+</body>
+</html>

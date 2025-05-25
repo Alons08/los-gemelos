@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Gemelos | Restaurante Campestre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="icon" href="images/logo-gemelos.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Los Gemelos</h1>
+            <p>Auténtica comida campestre</p>
+            <a href="menu.html" class="btn">Ver Menú</a>
+        </div>
+    </section>
+
+    <!-- Menú Destacado -->
+    <section class="featured-menu">
+        <h2>Nuestros Platos Criollos</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="images/platos/picante-cuy.jpg" alt="Picante de Cuy">
+                <h3>Picante de Cuy 1/2</h3>
+            </div>
+            <!-- Más items del menú -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Cargar navbar y footer
+        fetch('fragments/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar').innerHTML = data);
+        
+        fetch('fragments/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>
