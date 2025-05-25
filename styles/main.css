@@ -49,14 +49,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
-    display: inline-block;
+    display: block;
+    text-align: center;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 50px;
     height: 3px;
     background-color: var(--primary-color);
@@ -74,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     text-align: center;
     border: none;
+    text-decoration: none;
 }
 
 .btn-primary {
@@ -231,6 +234,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px 30px;
     width: auto;
     display: inline-block;
+    text-decoration: none;
 }
 
 /* About Section */
@@ -463,13 +467,12 @@ h1, h2, h3, h4, h5, h6 {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 10px;
 }
 
 .info-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 15px;
 }
 
 .info-item i {
@@ -493,7 +496,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-map {
     flex: 1;
-    height: 500px;
+    height: 450px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -534,6 +537,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 15px;
     position: relative;
     padding-bottom: 5px;
+    color: var(--white);
 }
 
 .social-section h4::after {
@@ -894,7 +898,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .contact-map {
-        height: 450px;
+        height: 400px;
         margin-top: 20px;
     }
 
@@ -905,7 +909,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 480px) {
     .contact-map {
-        height: 400px;
+        height: 350px;
     }
     
     .social-icons a {
