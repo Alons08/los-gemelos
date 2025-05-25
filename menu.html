@@ -46,5 +46,12 @@
     <script src="scripts/navbar-footer-loader.js"></script>
     <script src="scripts/menu.js"></script>
     <script src="scripts/cart.js"></script>
+    <script>
+        // Inicialización adicional para asegurar que la categoría comida esté activa
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.menu-tab[data-category="comida"]').classList.add('active');
+            document.getElementById('comida').classList.add('active');
+        });
+    </script>
 </body>
 </html>

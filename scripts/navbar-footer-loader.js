@@ -19,7 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const collapse = document.querySelector('.navbar-collapse');
         
         toggler.addEventListener('click', () => {
+            toggler.classList.toggle('active');
             collapse.classList.toggle('show');
+        });
+
+        // Cerrar el menú al hacer clic en un enlace
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (collapse.classList.contains('show')) {
+                    toggler.classList.remove('active');
+                    collapse.classList.remove('show');
+                }
+            });
         });
     }
 });

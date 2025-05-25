@@ -130,7 +130,28 @@ const menuItems = [
 document.addEventListener('DOMContentLoaded', function() {
     renderMenuItems();
     initCart();
+    setupMenuTabs();
+    
+    // Activar categoría comida por defecto
+    document.querySelector('.menu-tab[data-category="comida"]').classList.add('active');
+    document.getElementById('comida').classList.add('active');
 });
+
+function setupMenuTabs() {
+    const tabs = document.querySelectorAll('.menu-tab');
+    const categories = document.querySelectorAll('.menu-category');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            categories.forEach(c => c.classList.remove('active'));
+
+            tab.classList.add('active');
+            const categoryId = tab.dataset.category;
+            document.getElementById(categoryId).classList.add('active');
+        });
+    });
+}
 
 function renderMenuItems() {
     const foodContainer = document.querySelector('.menu-food');
@@ -170,5 +191,7 @@ function renderMenuItems() {
 }
 
 function initCart() {
-    // Implementación del carrito en cart.js
+    loadCart();
+    setupCartButton();
+    setupAddToCartButtons();
 }

@@ -1,11 +1,5 @@
 let cart = [];
 
-function initCart() {
-    loadCart();
-    setupCartButton();
-    setupAddToCartButtons();
-}
-
 function loadCart() {
     const savedCart = localStorage.getItem('gemelosCart');
     if (savedCart) {
@@ -39,6 +33,51 @@ function setupCartButton() {
     updateCartCounter();
     
     cartButton.addEventListener('click', toggleCartModal);
+}
+
+function showAddedNotification(itemName, quantity) {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <span>✓</span> ${quantity} x ${itemName} agregado al carrito
+    `;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+function addToCart(itemId, quantity = 1) {
+    const existingItem = cart.find(item => item.id === itemId);
+    const menuItem = menuItems.find(item => item.id === itemId);
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            id: itemId,
+            quantity: quantity
+        });
+    }
+
+    saveCart();
+    showAddedNotification(menuItem.name, quantity);
+    
+    const floatingCart = document.querySelector('.floating-cart-button');
+    if (floatingCart) {
+        floatingCart.classList.add('pulse');
+        setTimeout(() => {
+            floatingCart.classList.remove('pulse');
+        }, 500);
+    }
 }
 
 function toggleCartModal() {
@@ -127,7 +166,6 @@ function renderCartItems() {
     
     if (totalElement) totalElement.textContent = `S/ ${total.toFixed(2)}`;
     
-    // Add event listeners for quantity changes
     document.querySelectorAll('.change-quantity.minus').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const index = parseInt(e.target.dataset.index);
@@ -170,34 +208,10 @@ function setupAddToCartButtons() {
     });
 }
 
-function addToCart(itemId, quantity = 1) {
-    const existingItem = cart.find(item => item.id === itemId);
-    
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({
-            id: itemId,
-            quantity: quantity
-        });
-    }
-    
-    saveCart();
-    
-    // Show added to cart feedback
-    const floatingCart = document.querySelector('.floating-cart-button');
-    if (floatingCart) {
-        floatingCart.classList.add('pulse');
-        setTimeout(() => {
-            floatingCart.classList.remove('pulse');
-        }, 500);
-    }
-}
-
 function checkout() {
     if (cart.length === 0) return;
     
-    const phoneNumber = "51987654321"; // Reemplazar con número real
+    const phoneNumber = "51987654321";
     let message = "¡Hola! Quiero hacer el siguiente pedido:\n\n";
     
     let total = 0;
@@ -217,7 +231,6 @@ function checkout() {
     
     window.open(whatsappUrl, '_blank');
     
-    // Clear cart after checkout
     cart = [];
     saveCart();
     renderCartItems();

@@ -1,14 +1,14 @@
 :root {
-    --primary-color: #8B4513; /* Café oscuro como el logo */
-    --secondary-color: #D2B48C; /* Café claro */
-    --accent-color: #A0522D; /* Café rojizo */
-    --light-color: #F5F5DC; /* Beige claro */
-    --dark-color: #333;
+    --primary-color: #A67C52;
+    --secondary-color: #D9B38C;
+    --accent-color: #8C5E35;
+    --light-color: #F2E6D9;
+    --dark-color: #4D3319;
     --white: #fff;
     --black: #000;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
+    --success-color: #5cb85c;
+    --warning-color: #f0ad4e;
+    --danger-color: #d9534f;
     --font-primary: 'Open Sans', sans-serif;
     --font-secondary: 'Playfair Display', serif;
 }
@@ -23,6 +23,7 @@ body {
     font-family: var(--font-primary);
     color: var(--dark-color);
     line-height: 1.6;
+    background-color: var(--light-color);
 }
 
 .container {
