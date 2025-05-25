@@ -1,0 +1,227 @@
+/* Events Hero */
+.events-hero {
+    height: 50vh;
+    min-height: 400px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/events-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--light);
+    margin-top: 8rem;
+}
+
+.events-hero h1 {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+.events-hero p {
+    font-size: 2rem;
+}
+
+/* Main Event */
+.event-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5rem;
+    align-items: center;
+}
+
+.event-image {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-badge {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.event-badge i {
+    margin-right: 0.5rem;
+}
+
+.event-details h3 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.event-details p {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.event-info {
+    list-style: none;
+    margin-bottom: 3rem;
+}
+
+.event-info li {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.event-info i {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(139, 90, 43, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    color: var(--primary);
+}
+
+/* Other Events */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.event-card {
+    background-color: var(--light);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.event-card-image {
+    height: 20rem;
+    overflow: hidden;
+}
+
+.event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.event-card:hover .event-card-image img {
+    transform: scale(1.05);
+}
+
+.event-card-content {
+    padding: 2rem;
+}
+
+.event-card-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.event-card-content p {
+    font-size: 1.4rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+}
+
+.event-meta i {
+    margin-right: 0.5rem;
+}
+
+/* Reservation Form */
+.reservation-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.2);
+}
+
+.form-submit {
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .event-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-details {
+        order: -1;
+    }
+}

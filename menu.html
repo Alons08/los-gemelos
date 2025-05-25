@@ -2,49 +2,86 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Menú | Los Gemelos</title>
+    <title>Menú | Los Gemelos Restaurante Campestre</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/menu.css">
+    <link rel="icon" href="images/logo-gemelos.png">
 </head>
 <body>
+    <!-- Navbar -->
     <div id="navbar"></div>
 
-    <section class="menu-page">
-        <h1>Nuestro Menú</h1>
-        
-        <div class="menu-section">
-            <h2>Platos Criollos</h2>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <img src="images/platos/picante-cuy.jpg" alt="Picante de Cuy">
-                    <div class="item-info">
-                        <h3>Picante de Cuy 1/2</h3>
-                        <p>Delicioso cuy preparado al estilo tradicional con ají y especias</p>
-                        <span class="price">S/ 35.00</span>
-                    </div>
-                </div>
-                <!-- Más platos -->
-            </div>
+    <!-- Menu Hero -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Nuestro Menú</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Sabores auténticos de la cocina campestre</p>
         </div>
+    </section>
 
-        <div class="menu-section">
-            <h2>Bebidas</h2>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <img src="images/bebidas/gaseosas.jpg" alt="Gaseosas">
-                    <div class="item-info">
-                        <h3>Gaseosas 1L</h3>
-                        <p>Variedad de sabores</p>
-                        <span class="price">S/ 8.00</span>
-                    </div>
-                </div>
-                <!-- Más bebidas -->
+    <!-- Menu Categories -->
+    <section class="menu-categories section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Platos Criollos</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="menu-grid" id="platos-criollos">
+                <!-- Items loaded via JS -->
             </div>
         </div>
     </section>
 
+    <!-- Drinks Section -->
+    <section class="drinks-section section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Bebidas</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="menu-grid" id="bebidas">
+                <!-- Items loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h3>Tu Pedido</h3>
+                <button class="close-cart" id="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items loaded via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">S/ 0.00</span>
+                </div>
+                <button class="btn btn-primary" id="checkout-btn" disabled>Confirmar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Button -->
+    <div class="cart-btn" id="cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-quantity" id="cart-quantity">0</span>
+    </div>
+
+    <!-- Footer -->
     <div id="footer"></div>
 
+    <script src="scripts/main.js"></script>
+    <script src="scripts/menu.js"></script>
     <script>
         fetch('fragments/navbar.html')
             .then(response => response.text())
@@ -54,6 +91,5 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer').innerHTML = data);
     </script>
-    <script src="scripts/menu.js"></script>
 </body>
 </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre Nosotros | Los Gemelos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/about.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Sobre Nosotros</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Conoce nuestra historia y pasión por la gastronomía campestre</p>
+        </div>
+    </section>
+
+    <!-- History -->
+    <section class="history section-padding" id="historia">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestra Historia</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="history-content">
+                <div class="history-text animate__animated" data-animation="animate__fadeInLeft">
+                    <p>Fundado en 2010 por los hermanos Pérez, Los Gemelos nació como un pequeño negocio familiar con la visión de compartir los auténticos sabores de la cocina campestre.</p>
+                    <p>Lo que comenzó como un modesto local se ha convertido en un referente gastronómico de la región, manteniendo siempre nuestra esencia familiar y el compromiso con la calidad.</p>
+                    <p>Hoy, después de más de una década, seguimos sirviendo platos tradicionales preparados con los mismos ingredientes frescos y técnicas artesanales que nos dieron origen.</p>
+                </div>
+                <div class="history-image animate__animated" data-animation="animate__fadeInRight">
+                    <img src="images/team/fundadores.jpg" alt="Fundadores de Los Gemelos">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision section-padding bg-light">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card mission animate__animated" data-animation="animate__fadeInUp" id="mision">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>Ofrecer una experiencia gastronómica auténtica que rescate los sabores tradicionales de la cocina campestre, utilizando ingredientes frescos de proveedores locales y manteniendo siempre nuestro compromiso con la calidad y el servicio excepcional.</p>
+                </div>
+                <div class="mv-card vision animate__animated" data-animation="animate__fadeInUp" id="vision">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos como el referente en gastronomía campestre a nivel regional, expandiendo nuestra propuesta culinaria mientras mantenemos nuestra esencia familiar y el amor por las recetas tradicionales que nos han distinguido desde nuestros inicios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="team-grid">
+                <div class="team-member animate__animated" data-animation="animate__zoomIn">
+                    <img src="images/team/chef1.jpg" alt="Chef Principal">
+                    <h3>Juan Pérez</h3>
+                    <p>Chef Ejecutivo</p>
+                </div>
+                <!-- More team members -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="location section-padding bg-dark" id="ubicacion">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ubicación</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="location-content">
+                <div class="location-info animate__animated" data-animation="animate__fadeInLeft">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Km 12 Vía Campestre, Antioquia</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+57 300 1234567</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Viernes a Domingo: 10am - 8pm</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Cómo llegar</a>
+                </div>
+                <div class="location-map animate__animated" data-animation="animate__fadeInRight">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.57085598457164!3d6.201514295506379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDUuNCJOIDc1wrAzNCcxNS4wIlc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/about.js"></script>
+    <script>
+        fetch('fragments/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar').innerHTML = data);
+        
+        fetch('fragments/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+</body>
+</html>
