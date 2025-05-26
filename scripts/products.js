@@ -128,30 +128,34 @@ const products = [
     }
 ];
 
-// Variable global para los productos filtrados
-let currentProducts = [];
-
-// Renderizar productos
+// Función principal para renderizar productos
 function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
+    if (!menuItemsContainer) return;
+
     menuItemsContainer.innerHTML = '';
 
-    currentProducts = products.filter(product => product.category === category);
+    const filteredProducts = products.filter(product => 
+        product.category === category && product.available
+    );
 
-    if (currentProducts.length === 0) {
-        menuItemsContainer.innerHTML = '<p class="no-products">No hay productos disponibles en esta categoría</p>';
+    if (filteredProducts.length === 0) {
+        menuItemsContainer.innerHTML = `
+            <div class="no-products">
+                <i class="fas fa-utensils"></i>
+                <p>No hay productos disponibles en esta categoría</p>
+            </div>
+        `;
         return;
     }
 
-    currentProducts.forEach(product => {
+    filteredProducts.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'menu-item';
-        productElement.setAttribute('data-animate', 'fade-in');
-        
+        productElement.dataset.id = product.id;
         productElement.innerHTML = `
             <div class="item-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
-                ${!product.available ? '<span class="sold-out">Agotado</span>' : ''}
             </div>
             <div class="item-info">
                 <h3>${product.name}</h3>
@@ -163,44 +167,66 @@ function renderProducts(category = 'comidas') {
                         <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
-                    <button class="add-to-cart" data-id="${product.id}" ${!product.available ? 'disabled' : ''}>
-                        ${product.available ? 'Añadir al carrito' : 'Agotado'}
+                    <button class="add-to-cart" data-id="${product.id}">
+                        Añadir al carrito
                     </button>
                 </div>
             </div>
         `;
-
         menuItemsContainer.appendChild(productElement);
     });
 }
 
-// Configurar filtros
+// Configuración de los filtros
 function setupFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    
+    if (!filterButtons.length) return;
+
     filterButtons.forEach(button => {
-        button.removeEventListener('click', handleFilterClick);
-        button.addEventListener('click', handleFilterClick);
+        button.addEventListener('click', function() {
+            // Quitar activo de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Activar el botón clickeado
+            this.classList.add('active');
+            
+            // Renderizar productos
+            renderProducts(this.dataset.category);
+        });
     });
 }
 
-// Manejador del evento de filtrado
-function handleFilterClick(e) {
-    const category = e.target.dataset.category;
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    e.target.classList.add('active');
-    
-    renderProducts(category);
-}
-
-// Inicializar productos
+// Inicialización
 function initProducts() {
+    // Mostrar comidas por defecto
     renderProducts('comidas');
+    
+    // Configurar eventos de filtrado
     setupFilters();
+    
+    // Configurar evento para botones de cantidad
+    setupQuantityControls();
 }
 
-// Inicializar al cargar la página
-document.addEventListener('DOMContentLoaded', initProducts);
+// Control de cantidades
+function setupQuantityControls() {
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('quantity-btn')) {
+            const input = e.target.parentElement.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            
+            if (e.target.classList.contains('minus') && value > 1) {
+                input.value = value - 1;
+            } else if (e.target.classList.contains('plus')) {
+                input.value = value + 1;
+            }
+        }
+    });
+}
+
+// Iniciar cuando el DOM esté listo
+if (document.readyState !== 'loading') {
+    initProducts();
+} else {
+    document.addEventListener('DOMContentLoaded', initProducts);
+}
