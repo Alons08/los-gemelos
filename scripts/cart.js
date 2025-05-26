@@ -82,9 +82,9 @@ function showNotification(message, type = 'success') {
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
+        notification.classList.remove('show'); // Inicia la transición de salida
+        setTimeout(() => notification.remove(), 500); // Espera 0.5 segundos para eliminar el elemento del DOM
+    }, 2000); // Tiempo que la notificación permanece visible
 }
 
 // Mostrar/ocultar carrito
