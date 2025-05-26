@@ -128,10 +128,9 @@ const products = [
     }
 ];
 
-// Hacer el array de productos accesible globalmente
+// Hacer el array accesible globalmente
 window.restaurantProducts = products;
 
-// Función para renderizar productos
 function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
@@ -153,7 +152,6 @@ function renderProducts(category = 'comidas') {
     filteredProducts.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'menu-item';
-        productElement.dataset.id = product.id;
         productElement.innerHTML = `
             <div class="item-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
@@ -179,28 +177,33 @@ function renderProducts(category = 'comidas') {
     });
 }
 
-// Configuración de los filtros
 function setupFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    if (!filterButtons.length) return;
-
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Quitar activo de todos los botones
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Activar el botón clickeado
             this.classList.add('active');
-            
-            // Renderizar productos
             renderProducts(this.dataset.category);
         });
     });
 }
 
-// Configurar eventos para añadir al carrito
-function setupCartEvents() {
+function setupProductEvents() {
+    // Evento delegado para controles de cantidad
     document.addEventListener('click', function(e) {
+        const quantityBtn = e.target.closest('.quantity-btn');
+        if (quantityBtn) {
+            const input = quantityBtn.parentElement.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            
+            if (quantityBtn.classList.contains('minus') && value > 1) {
+                input.value = value - 1;
+            } else if (quantityBtn.classList.contains('plus')) {
+                input.value = value + 1;
+            }
+        }
+        
+        // Evento para añadir al carrito
         if (e.target.classList.contains('add-to-cart')) {
             const productId = parseInt(e.target.dataset.id);
             const product = window.restaurantProducts.find(p => p.id === productId);
@@ -209,41 +212,19 @@ function setupCartEvents() {
                 const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
                 const quantity = parseInt(quantityInput.value) || 1;
                 
-                // Disparar evento personalizado
-                const event = new CustomEvent('productAdded', {
+                const event = new CustomEvent('productAddedToCart', {
                     detail: { product, quantity }
                 });
                 document.dispatchEvent(event);
             }
         }
-        
-        // Control de cantidades
-        if (e.target.classList.contains('quantity-btn')) {
-            const input = e.target.parentElement.querySelector('.quantity-input');
-            let value = parseInt(input.value);
-            
-            if (e.target.classList.contains('minus') && value > 1) {
-                input.value = value - 1;
-            } else if (e.target.classList.contains('plus')) {
-                input.value = value + 1;
-            }
-        }
     });
 }
 
-// Inicialización
 function initProducts() {
-    // Mostrar comidas por defecto
     renderProducts('comidas');
-    
-    // Configurar eventos
     setupFilters();
-    setupCartEvents();
+    setupProductEvents();
 }
 
-// Iniciar cuando el DOM esté listo
-if (document.readyState !== 'loading') {
-    initProducts();
-} else {
-    document.addEventListener('DOMContentLoaded', initProducts);
-}
+document.addEventListener('DOMContentLoaded', initProducts);
