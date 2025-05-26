@@ -161,16 +161,18 @@ function renderProducts(category = 'comidas') {
                 <h3>${product.name}</h3>
                 <p class="description">${product.description}</p>
                 <span class="price">S/ ${product.price.toFixed(2)}</span>
+                ${product.available ? `
                 <div class="item-actions">
                     <div class="quantity-control">
                         <button class="quantity-btn minus" data-id="${product.id}">-</button>
                         <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
-                    <button class="add-to-cart" data-id="${product.id}" ${!product.available ? 'disabled' : ''}>
-                        ${product.available ? 'Añadir al carrito' : 'Agotado'}
+                    <button class="add-to-cart" data-id="${product.id}">
+                        Añadir al carrito
                     </button>
                 </div>
+                ` : ''}
             </div>
         `;
         menuItemsContainer.appendChild(productElement);
