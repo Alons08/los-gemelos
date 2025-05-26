@@ -128,8 +128,6 @@ const products = [
     }
 ];
 
-// Productos del menú (mantén tu array de productos actual)
-
 // Variable global para los productos filtrados
 let currentProducts = [];
 
@@ -181,9 +179,7 @@ function setupFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     
     filterButtons.forEach(button => {
-        // Eliminar eventos anteriores para evitar duplicados
         button.removeEventListener('click', handleFilterClick);
-        // Agregar nuevo evento
         button.addEventListener('click', handleFilterClick);
     });
 }
@@ -192,13 +188,11 @@ function setupFilters() {
 function handleFilterClick(e) {
     const category = e.target.dataset.category;
     
-    // Actualizar botones activos
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     e.target.classList.add('active');
     
-    // Renderizar productos
     renderProducts(category);
 }
 
