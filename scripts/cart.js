@@ -15,28 +15,26 @@ const checkoutBtn = document.getElementById('checkout');
 function initCart() {
     updateCart();
     setupCartEvents();
+    
+    // Escuchar evento de producto añadido
+    document.addEventListener('productAdded', function(e) {
+        addToCart(e.detail.product, e.detail.quantity);
+    });
 }
 
 // Configurar eventos del carrito
 function setupCartEvents() {
-    cartBtn.addEventListener('click', showCart);
-    closeCart.addEventListener('click', hideCart);
-    cartOverlay.addEventListener('click', hideCart);
-    checkoutBtn.addEventListener('click', checkout);
+    // Botón del carrito flotante
+    if (cartBtn) cartBtn.addEventListener('click', showCart);
     
-    // Evento delegado para añadir productos
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('add-to-cart')) {
-            const productId = parseInt(e.target.dataset.id);
-            const product = products.find(p => p.id === productId);
-            
-            if (product) {
-                const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
-                const quantity = parseInt(quantityInput.value) || 1;
-                addToCart(product, quantity);
-            }
-        }
-    });
+    // Botón para cerrar el carrito
+    if (closeCart) closeCart.addEventListener('click', hideCart);
+    
+    // Overlay para cerrar el carrito
+    if (cartOverlay) cartOverlay.addEventListener('click', hideCart);
+    
+    // Botón de finalizar compra
+    if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
 }
 
 // Mostrar notificación
@@ -57,7 +55,7 @@ function showNotification(message, type = 'success') {
 
 // Mostrar carrito
 function showCart(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     cartModal.classList.add('active');
     cartOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -72,6 +70,8 @@ function hideCart() {
 
 // Actualizar carrito
 function updateCart() {
+    if (!cartItems) return;
+    
     cartItems.innerHTML = '';
     
     if (cart.length === 0) {
@@ -81,8 +81,8 @@ function updateCart() {
                 <p>Tu carrito está vacío</p>
             </div>
         `;
-        cartTotal.textContent = 'S/0.00';
-        cartCount.textContent = '0';
+        if (cartTotal) cartTotal.textContent = 'S/0.00';
+        if (cartCount) cartCount.textContent = '0';
         localStorage.setItem('cart', JSON.stringify(cart));
         return;
     }
@@ -117,8 +117,8 @@ function updateCart() {
     });
     
     // Actualizar totales
-    cartTotal.textContent = `S/${total.toFixed(2)}`;
-    cartCount.textContent = itemCount;
+    if (cartTotal) cartTotal.textContent = `S/${total.toFixed(2)}`;
+    if (cartCount) cartCount.textContent = itemCount;
     localStorage.setItem('cart', JSON.stringify(cart));
     
     // Configurar eventos de los items del carrito
@@ -211,13 +211,16 @@ function checkout() {
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/51987654321?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/51931088900?text=${encodedMessage}`;
     
     window.open(whatsappUrl, '_blank');
     cart = [];
     updateCart();
     hideCart();
 }
+
+// Hacer función accesible globalmente
+window.addToCart = addToCart;
 
 // Inicializar carrito
 if (document.readyState !== 'loading') {

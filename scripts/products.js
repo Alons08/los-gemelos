@@ -1,4 +1,4 @@
-// Productos del menú
+// Array completo de productos
 const products = [
     {
         id: 1,
@@ -128,16 +128,17 @@ const products = [
     }
 ];
 
-// Función principal para renderizar productos
+// Hacer el array de productos accesible globalmente
+window.restaurantProducts = products;
+
+// Función para renderizar productos
 function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
 
     menuItemsContainer.innerHTML = '';
 
-    const filteredProducts = products.filter(product => 
-        product.category === category && product.available
-    );
+    const filteredProducts = products.filter(product => product.category === category);
 
     if (filteredProducts.length === 0) {
         menuItemsContainer.innerHTML = `
@@ -156,6 +157,7 @@ function renderProducts(category = 'comidas') {
         productElement.innerHTML = `
             <div class="item-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
+                ${!product.available ? '<span class="sold-out">Agotado</span>' : ''}
             </div>
             <div class="item-info">
                 <h3>${product.name}</h3>
@@ -167,8 +169,8 @@ function renderProducts(category = 'comidas') {
                         <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
-                    <button class="add-to-cart" data-id="${product.id}">
-                        Añadir al carrito
+                    <button class="add-to-cart" data-id="${product.id}" ${!product.available ? 'disabled' : ''}>
+                        ${product.available ? 'Añadir al carrito' : 'Agotado'}
                     </button>
                 </div>
             </div>
@@ -196,21 +198,26 @@ function setupFilters() {
     });
 }
 
-// Inicialización
-function initProducts() {
-    // Mostrar comidas por defecto
-    renderProducts('comidas');
-    
-    // Configurar eventos de filtrado
-    setupFilters();
-    
-    // Configurar evento para botones de cantidad
-    setupQuantityControls();
-}
-
-// Control de cantidades
-function setupQuantityControls() {
+// Configurar eventos para añadir al carrito
+function setupCartEvents() {
     document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('add-to-cart')) {
+            const productId = parseInt(e.target.dataset.id);
+            const product = window.restaurantProducts.find(p => p.id === productId);
+            
+            if (product) {
+                const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
+                const quantity = parseInt(quantityInput.value) || 1;
+                
+                // Disparar evento personalizado
+                const event = new CustomEvent('productAdded', {
+                    detail: { product, quantity }
+                });
+                document.dispatchEvent(event);
+            }
+        }
+        
+        // Control de cantidades
         if (e.target.classList.contains('quantity-btn')) {
             const input = e.target.parentElement.querySelector('.quantity-input');
             let value = parseInt(input.value);
@@ -222,6 +229,16 @@ function setupQuantityControls() {
             }
         }
     });
+}
+
+// Inicialización
+function initProducts() {
+    // Mostrar comidas por defecto
+    renderProducts('comidas');
+    
+    // Configurar eventos
+    setupFilters();
+    setupCartEvents();
 }
 
 // Iniciar cuando el DOM esté listo
