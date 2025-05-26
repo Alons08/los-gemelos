@@ -1,4 +1,4 @@
-/* Animations */
+/* Animaciones */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -11,7 +11,7 @@
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
     to {
         opacity: 1;
@@ -22,7 +22,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -30,58 +30,81 @@
     }
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
     }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
-/* Animation Classes */
-.fade-in {
-    animation: fadeIn 1s ease;
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.fade-in-down {
-    animation: fadeInDown 1s ease;
+/* Aplicar animaciones */
+.about-image {
+    animation: fadeIn 1s ease, slideInRight 1s ease;
 }
 
-.fade-in-up {
-    animation: fadeInUp 1s ease;
+.about-text {
+    animation: fadeIn 1s ease, slideInLeft 1s ease;
 }
 
-.pulse {
-    animation: pulse 2s infinite;
+.menu-item:nth-child(odd) {
+    animation: fadeIn 1s ease, slideInLeft 0.8s ease;
 }
 
-/* Scroll Animations */
-[data-animate] {
+.menu-item:nth-child(even) {
+    animation: fadeIn 1s ease, slideInRight 0.8s ease;
+}
+
+.event-card {
+    animation: fadeIn 1s ease, slideInUp 1s ease;
+}
+
+/* Efecto hover para botones */
+.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Efecto de carga para imágenes */
+img[loading="lazy"] {
     opacity: 0;
-    transition: all 0.6s ease;
+    transition: opacity 0.5s ease;
 }
 
-[data-animate="fade-in"] {
-    transform: translateY(20px);
-}
-
-[data-animate="fade-in"].animate {
+img[loading="lazy"].loaded {
     opacity: 1;
-    transform: translateY(0);
-}
-
-/* Hero Animation */
-.hero {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.hero.loaded {
-    opacity: 1;
-    transform: translateY(0);
 }

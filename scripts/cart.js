@@ -5,228 +5,204 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const cartBtn = document.getElementById('cart-btn');
 const cartModal = document.getElementById('cart-modal');
 const cartOverlay = document.getElementById('cart-overlay');
-const cartItems = document.getElementById('cart-items');
+const closeCart = document.getElementById('close-cart');
+const cartItemsContainer = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 const cartCount = document.getElementById('cart-count');
-const closeCart = document.getElementById('close-cart');
 const checkoutBtn = document.getElementById('checkout');
 
-// Inicializar carrito
-function initCart() {
-    updateCart();
-    
-    // Eventos del carrito
-    cartBtn.addEventListener('click', showCart);
-    closeCart.addEventListener('click', hideCart);
-    cartOverlay.addEventListener('click', hideCart);
-    
-    checkoutBtn.addEventListener('click', checkout);
-}
+// Event listeners
+cartBtn.addEventListener('click', toggleCart);
+closeCart.addEventListener('click', toggleCart);
+cartOverlay.addEventListener('click', toggleCart);
+checkoutBtn.addEventListener('click', checkout);
 
-// Mostrar notificación
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification show';
-    notification.textContent = message;
-    document.body.appendChild(notification);
+// Función para alternar el carrito
+function toggleCart() {
+    cartModal.classList.toggle('active');
+    cartOverlay.classList.toggle('active');
+    document.body.style.overflow = cartModal.classList.contains('active') ? 'hidden' : 'auto';
     
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Mostrar carrito
-function showCart(e) {
-    e.preventDefault();
-    cartModal.classList.add('active');
-    cartOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Ocultar carrito
-function hideCart() {
-    cartModal.classList.remove('active');
-    cartOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Actualizar carrito
-function updateCart() {
-    cartItems.innerHTML = '';
-    
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
-        cartTotal.textContent = 'S/0.00';
-        cartCount.textContent = '0';
-        return;
+    if (cartModal.classList.contains('active')) {
+        renderCartItems();
     }
-    
-    let total = 0;
-    let itemCount = 0;
-    
-    cart.forEach((item, index) => {
-        const itemTotal = item.product.price * item.quantity;
-        total += itemTotal;
-        itemCount += item.quantity;
-        
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <div class="cart-item-info">
-                <h4>${item.product.name}</h4>
-                <p>S/${item.product.price.toFixed(2)} c/u</p>
-            </div>
-            <div class="cart-item-actions">
-                <div class="quantity-control">
-                    <button class="quantity-btn minus" data-id="${item.product.id}">-</button>
-                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.product.id}">
-                    <button class="quantity-btn plus" data-id="${item.product.id}">+</button>
-                </div>
-                <button class="remove-item" data-id="${item.product.id}">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        
-        cartItems.appendChild(cartItem);
-    });
-    
-    // Actualizar totales
-    cartTotal.textContent = `S/${total.toFixed(2)}`;
-    cartCount.textContent = itemCount;
-    
-    // Guardar en localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    // Configurar eventos para los controles del carrito
-    setupCartControls();
 }
 
-// Configurar controles del carrito
-function setupCartControls() {
-    // Botones de cantidad
-    document.querySelectorAll('.quantity-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = parseInt(this.dataset.id);
-            const input = document.querySelector(`.quantity-input[data-id="${id}"]`);
-            let quantity = parseInt(input.value);
-            
-            if (this.classList.contains('minus')) {
-                if (quantity > 1) {
-                    quantity--;
-                } else {
-                    removeFromCart(id);
-                    return;
-                }
-            } else {
-                quantity++;
-            }
-            
-            input.value = quantity;
-            updateCartItem(id, quantity);
-        });
-    });
-    
-    // Inputs de cantidad
-    document.querySelectorAll('.quantity-input').forEach(input => {
-        input.addEventListener('change', function() {
-            const id = parseInt(this.dataset.id);
-            const quantity = parseInt(this.value) || 1;
-            updateCartItem(id, quantity);
-        });
-    });
-    
-    // Botones de eliminar
-    document.querySelectorAll('.remove-item').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = parseInt(this.dataset.id);
-            removeFromCart(id);
-        });
-    });
-}
-
-// Añadir al carrito
-function addToCart(product, quantity = 1) {
-    const existingItem = cart.find(item => item.product.id === product.id);
+// Función para agregar al carrito
+function addToCart(product) {
+    // Verificar si el producto ya está en el carrito
+    const existingItem = cart.find(item => item.id === product.id);
     
     if (existingItem) {
-        existingItem.quantity += quantity;
+        // Incrementar cantidad
+        existingItem.quantity += 1;
     } else {
-        cart.push({ product, quantity });
+        // Agregar nuevo item
+        cart.push({
+            ...product,
+            quantity: 1
+        });
     }
     
+    // Actualizar localStorage
     updateCart();
+    
+    // Mostrar notificación
     showNotification(`${product.name} agregado al carrito`);
 }
 
-// Actualizar item del carrito
-function updateCartItem(id, quantity) {
-    const item = cart.find(item => item.product.id === id);
+// Función para remover del carrito
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCart();
+    renderCartItems();
+}
+
+// Función para actualizar cantidad
+function updateQuantity(productId, newQuantity) {
+    const item = cart.find(item => item.id === productId);
+    
     if (item) {
-        item.quantity = quantity;
+        item.quantity = newQuantity > 0 ? newQuantity : 1;
         updateCart();
+        renderCartItems();
     }
 }
 
-// Eliminar del carrito
-function removeFromCart(id) {
-    cart = cart.filter(item => item.product.id !== id);
-    updateCart();
-}
-
-// Finalizar compra
-function checkout() {
+// Función para renderizar items del carrito
+function renderCartItems() {
     if (cart.length === 0) {
-        showNotification('El carrito está vacío');
+        cartItemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+        cartTotal.textContent = 'S/0.00';
         return;
     }
     
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const itemHTML = `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${item.name}</h4>
+                    <p class="cart-item-price">S/${item.price.toFixed(2)}</p>
+                    <div class="cart-item-actions">
+                        <button class="cart-item-remove" data-id="${item.id}">Eliminar</button>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+    });
+    
+    // Actualizar total
+    cartTotal.textContent = `S/${total.toFixed(2)}`;
+    
+    // Configurar eventos para los botones
+    document.querySelectorAll('.cart-item-remove').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            removeFromCart(productId);
+        });
+    });
+    
+    document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const item = cart.find(item => item.id === productId);
+            if (item) updateQuantity(productId, item.quantity - 1);
+        });
+    });
+    
+    document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const item = cart.find(item => item.id === productId);
+            if (item) updateQuantity(productId, item.quantity + 1);
+        });
+    });
+}
+
+// Función para actualizar el carrito
+function updateCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = count;
+}
+
+// Función para mostrar notificaciones
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    // Animación de entrada
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Eliminar después de 3 segundos
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Función para finalizar compra
+function checkout() {
+    if (cart.length === 0) {
+        showNotification('Tu carrito está vacío');
+        return;
+    }
+    
+    // Aquí puedes implementar la lógica de checkout
+    // Por ahora solo mostraremos un mensaje y limpiaremos el carrito
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    // Enviar mensaje por WhatsApp
+    const phoneNumber = '51987654321';
     let message = '¡Hola! Quiero realizar el siguiente pedido:\n\n';
     
     cart.forEach(item => {
-        message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
+        message += `${item.name} x${item.quantity} - S/${(item.price * item.quantity).toFixed(2)}\n`;
     });
     
-    const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-    message += `\n*Total: S/${total.toFixed(2)}*`;
-    message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
+    message += `\nTotal: S/${total.toFixed(2)}\n\nGracias.`;
     
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/51987654321?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
+    // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
+    
+    // Limpiar carrito
     cart = [];
     updateCart();
-    hideCart();
+    renderCartItems();
+    toggleCart();
+    
+    // Mostrar mensaje de agradecimiento
+    showNotification('¡Gracias por tu pedido! Te contactaremos pronto.');
 }
 
-// Delegación de eventos para añadir productos
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('add-to-cart')) {
-        const productId = parseInt(e.target.dataset.id);
-        const product = products.find(p => p.id === productId);
-        const quantityInput = document.querySelector(`.quantity-input[data-id="${productId}"]`);
-        const quantity = parseInt(quantityInput.value) || 1;
-        
-        addToCart(product, quantity);
-    }
-    
-    // Controles de cantidad en el menú
-    if (e.target.classList.contains('quantity-btn') && e.target.closest('.quantity-control')) {
-        const productId = parseInt(e.target.dataset.id);
-        const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
-        let value = parseInt(input.value) || 1;
-        
-        if (e.target.classList.contains('minus')) {
-            if (value > 1) value--;
-        } else {
-            value++;
-        }
-        
-        input.value = value;
-    }
-});
-
-// Inicializar carrito al cargar
-document.addEventListener('DOMContentLoaded', initCart);
+// Actualizar contador del carrito al cargar la página
+updateCartCount();
