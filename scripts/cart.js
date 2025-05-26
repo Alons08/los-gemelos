@@ -39,7 +39,6 @@ function clearCart() {
     localStorage.removeItem('cart');
     localStorage.removeItem('cartTimestamp');
     updateCart();
-    showNotification('El carrito se ha vaciado por inactividad', 'info');
 }
 
 // Elementos del DOM
@@ -109,12 +108,7 @@ function updateCart() {
     cartElements.items.innerHTML = '';
     
     if (cart.length === 0) {
-        cartElements.items.innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Tu carrito está vacío</p>
-            </div>
-        `;
+        cartElements.items.innerHTML = '';
         if (cartElements.total) cartElements.total.textContent = 'S/0.00';
         if (cartElements.count) cartElements.count.textContent = '0';
         return;
@@ -214,11 +208,10 @@ function updateCartItem(id, quantity) {
 function removeFromCart(id) {
     cart = cart.filter(item => item.product.id !== id);
     updateCart();
-    showNotification('Producto eliminado del carrito', 'warning');
+    // Eliminada la línea que mostraba la notificación al eliminar
 }
 
 // Finalizar compra
-// Finalizar compra - MODIFICADO para no vaciar el carrito
 function checkout() {
     if (cart.length === 0) {
         showNotification('El carrito está vacío', 'error');
@@ -234,10 +227,7 @@ function checkout() {
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
     window.open(`https://wa.me/51931088900?text=${encodeURIComponent(message)}`, '_blank');
-    // Eliminada la línea clearCart() para que no se vacíe automáticamente
 }
-
-// Resto del archivo permanece igual...
 
 // Inicializar al cargar
 document.addEventListener('DOMContentLoaded', initCart);
