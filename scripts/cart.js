@@ -28,15 +28,23 @@ const checkoutBtn = document.getElementById('checkout');
 const toast = document.getElementById('toast');
 
 // Mostrar/ocultar carrito con scroll al final
-cartBtn.addEventListener('click', () => {
+cartBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita el comportamiento predeterminado
+    e.stopPropagation(); // Evita que el evento se propague
+
     cartModal.classList.add('active');
+    document.body.classList.add('cart-open');
     setTimeout(() => {
         cartModal.scrollTop = cartModal.scrollHeight;
     }, 100);
 });
 
-closeCart.addEventListener('click', () => {
+closeCart.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita el comportamiento predeterminado
+    e.stopPropagation(); // Evita que el evento se propague
+
     cartModal.classList.remove('active');
+    document.body.classList.remove('cart-open');
 });
 
 // Mantener botones visibles al hacer scroll
@@ -63,7 +71,7 @@ checkoutBtn.addEventListener('click', () => {
         showToast('El carrito está vacío', 'error');
         return;
     }
-    
+
     showToast('Pedido realizado con éxito');
     cart = [];
     cartCount = 0;
@@ -81,17 +89,17 @@ document.addEventListener('click', (e) => {
         const product = products.find(p => p.id === productId);
         const quantityInput = document.querySelector(`.quantity-input[data-id="${productId}"]`);
         const quantity = parseInt(quantityInput.value);
-        
+
         addToCart(product, quantity);
         showToast('Agregado');
     }
-    
+
     if (e.target.classList.contains('plus') && e.target.closest('.quantity-control')) {
         const productId = parseInt(e.target.dataset.id);
         const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
         input.value = parseInt(input.value) + 1;
     }
-    
+
     if (e.target.classList.contains('minus') && e.target.closest('.quantity-control')) {
         const productId = parseInt(e.target.dataset.id);
         const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
@@ -99,14 +107,14 @@ document.addEventListener('click', (e) => {
             input.value = parseInt(input.value) - 1;
         }
     }
-    
+
     if (e.target.classList.contains('plus') && e.target.closest('.cart-item-controls')) {
         const productId = parseInt(e.target.dataset.id);
         const input = document.querySelector(`.cart-item-quantity[data-id="${productId}"]`);
         input.value = parseInt(input.value) + 1;
         input.dispatchEvent(new Event('change'));
     }
-    
+
     if (e.target.classList.contains('minus') && e.target.closest('.cart-item-controls')) {
         const productId = parseInt(e.target.dataset.id);
         const input = document.querySelector(`.cart-item-quantity[data-id="${productId}"]`);
@@ -117,7 +125,7 @@ document.addEventListener('click', (e) => {
             removeFromCart(productId);
         }
     }
-    
+
     if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
         const productId = parseInt(e.target.dataset.id || e.target.closest('.remove-item').dataset.id);
         removeFromCart(productId);
@@ -129,12 +137,12 @@ cartItemsContainer.addEventListener('change', (e) => {
     if (e.target.classList.contains('cart-item-quantity')) {
         const productId = parseInt(e.target.dataset.id);
         const newQuantity = parseInt(e.target.value);
-        
+
         if (newQuantity < 1) {
             e.target.value = 1;
             return;
         }
-        
+
         const itemIndex = cart.findIndex(item => item.product.id === productId);
         if (itemIndex !== -1) {
             cart[itemIndex].quantity = newQuantity;
@@ -148,17 +156,17 @@ cartItemsContainer.addEventListener('change', (e) => {
 // Funciones del carrito
 function addToCart(product, quantity = 1) {
     const existingItem = cart.find(item => item.product.id === product.id);
-    
+
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
         cart.push({ product, quantity });
     }
-    
+
     cartCount += quantity;
     cartTotal += product.price * quantity;
     lastCartUpdate = new Date();
-    
+
     updateCart();
     cartBtn.classList.add('cart-pulse');
     setTimeout(() => cartBtn.classList.remove('cart-pulse'), 1000);
@@ -166,7 +174,7 @@ function addToCart(product, quantity = 1) {
 
 function removeFromCart(productId) {
     const itemIndex = cart.findIndex(item => item.product.id === productId);
-    
+
     if (itemIndex !== -1) {
         const item = cart[itemIndex];
         cartCount -= item.quantity;
@@ -181,7 +189,7 @@ function updateCart() {
     cartCountElement.textContent = cartCount;
     cartTotalElement.textContent = `S/ ${cartTotal.toFixed(2)}`;
     cartItemsContainer.innerHTML = '';
-    
+
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
         localStorage.removeItem('cart');
@@ -190,7 +198,7 @@ function updateCart() {
         cart.forEach(item => {
             const cartItemElement = document.createElement('div');
             cartItemElement.className = 'cart-item';
-            
+
             cartItemElement.innerHTML = `
                 <img src="${item.product.image}" alt="${item.product.name}" class="cart-item-img">
                 <div class="cart-item-details">
@@ -206,10 +214,10 @@ function updateCart() {
                     </div>
                 </div>
             `;
-            
+
             cartItemsContainer.appendChild(cartItemElement);
         });
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         localStorage.setItem('lastCartUpdate', lastCartUpdate);
     }
@@ -218,7 +226,7 @@ function updateCart() {
 function showToast(message, type = 'success') {
     toast.textContent = message;
     toast.className = 'toast';
-    
+
     switch (type) {
         case 'success':
             toast.style.backgroundColor = 'var(--success-color)';
@@ -232,9 +240,9 @@ function showToast(message, type = 'success') {
         default:
             toast.style.backgroundColor = 'var(--success-color)';
     }
-    
+
     toast.classList.add('show');
-    
+
     setTimeout(() => {
         toast.classList.remove('show');
     }, 3000);
