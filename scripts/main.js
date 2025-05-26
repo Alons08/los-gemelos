@@ -45,6 +45,11 @@ function initNavbar() {
             link.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 
+                // Excluir el botón del carrito
+                if (this.id === 'cart-btn') {
+                    return;
+                }
+
                 // Si el enlace no tiene un destino válido, no hacer nada
                 if (!targetId || targetId === '#' || targetId === '') {
                     e.preventDefault();
