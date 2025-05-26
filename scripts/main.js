@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadFragments() {
     // Cargar navbar
-    fetch('/fragments/navbar.html')
+    fetch('./fragments/navbar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
@@ -19,7 +19,7 @@ function loadFragments() {
         .catch(error => console.error('Error loading navbar:', error));
     
     // Cargar footer
-    fetch('/fragments/footer.html')
+    fetch('./fragments/footer.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
