@@ -500,8 +500,9 @@ body {
 }
 
 .social-icons a {
-    font-size: 1.2rem;
-    transition: all 0.3s;
+    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
+    margin: 0 10px; /* Agrega espacio horizontal entre los íconos */
+    transition: all 0.3s ease; /* Mantén la transición para efectos */
 }
 
 .social-icons a.facebook-icon {
@@ -513,7 +514,7 @@ body {
 }
 
 .social-icons a:hover {
-    transform: scale(1.1);
+    transform: scale(1.2); /* Efecto de agrandamiento al pasar el mouse */
 }
 
 .footer-bottom {
