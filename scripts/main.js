@@ -40,7 +40,6 @@ function initNavbar() {
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
             
-            // Bloquear scroll cuando el menú está abierto
             if(navbarMenu.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {

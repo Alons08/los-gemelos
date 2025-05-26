@@ -19,7 +19,6 @@ function initCart() {
     cartBtn.addEventListener('click', showCart);
     closeCart.addEventListener('click', hideCart);
     cartOverlay.addEventListener('click', hideCart);
-    
     checkoutBtn.addEventListener('click', checkout);
 }
 
@@ -59,13 +58,14 @@ function updateCart() {
         cartItems.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
         cartTotal.textContent = 'S/0.00';
         cartCount.textContent = '0';
+        localStorage.setItem('cart', JSON.stringify(cart));
         return;
     }
     
     let total = 0;
     let itemCount = 0;
     
-    cart.forEach((item, index) => {
+    cart.forEach((item) => {
         const itemTotal = item.product.price * item.quantity;
         total += itemTotal;
         itemCount += item.quantity;
@@ -106,10 +106,10 @@ function updateCart() {
 // Configurar controles del carrito
 function setupCartControls() {
     // Botones de cantidad
-    document.querySelectorAll('.quantity-btn').forEach(btn => {
+    document.querySelectorAll('.cart-item .quantity-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const id = parseInt(this.dataset.id);
-            const input = document.querySelector(`.quantity-input[data-id="${id}"]`);
+            const input = this.parentElement.querySelector('.quantity-input');
             let quantity = parseInt(input.value);
             
             if (this.classList.contains('minus')) {
@@ -129,7 +129,7 @@ function setupCartControls() {
     });
     
     // Inputs de cantidad
-    document.querySelectorAll('.quantity-input').forEach(input => {
+    document.querySelectorAll('.cart-item .quantity-input').forEach(input => {
         input.addEventListener('change', function() {
             const id = parseInt(this.dataset.id);
             const quantity = parseInt(this.value) || 1;
@@ -206,16 +206,17 @@ document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
         const productId = parseInt(e.target.dataset.id);
         const product = products.find(p => p.id === productId);
-        const quantityInput = document.querySelector(`.quantity-input[data-id="${productId}"]`);
+        const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
         const quantity = parseInt(quantityInput.value) || 1;
         
-        addToCart(product, quantity);
+        if (product) {
+            addToCart(product, quantity);
+        }
     }
     
     // Controles de cantidad en el menú
     if (e.target.classList.contains('quantity-btn') && e.target.closest('.quantity-control')) {
-        const productId = parseInt(e.target.dataset.id);
-        const input = document.querySelector(`.quantity-input[data-id="${productId}"]`);
+        const input = e.target.closest('.quantity-control').querySelector('.quantity-input');
         let value = parseInt(input.value) || 1;
         
         if (e.target.classList.contains('minus')) {

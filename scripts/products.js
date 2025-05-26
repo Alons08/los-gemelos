@@ -166,16 +166,26 @@ function renderProducts(category = 'comidas') {
     });
 }
 
-// Filtrar productos
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('filter-btn')) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        e.target.classList.add('active');
-        renderProducts(e.target.dataset.category);
-    }
-});
+// Filtrar productos - Versión corregida
+function setupFilters() {
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Agregar clase active al botón clickeado
+            e.target.classList.add('active');
+            
+            // Renderizar productos de la categoría seleccionada
+            renderProducts(e.target.dataset.category);
+        });
+    });
+}
 
-// Inicializar productos
+// Inicializar productos y filtros
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts('comidas');
+    setupFilters();
 });
