@@ -128,6 +128,7 @@ const products = [
     }
 ];
 
+// Renderizar productos
 function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
     menuItemsContainer.innerHTML = '';
@@ -140,37 +141,34 @@ function renderProducts(category = 'comidas') {
         productElement.setAttribute('data-animate', 'fade-in');
         
         productElement.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="menu-item-img">
-            <span class="availability ${product.available ? 'available' : 'sold-out'}">
-                ${product.available ? 'Disponible' : 'Agotado'}
-            </span>
-            <div class="menu-item-content">
-                <h3 class="menu-item-title">${product.name}</h3>
-                <p class="menu-item-price">S/ ${product.price.toFixed(2)}</p>
-                <p class="menu-item-desc">${product.description}</p>
-                <div class="menu-item-footer">
-                    ${product.available ? `
+            <div class="item-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                <span class="availability ${product.available ? 'available' : 'not-available'}">
+                    ${product.available ? 'Disponible' : 'Agotado'}
+                </span>
+            </div>
+            <div class="item-info">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <span class="price">S/ ${product.price.toFixed(2)}</span>
+                <div class="item-actions">
                     <div class="quantity-control">
                         <button class="quantity-btn minus" data-id="${product.id}">-</button>
                         <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
-                    <button class="add-to-cart" data-id="${product.id}">Agregar</button>
-                    ` : ''}
+                    <button class="add-to-cart" data-id="${product.id}" ${!product.available ? 'disabled' : ''}>
+                        ${product.available ? 'Agregar' : 'Agotado'}
+                    </button>
                 </div>
             </div>
         `;
 
         menuItemsContainer.appendChild(productElement);
     });
-
-    setTimeout(() => {
-        document.querySelectorAll('[data-animate]').forEach(el => {
-            el.classList.add('animate');
-        });
-    }, 100);
 }
 
+// Filtrar productos
 document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -179,7 +177,7 @@ document.querySelectorAll('.filter-btn').forEach(button => {
     });
 });
 
+// Inicializar productos
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts('comidas');
-    document.querySelector('.filter-btn[data-category="comidas"]').classList.add('active');
 });

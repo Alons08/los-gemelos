@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar componentes
     initNavbar();
-    initCart();
+    initHero();
     initScrollAnimations();
 });
 
@@ -15,14 +15,16 @@ function loadFragments() {
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
             initNavbar();
-        });
+        })
+        .catch(error => console.error('Error loading navbar:', error));
     
     // Cargar footer
     fetch('fragments/footer.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
-        });
+        })
+        .catch(error => console.error('Error loading footer:', error));
 }
 
 function initNavbar() {
@@ -33,75 +35,39 @@ function initNavbar() {
         navbarToggle.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            e.stopImmediatePropagation(); // Nueva línea añadida
             
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
             
-            // Prevenir scroll automático
-            window.scrollTo(0, 0); // Mantener posición actual
-            return false; // Nueva línea añadida
+            // Bloquear scroll cuando el menú está abierto
+            if(navbarMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
-        
+
+        // Cerrar menú al hacer clic en enlaces (solo en móvil)
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 767) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                     document.body.classList.remove('navbar-open');
-                }
-                
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
+                    document.body.style.overflow = '';
                 }
             });
         });
     }
 }
 
-function initCart() {
-    const cartBtn = document.getElementById('cart-btn');
-    const cartModal = document.getElementById('cart-modal');
-    const closeCart = document.getElementById('close-cart');
-    
-    if (cartBtn && cartModal && closeCart) {
-        cartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            
-            cartModal.classList.add('active');
-            document.body.classList.add('cart-open');
-            
-            // Bloquear scroll del body
-            document.body.style.overflow = 'hidden';
-            return false;
-        });
-        
-        closeCart.addEventListener('click', function(e) {
-            e.preventDefault();
-            cartModal.classList.remove('active');
-            document.body.classList.remove('cart-open');
-            document.body.style.overflow = '';
-        });
-        
-        // Cerrar al hacer clic fuera
-        document.addEventListener('click', (e) => {
-            if (!cartModal.contains(e.target) && e.target !== cartBtn) {
-                cartModal.classList.remove('active');
-                document.body.classList.remove('cart-open');
-                document.body.style.overflow = '';
-            }
-        });
+function initHero() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        setTimeout(() => {
+            hero.classList.add('loaded');
+        }, 100);
     }
 }
 
@@ -117,3 +83,15 @@ function initScrollAnimations() {
     
     animateElements.forEach(element => observer.observe(element));
 }
+
+// Efecto de sombra en navbar al hacer scroll
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        if (window.scrollY > 20) {
+            navbar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = '0 1px 6px rgba(0, 0, 0, 0.1)';
+        }
+    }
+});
