@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Restaurante campestre Los Gemelos - Sabores auténticos en un ambiente familiar">
-    <meta name="keywords" content="restaurante, comida criolla, campestre, cuy, chicharrón">
     <title>Los Gemelos - Restaurante Campestre</title>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/animations.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -38,7 +35,7 @@
                     <p>Nuestro ambiente acogedor y los domingos con música en vivo hacen de Los Gemelos el lugar perfecto para disfrutar en familia.</p>
                 </div>
                 <div class="about-image">
-                    <img src="images/restaurant-exterior.jpg" alt="Exterior del restaurante" loading="lazy">
+                    <img src="./images/restaurant-exterior.jpg" alt="Exterior del restaurante" loading="lazy">
                 </div>
             </div>
         </div>
@@ -48,10 +45,13 @@
     <section class="menu" id="menu">
         <div class="container">
             <h2 class="section-title">Nuestra Carta</h2>
+            <p class="section-subtitle">Deliciosos platos preparados con ingredientes frescos</p>
+            
             <div class="menu-filters">
                 <button class="filter-btn active" data-category="comidas">Comidas Criollas</button>
                 <button class="filter-btn" data-category="bebidas">Bebidas</button>
             </div>
+            
             <div class="menu-items" id="menu-items">
                 <!-- Los productos se cargarán dinámicamente desde JS -->
             </div>
@@ -133,8 +133,8 @@
         </div>
     </div>
 
-    <script src="scripts/products.js"></script>
-    <script src="scripts/cart.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="./scripts/products.js"></script>
+    <script src="./scripts/cart.js"></script>
+    <script src="./scripts/main.js"></script>
 </body>
 </html>

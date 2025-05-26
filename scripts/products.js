@@ -1,17 +1,12 @@
-/**
- * Productos del menú - Restaurante Los Gemelos
- * Formato simplificado para el carrito de compras
- */
-
+// Productos del menú
 const products = [
-    // COMIDAS CRIOLLAS
     {
         id: 1,
         name: "Picante de Cuy 1/2",
         category: "comidas",
         price: 35.00,
-        description: "Cuy al horno con papas doradas y salsa de maní.",
-        image: "images/menu/picante-de-cuy.jpg",
+        description: "Delicioso cuy al horno acompañado de papas doradas y salsa de maní.",
+        image: "./images/menu/picante-de-cuy.jpg",
         available: true
     },
     {
@@ -19,8 +14,8 @@ const products = [
         name: "Chicharrón de Chancho",
         category: "comidas",
         price: 28.00,
-        description: "Chicharrón de cerdo con camote frito y salsa criolla.",
-        image: "images/menu/chicharron-de-chancho.jpg",
+        description: "Crujiente chicharrón de cerdo servido con camote frito, mote y salsa criolla.",
+        image: "./images/menu/chicharron-de-chancho.jpg",
         available: true
     },
     {
@@ -28,8 +23,8 @@ const products = [
         name: "Frejolada de Pato",
         category: "comidas",
         price: 32.00,
-        description: "Frejoles con pato tierno y especias.",
-        image: "images/menu/frejolada-de-pato.jpg",
+        description: "Tradicional frejolada preparada con pato tierno y especias.",
+        image: "./images/menu/frejolada-de-pato.jpg",
         available: true
     },
     {
@@ -37,28 +32,71 @@ const products = [
         name: "Cabrito Norteno",
         category: "comidas",
         price: 38.00,
-        description: "Cabrito al estilo norteño con frijoles.",
-        image: "images/menu/cabrito-norteno.jpg",
-        available: false // AGOTADO
+        description: "Exquisito cabrito preparado al estilo norteño con frijoles y yuca.",
+        image: "./images/menu/cabrito-norteno.jpg",
+        available: false
     },
     {
         id: 5,
         name: "Costillar",
         category: "comidas",
         price: 40.00,
-        description: "Costillar de cerdo con salsa barbacoa.",
-        image: "images/menu/costillar.jpg",
+        description: "Costillar de cerdo glaseado con salsa barbacoa, acompañado de puré de papas.",
+        image: "./images/menu/costillar.jpg",
         available: true
     },
-
-    // BEBIDAS
+    {
+        id: 6,
+        name: "Pepian Pavita de Corral",
+        category: "comidas",
+        price: 30.00,
+        description: "Pavita criolla en salsa de pepian con arroz y papas.",
+        image: "./images/menu/pepian-pavita.jpg",
+        available: true
+    },
+    {
+        id: 7,
+        name: "Chancho a la Caja China",
+        category: "comidas",
+        price: 45.00,
+        description: "Lechón asado a la caja china, servido con tamalitos verdes y salsa criolla.",
+        image: "./images/menu/chancho-caja-china.jpg",
+        available: true
+    },
+    {
+        id: 8,
+        name: "Caldo de Gallina",
+        category: "comidas",
+        price: 22.00,
+        description: "Reconfortante caldo preparado con gallina criolla, fideos y hierbas aromáticas.",
+        image: "./images/menu/caldo-gallina.jpg",
+        available: true
+    },
+    {
+        id: 9,
+        name: "Ceviche",
+        category: "comidas",
+        price: 25.00,
+        description: "Fresco ceviche de pescado con leche de tigre, camote y cancha serrana.",
+        image: "./images/menu/ceviche.jpg",
+        available: false
+    },
+    {
+        id: 10,
+        name: "Chicharrón de Pescado",
+        category: "comidas",
+        price: 26.00,
+        description: "Filete de pescado empanizado y frito, servido con yuca y salsa tartara.",
+        image: "./images/menu/chicharron-pescado.jpg",
+        available: true
+    },
     {
         id: 11,
         name: "Gaseosas 1L",
         category: "bebidas",
         price: 8.00,
-        description: "Coca Cola, Inca Kola, Sprite o Fanta.",
-        image: "images/menu/gaseosa-1l.jpg",
+        description: "Refrescos gaseosos de 1 litro. Sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
+        image: "./images/menu/gaseosa-1l.jpg",
         available: true
     },
     {
@@ -66,8 +104,8 @@ const products = [
         name: "Gaseosa 1/2L",
         category: "bebidas",
         price: 5.00,
-        description: "Coca Cola, Inca Kola, Sprite o Fanta.",
-        image: "images/menu/gaseosa-500ml.jpg",
+        description: "Refrescos gaseosos de 1/2 litro. Sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
+        image: "./images/menu/gaseosa-500ml.jpg",
         available: true
     },
     {
@@ -75,29 +113,69 @@ const products = [
         name: "Cervezas",
         category: "bebidas",
         price: 10.00,
-        description: "Nacionales e internacionales.",
-        image: "images/menu/cervezas.jpg",
+        description: "Cervezas nacionales e internacionales. Consultar por marcas disponibles.",
+        image: "./images/menu/cervezas.jpg",
+        available: true
+    },
+    {
+        id: 14,
+        name: "Agua Mineral",
+        category: "bebidas",
+        price: 4.00,
+        description: "Agua mineral sin gas de 500ml.",
+        image: "./images/menu/agua-mineral.jpg",
         available: true
     }
 ];
 
-// Función para generar mensaje de WhatsApp
-function generateWhatsAppMessage(cartItems) {
-    const phoneNumber = '931088900';
-    let message = '¡Hola! Quiero realizar el siguiente pedido:\n\n';
-    
-    cartItems.forEach(item => {
-        message += `➡ ${item.name} x${item.quantity} - S/${(item.price * item.quantity).toFixed(2)}\n`;
+// Renderizar productos
+function renderProducts(category = 'comidas') {
+    const menuItemsContainer = document.getElementById('menu-items');
+    menuItemsContainer.innerHTML = '';
+
+    const filteredProducts = products.filter(product => product.category === category);
+
+    filteredProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'menu-item';
+        productElement.setAttribute('data-animate', 'fade-in');
+        
+        productElement.innerHTML = `
+            <div class="item-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                ${!product.available ? '<span class="sold-out">Agotado</span>' : ''}
+            </div>
+            <div class="item-info">
+                <h3>${product.name}</h3>
+                <p class="description">${product.description}</p>
+                <span class="price">S/ ${product.price.toFixed(2)}</span>
+                <div class="item-actions">
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus" data-id="${product.id}">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
+                        <button class="quantity-btn plus" data-id="${product.id}">+</button>
+                    </div>
+                    <button class="add-to-cart" data-id="${product.id}" ${!product.available ? 'disabled' : ''}>
+                        ${product.available ? 'Añadir al carrito' : 'Agotado'}
+                    </button>
+                </div>
+            </div>
+        `;
+
+        menuItemsContainer.appendChild(productElement);
     });
-    
-    const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    message += `\n💰 TOTAL: S/${total.toFixed(2)}\n`;
-    message += '\n📍 Dirección de envío: \n';
-    message += '\n👤 Nombre del cliente: \n';
-    message += '\n📞 Teléfono de contacto: \n';
-    
-    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 }
 
-// Ejemplo de uso cuando se hace checkout:
-// window.location.href = generateWhatsAppMessage(carrito);
+// Filtrar productos
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('filter-btn')) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        renderProducts(e.target.dataset.category);
+    }
+});
+
+// Inicializar productos
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts('comidas');
+});
