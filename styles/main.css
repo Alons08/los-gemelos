@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #e67e22;
-    --primary-dark: #d35400;
+    --primary-color: #f39c12;  /* Naranja más claro */
+    --primary-dark: #e67e22;   /* Naranja un poco más oscuro */
     --white: #ffffff;
     --black: #333333;
     --gray: #777777;
@@ -178,7 +178,7 @@ body {
 }
 
 .filter-btn:hover:not(.active) {
-    background: rgba(230, 126, 34, 0.1);
+    background: rgba(243, 156, 18, 0.1);
 }
 
 .menu-items {
@@ -333,10 +333,17 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: left;
-    background: var(--background-light);
+    background: #fff8f0;  /* Fondo color crema claro */
+    border: 1px solid #ffe0b2;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .event-image {
@@ -500,9 +507,9 @@ body {
 }
 
 .social-icons a {
-    font-size: 1.5rem; /* Aumenta el tamaño de los íconos */
-    margin: 0 10px; /* Agrega espacio horizontal entre los íconos */
-    transition: all 0.3s ease; /* Mantén la transición para efectos */
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: all 0.3s ease;
 }
 
 .social-icons a.facebook-icon {
@@ -514,7 +521,7 @@ body {
 }
 
 .social-icons a:hover {
-    transform: scale(1.2); /* Efecto de agrandamiento al pasar el mouse */
+    transform: scale(1.2);
 }
 
 .footer-bottom {
@@ -736,10 +743,7 @@ body {
 }
 
 .empty-cart {
-    text-align: center;
-    color: var(--gray);
-    padding: 30px 0;
-    font-size: 0.95rem;
+    display: none !important;
 }
 
 .cart-item {

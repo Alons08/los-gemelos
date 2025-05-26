@@ -218,6 +218,7 @@ function removeFromCart(id) {
 }
 
 // Finalizar compra
+// Finalizar compra - MODIFICADO para no vaciar el carrito
 function checkout() {
     if (cart.length === 0) {
         showNotification('El carrito está vacío', 'error');
@@ -233,8 +234,10 @@ function checkout() {
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
     window.open(`https://wa.me/51931088900?text=${encodeURIComponent(message)}`, '_blank');
-    clearCart();
+    // Eliminada la línea clearCart() para que no se vacíe automáticamente
 }
+
+// Resto del archivo permanece igual...
 
 // Inicializar al cargar
 document.addEventListener('DOMContentLoaded', initCart);
