@@ -141,25 +141,23 @@ function renderProducts(category = 'comidas') {
         
         productElement.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="menu-item-img">
+            <span class="availability ${product.available ? 'available' : 'sold-out'}">
+                ${product.available ? 'Disponible' : 'Agotado'}
+            </span>
             <div class="menu-item-content">
                 <h3 class="menu-item-title">${product.name}</h3>
-                <div class="menu-item-price-availability">
-                    <p class="menu-item-price">S/ ${product.price.toFixed(2)}</p>
-                    <span class="availability ${product.available ? 'available' : 'sold-out'}">
-                        ${product.available ? 'Disponible' : 'Agotado'}
-                    </span>
-                </div>
+                <p class="menu-item-price">S/ ${product.price.toFixed(2)}</p>
                 <p class="menu-item-desc">${product.description}</p>
-                ${product.available ? `
                 <div class="menu-item-footer">
+                    ${product.available ? `
                     <div class="quantity-control">
                         <button class="quantity-btn minus" data-id="${product.id}">-</button>
                         <input type="number" class="quantity-input" value="1" min="1" data-id="${product.id}">
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
                     <button class="add-to-cart" data-id="${product.id}">Agregar</button>
+                    ` : ''}
                 </div>
-                ` : ''}
             </div>
         `;
 

@@ -14,7 +14,7 @@ function loadFragments() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
-            initNavbar(); // Re-inicializar después de cargar
+            initNavbar();
         });
     
     // Cargar footer
@@ -34,45 +34,27 @@ function initNavbar() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Alternar el menú sin desplazamiento
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
         });
         
-        // Cerrar menú al hacer clic en enlaces
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                
-                // Excluir el botón del carrito
-                if (this.id === 'cart-btn') {
-                    return;
-                }
-
-                // Si el enlace no tiene un destino válido, no hacer nada
-                if (!targetId || targetId === '#' || targetId === '') {
-                    e.preventDefault();
-                    return;
-                }
-
-                // Si el enlace es válido y estamos en vista móvil, cerrar el menú
                 if (window.innerWidth <= 767) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                     document.body.classList.remove('navbar-open');
                 }
                 
-                // Desplazamiento suave solo cuando el enlace tiene un destino válido
-                if (targetId.startsWith('#')) {
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
                     e.preventDefault();
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
@@ -88,18 +70,30 @@ function initCart() {
         cartBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+            e.stopImmediatePropagation();
             
-            // Solo alternar el carrito sin desplazamiento
             cartModal.classList.add('active');
             document.body.classList.add('cart-open');
+            
+            // Bloquear scroll del body
+            document.body.style.overflow = 'hidden';
+            return false;
         });
         
         closeCart.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
-            
             cartModal.classList.remove('active');
             document.body.classList.remove('cart-open');
+            document.body.style.overflow = '';
+        });
+        
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!cartModal.contains(e.target) && e.target !== cartBtn) {
+                cartModal.classList.remove('active');
+                document.body.classList.remove('cart-open');
+                document.body.style.overflow = '';
+            }
         });
     }
 }
