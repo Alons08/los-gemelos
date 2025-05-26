@@ -182,7 +182,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     outline: none;
     padding: 0;
-    margin-left: auto; /* Botón a la derecha */
+    margin-left: auto;
 }
 
 .navbar-toggle span {
@@ -339,18 +339,21 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2rem;
     color: var(--secondary-color);
     line-height: 1.3;
+    margin-bottom: 5px;
 }
 
 .menu-item-price-availability {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 8px 0;
 }
 
 .menu-item-price {
     font-size: 1rem;
     color: var(--primary-color);
     font-weight: 700;
+    margin: 0;
 }
 
 .availability {
@@ -376,13 +379,21 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--gray);
     font-size: 0.85rem;
     line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.menu-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .quantity-control {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-top: 10px;
 }
 
 .quantity-btn {
@@ -421,9 +432,9 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     font-weight: 600;
     font-size: 0.85rem;
-    margin-top: 10px;
     transition: all 0.3s ease;
-    width: 100%;
+    flex: 1;
+    max-width: 120px;
 }
 
 .add-to-cart:hover {
