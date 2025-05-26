@@ -14,6 +14,7 @@ function loadFragments() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
+            initNavbar(); // Re-inicializar después de cargar
         });
     
     // Cargar footer
@@ -33,30 +34,19 @@ function initNavbar() {
             e.preventDefault();
             e.stopPropagation();
             
+            // Alternar menú
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
         });
         
-        // Cerrar al hacer clic en un enlace
+        // Cerrar menú al hacer clic en enlaces
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function() {
                 if (window.innerWidth <= 767) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                     document.body.classList.remove('navbar-open');
-                    
-                    // Desplazamiento suave después de cerrar el menú
-                    setTimeout(() => {
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 70,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }, 300);
                 }
             });
         });
@@ -73,6 +63,7 @@ function initCart() {
             e.preventDefault();
             e.stopPropagation();
             
+            // Abrir carrito sin recargar
             cartModal.classList.add('active');
             document.body.classList.add('cart-open');
         });
@@ -80,6 +71,7 @@ function initCart() {
         closeCart.addEventListener('click', function(e) {
             e.preventDefault();
             
+            // Cerrar carrito
             cartModal.classList.remove('active');
             document.body.classList.remove('cart-open');
         });
