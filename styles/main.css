@@ -206,6 +206,19 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-8px) rotate(-45deg);
 }
 
+/* Nuevo código */
+.navbar-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
