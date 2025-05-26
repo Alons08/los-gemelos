@@ -205,11 +205,12 @@ function checkout() {
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
         const productId = parseInt(e.target.dataset.id);
-        const product = products.find(p => p.id === productId);
-        const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
-        const quantity = parseInt(quantityInput.value) || 1;
+        const product = products.find(p => p.id === productId) || 
+                       currentProducts.find(p => p.id === productId);
         
         if (product) {
+            const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
+            const quantity = parseInt(quantityInput.value) || 1;
             addToCart(product, quantity);
         }
     }

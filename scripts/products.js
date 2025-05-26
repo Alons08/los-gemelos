@@ -128,14 +128,24 @@ const products = [
     }
 ];
 
+// Productos del menú (mantén tu array de productos actual)
+
+// Variable global para los productos filtrados
+let currentProducts = [];
+
 // Renderizar productos
 function renderProducts(category = 'comidas') {
     const menuItemsContainer = document.getElementById('menu-items');
     menuItemsContainer.innerHTML = '';
 
-    const filteredProducts = products.filter(product => product.category === category);
+    currentProducts = products.filter(product => product.category === category);
 
-    filteredProducts.forEach(product => {
+    if (currentProducts.length === 0) {
+        menuItemsContainer.innerHTML = '<p class="no-products">No hay productos disponibles en esta categoría</p>';
+        return;
+    }
+
+    currentProducts.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'menu-item';
         productElement.setAttribute('data-animate', 'fade-in');
@@ -166,26 +176,37 @@ function renderProducts(category = 'comidas') {
     });
 }
 
-// Filtrar productos - Versión corregida
+// Configurar filtros
 function setupFilters() {
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            // Remover clase active de todos los botones
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Agregar clase active al botón clickeado
-            e.target.classList.add('active');
-            
-            // Renderizar productos de la categoría seleccionada
-            renderProducts(e.target.dataset.category);
-        });
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        // Eliminar eventos anteriores para evitar duplicados
+        button.removeEventListener('click', handleFilterClick);
+        // Agregar nuevo evento
+        button.addEventListener('click', handleFilterClick);
     });
 }
 
-// Inicializar productos y filtros
-document.addEventListener('DOMContentLoaded', () => {
+// Manejador del evento de filtrado
+function handleFilterClick(e) {
+    const category = e.target.dataset.category;
+    
+    // Actualizar botones activos
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    e.target.classList.add('active');
+    
+    // Renderizar productos
+    renderProducts(category);
+}
+
+// Inicializar productos
+function initProducts() {
     renderProducts('comidas');
     setupFilters();
-});
+}
+
+// Inicializar al cargar la página
+document.addEventListener('DOMContentLoaded', initProducts);

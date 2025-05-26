@@ -885,3 +885,12 @@ body {
         font-size: 1.2rem;
     }
 }
+
+/* Mensaje cuando no hay productos */
+.no-products {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
