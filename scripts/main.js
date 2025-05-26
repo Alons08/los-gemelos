@@ -34,7 +34,7 @@ function initNavbar() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Alternar menú sin recargar
+            // Alternar el menú sin desplazamiento
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
@@ -43,21 +43,31 @@ function initNavbar() {
         // Cerrar menú al hacer clic en enlaces
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // Si el enlace no tiene un destino válido, no hacer nada
+                if (!targetId || targetId === '#' || targetId === '') {
+                    e.preventDefault();
+                    return;
+                }
+
+                // Si el enlace es válido y estamos en vista móvil, cerrar el menú
                 if (window.innerWidth <= 767) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                     document.body.classList.remove('navbar-open');
                 }
                 
-                // Desplazamiento suave
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
+                // Desplazamiento suave solo cuando el enlace tiene un destino válido
+                if (targetId.startsWith('#')) {
                     e.preventDefault();
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
@@ -74,15 +84,15 @@ function initCart() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Abrir carrito sin recargar
+            // Solo alternar el carrito sin desplazamiento
             cartModal.classList.add('active');
             document.body.classList.add('cart-open');
         });
         
         closeCart.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
-            // Cerrar carrito
             cartModal.classList.remove('active');
             document.body.classList.remove('cart-open');
         });
