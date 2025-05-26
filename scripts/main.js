@@ -34,7 +34,7 @@ function initNavbar() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Alternar menú
+            // Alternar menú sin recargar
             navbarMenu.classList.toggle('active');
             navbarToggle.classList.toggle('active');
             document.body.classList.toggle('navbar-open');
@@ -42,11 +42,22 @@ function initNavbar() {
         
         // Cerrar menú al hacer clic en enlaces
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 767) {
                     navbarMenu.classList.remove('active');
                     navbarToggle.classList.remove('active');
                     document.body.classList.remove('navbar-open');
+                }
+                
+                // Desplazamiento suave
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
