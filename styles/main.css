@@ -731,9 +731,23 @@ body {
     /* Footer responsive */
     .footer-content {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Cambiado para centrar todo el contenido */
     }
-    
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra el logo horizontalmente */
+        text-align: center; /* Centra el texto debajo del logo */
+    }
+
+    .footer-logo {
+        margin-bottom: 10px; /* Espaciado entre el logo y el texto */
+        max-width: 120px; /* Ajusta el tamaño del logo si es necesario */
+        width: 100%;
+        height: auto;
+    }
+
     .social-section {
         width: 100%;
     }
@@ -952,6 +966,12 @@ body {
     .footer-description {
         max-width: 60%; /* Limita el ancho del texto */
         margin: 0 auto; /* Centra el texto dentro de su contenedor */
+    }
+
+    .about-text p {
+        max-width: 600px; /* Limita el ancho del texto */
+        margin: 0 auto; /* Centra el texto dentro de su contenedor */
+        line-height: 1.6; /* Mejora la legibilidad */
     }
 }
 
