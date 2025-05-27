@@ -876,9 +876,9 @@ body {
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .contact-map {
-        height: 500px; /* Ajusta la altura del mapa */
+        height: 600px; /* Ajusta la altura del mapa en vista móviles*/
     }
 
     .hero-subtitle {
