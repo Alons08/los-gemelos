@@ -964,8 +964,10 @@ body {
     }
 
     .footer-description {
-        max-width: 60%; /* Limita el ancho del texto */
+        max-width: 400px; /* Limita el ancho del texto */
         margin: 0 auto; /* Centra el texto dentro de su contenedor */
+        text-align: center; /* Asegura que el texto esté centrado */
+        line-height: 1.6; /* Mejora la legibilidad */
     }
 
     .about-text p {
