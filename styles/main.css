@@ -958,7 +958,7 @@ body {
         flex-wrap: wrap; /* Permite que las secciones se ajusten si es necesario */
         justify-content: space-between; /* Separa las secciones horizontalmente */
         align-items: flex-start; /* Alinea las secciones al inicio verticalmente */
-        gap: 50px; /* Aumenta el espacio entre las secciones */
+        gap: 100px; /* Aumenta el espacio entre las secciones  50px */
     }
 
     .footer-section {
