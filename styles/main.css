@@ -956,12 +956,13 @@ body {
     .footer-content {
         display: flex;
         flex-wrap: wrap; /* Permite que las secciones se ajusten si es necesario */
-        justify-content: center; /* Centra las secciones horizontalmente */
+        justify-content: space-between; /* Separa las secciones horizontalmente */
+        align-items: flex-start; /* Alinea las secciones al inicio verticalmente */
         gap: 50px; /* Aumenta el espacio entre las secciones */
     }
 
     .footer-section {
-        flex: 1 1 300px; /* Asegura que cada sección tenga un ancho mínimo */
+        flex: 1 1 45%; /* Cada sección ocupa el 45% del ancho disponible */
         max-width: 400px; /* Limita el ancho máximo de cada sección */
         text-align: center; /* Centra el contenido dentro de cada sección */
     }
