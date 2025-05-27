@@ -1122,7 +1122,7 @@ body {
 
     /* About Section adjustments */
     .about-text p {
-        text-align: left; /* Alinea el texto hacia la izquierda */
+        text-align: center; /* Alinea el texto hacia la izquierda */
     }
 }
 
