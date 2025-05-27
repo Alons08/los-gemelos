@@ -445,17 +445,19 @@ body {
 
 .contact-map {
     flex: 1;
-    min-width: 300px;
-    height: 400px; /* Altura predeterminada para pantallas más grandes */
+    width: 100%;
+    height: auto; /* Permite que el contenedor se ajuste automáticamente */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+
 .contact-map iframe {
     width: 100%; /* Asegura que el iframe ocupe todo el ancho del contenedor */
     height: 100%; /* Asegura que el iframe ocupe todo el alto del contenedor */
     border: none;
+    display: block; /* Elimina cualquier espacio adicional causado por el iframe */
 }
 
 /* Footer - Modificado */
@@ -974,7 +976,6 @@ body {
     
     .contact-map {
         height: 300px; /* Ajusta la altura para pantallas más pequeñas */
-        min-height: 300px; /* Garantiza una altura mínima */
     }
 }
 
