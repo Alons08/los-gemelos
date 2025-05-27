@@ -870,15 +870,15 @@ body {
     
     .nav-links {
         position: fixed;
-        top: 80px;
+        top: 0; /* Cambiado para que comience desde arriba */
         left: -100%;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
         background-color: var(--primary-dark);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        padding-top: 20px;
+        justify-content: center; /* Centra verticalmente los elementos */
+        padding: 0; /* Elimina el padding superior */
         transition: left 0.3s ease;
         margin: 0;
     }
@@ -892,7 +892,7 @@ body {
         width: 100%;
         text-align: center;
         padding: 15px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .nav-links a {
