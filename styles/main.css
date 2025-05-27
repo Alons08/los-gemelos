@@ -1099,6 +1099,11 @@ body {
     .social-icons {
         justify-content: center;
     }
+
+    /* About Section adjustments */
+    .about-text p {
+        text-align: left; /* Alinea el texto hacia la izquierda */
+    }
 }
 
 /* Mensaje cuando no hay productos */
