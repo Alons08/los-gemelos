@@ -140,7 +140,7 @@ body {
 .about-text p {
     margin-bottom: 20px;
     font-size: 1.1rem;
-    text-align: justify;
+    text-align: left;
 }
 
 .about-image {
@@ -1091,7 +1091,7 @@ body {
 
     .footer-logo {
         margin-bottom: 10px; /* Espaciado entre el logo y el texto */
-        max-width: 150px; /* Ajusta el tamaño del logo si es necesario */
+        max-width: 100px; /* Ajusta el tamaño del logo si es necesario */
         width: 100%;
         height: auto;
     }
