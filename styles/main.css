@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #f39c12;
-    --primary-dark: #e67e22;
+    --primary-color: #f39c12;  /* Naranja más claro */
+    --primary-dark: #e67e22;   /* Naranja un poco más oscuro */
     --white: #ffffff;
     --black: #333333;
     --gray: #777777;
@@ -115,7 +115,7 @@ body {
     margin-bottom: 40px;
 }
 
-/* About Section */
+/* About Section - Modificado */
 .about {
     padding: 80px 0;
     text-align: center;
@@ -342,7 +342,7 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: left;
-    background: #fff8f0;
+    background: #fff8f0;  /* Fondo color crema claro */
     border: 1px solid #ffe0b2;
     padding: 20px;
     border-radius: 10px;
@@ -393,6 +393,17 @@ body {
 
 .event-time i {
     margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
+    }
+    
+    .event-image {
+        width: 100%;
+        min-width: auto;
+    }
 }
 
 /* Contact Section */
@@ -454,7 +465,7 @@ body {
     border: none;
 }
 
-/* Footer Section */
+/* Footer - Modificado */
 .footer {
     background-color: var(--black);
     color: var(--white);
@@ -465,7 +476,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     text-align: left;
     margin-bottom: 30px;
     gap: 30px;
@@ -481,7 +492,6 @@ body {
 .logo-section {
     flex: 1;
     min-width: 300px;
-    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -495,10 +505,8 @@ body {
 
 .footer-description {
     max-width: 100%;
-    margin: 0 auto 20px 0;
+    margin: 0 auto 20px;
     color: #bbb;
-    line-height: 1.6;
-    font-size: 0.95rem;
 }
 
 .social-section {
@@ -540,22 +548,14 @@ body {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid #444;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
 .footer-bottom p {
     color: #bbb;
     font-size: 0.9rem;
-    margin: 0;
 }
 
-.footer-bottom p:first-child {
-    color: #999;
-    font-weight: 500;
-}
-
+/* Efecto brillo para el creador */
 .creator-name {
     color: var(--primary-color);
     text-decoration: none;
@@ -677,6 +677,80 @@ body {
     color: var(--black);
     cursor: pointer;
     display: none;
+}
+
+/* Navbar Mobile Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--primary-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+        transition: left 0.3s ease;
+        margin: 0;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .nav-links a {
+        color: var(--white) !important;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .nav-links a:hover {
+        color: var(--light-gray) !important;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+
+    /* About responsive */
+    .about-content {
+        flex-direction: column-reverse;
+    }
+    
+    /* Footer responsive */
+    .footer-content {
+        flex-direction: column;
+        align-items: center; /* Cambiado para centrar todo el contenido */
+    }
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra el logo horizontalmente */
+        text-align: center; /* Centra el texto debajo del logo */
+    }
+
+    .footer-logo {
+        margin-bottom: 10px; /* Espaciado entre el logo y el texto */
+        max-width: 120px; /* Ajusta el tamaño del logo si es necesario */
+        width: 100%;
+        height: auto;
+    }
+
+    .social-section {
+        width: 100%;
+    }
 }
 
 /* Carrito */
@@ -881,14 +955,27 @@ body {
 
     .footer-content {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 50px;
+        flex-wrap: wrap; /* Permite que las secciones se ajusten si es necesario */
+        justify-content: space-between; /* Separa las secciones horizontalmente */
+        align-items: flex-start; /* Alinea las secciones al inicio verticalmente */
+        gap: 100px; /* Aumenta el espacio entre las secciones  50px */
     }
-    
+
+    .footer-section {
+        flex: 1 1 45%; /* Cada sección ocupa el 45% del ancho disponible */
+        max-width: 400px; /* Limita el ancho máximo de cada sección */
+        text-align: center; /* Centra el contenido dentro de cada sección */
+    }
+
     .footer-description {
-        max-width: 350px;
+        max-width: 350px; /* Limita el ancho del texto */
+        margin: 0 auto; /* Centra el texto dentro de su contenedor */
+        text-align: center; /* Asegura que el texto esté centrado */
+        line-height: 1.6; /* Mejora la legibilidad */
+    }
+
+    .social-section {
+        text-align: center; /* Centra el contenido de la sección de redes sociales */
     }
 }
 
@@ -945,18 +1032,16 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 15px;
+        gap: 15px; /* Reduce el espacio entre secciones */
     }
 
     .footer-description {
-        max-width: 80%;
-        font-size: 0.9rem;
+        max-width: 80%; /* Limita el ancho del texto */
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente */
     }
 
     .logo-section {
-        align-items: center;
-        text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 20px; /* Espaciado adicional debajo del logo */
     }
 
     .social-section {
@@ -965,11 +1050,11 @@ body {
 
     .social-icons {
         justify-content: center;
-        gap: 10px;
+        gap: 10px; /* Reduce el espacio entre íconos */
     }
 
     .social-icons a {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Ajusta el tamaño de los íconos */
     }
 }
 
@@ -1024,13 +1109,13 @@ body {
     .logo-section {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: center; /* Centra el logo horizontalmente */
+        text-align: center; /* Centra el texto debajo del logo */
     }
 
     .footer-logo {
-        margin-bottom: 10px;
-        max-width: 100px;
+        margin-bottom: 10px; /* Espaciado entre el logo y el texto */
+        max-width: 100px; /* Ajusta el tamaño del logo si es necesario */
         width: 100%;
         height: auto;
     }
@@ -1039,8 +1124,9 @@ body {
         justify-content: center;
     }
 
+    /* About Section adjustments */
     .about-text p {
-        text-align: center;
+        text-align: center; /* Alinea el texto hacia la izquierda */
     }
 }
 
