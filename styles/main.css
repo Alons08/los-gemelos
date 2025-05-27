@@ -557,38 +557,21 @@ body {
     text-decoration: none;
     position: relative;
     display: inline-block;
+    transition: all 0.3s ease;
 }
 
 .creator-name:hover {
     text-decoration: underline;
-}
-
-.creator-name::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: var(--primary-color);
-    z-index: -1;
-    border-radius: 4px;
-    opacity: 0;
-    transition: opacity 0.3s, box-shadow 0.3s;
-}
-
-.creator-name:hover::after {
-    opacity: 0.3;
-    box-shadow: 0 0 10px 5px rgba(243, 156, 18, 0.5);
-    animation: creator-glow 2s infinite alternate;
+    animation: creator-glow 1.5s infinite alternate;
+    text-shadow: 0 0 5px rgba(243, 156, 18, 0.8);
 }
 
 @keyframes creator-glow {
     from {
-        box-shadow: 0 0 5px 2px rgba(243, 156, 18, 0.5);
+        text-shadow: 0 0 5px rgba(243, 156, 18, 0.8);
     }
     to {
-        box-shadow: 0 0 15px 7px rgba(243, 156, 18, 0.7);
+        text-shadow: 0 0 15px rgba(243, 156, 18, 1), 0 0 20px rgba(243, 156, 18, 0.8);
     }
 }
 
@@ -990,7 +973,8 @@ body {
     }
     
     .contact-map {
-        height: 300px; /* Altura ajustada para móvil */
+        height: 350px; /* Altura aumentada para mejor visualización */
+        min-height: 350px; /* Altura mínima garantizada */
     }
 }
 
@@ -1033,7 +1017,8 @@ body {
     }
     
     .contact-map {
-        height: 250px; /* Altura más pequeña para móviles muy pequeños */
+        height: 300px; /* Altura ajustada para móviles pequeños */
+        min-height: 300px;
     }
 }
 
