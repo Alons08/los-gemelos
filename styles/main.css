@@ -446,7 +446,7 @@ body {
 .contact-map {
     flex: 1;
     width: 100%;
-    height: auto; /* Permite que el contenedor se ajuste automáticamente */
+    height: 400px; /* Altura predeterminada para pantallas grandes */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -975,7 +975,7 @@ body {
     }
     
     .contact-map {
-        height: 300px; /* Ajusta la altura para pantallas más pequeñas */
+        height: 350px; /* Altura ajustada para tablets */
     }
 }
 
