@@ -156,7 +156,7 @@ body {
 
 /* Menu Section */
 .menu {
-    padding: 80px 0;
+    padding: 60px 0;
     text-align: center;
     background-color: var(--background-light);
 }
@@ -166,28 +166,31 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
 }
 
 .filter-btn {
-    padding: 10px 25px;
-    background: transparent;
+    padding: 8px 20px;
+    background: var(--white);
     border: 2px solid var(--primary-color);
-    border-radius: 30px;
+    border-radius: 8px;
     color: var(--primary-dark);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .filter-btn.active {
     background: var(--primary-color);
     color: var(--white);
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
 }
 
 .filter-btn:hover:not(.active) {
     background: rgba(243, 156, 18, 0.1);
+    transform: translateY(-2px);
 }
 
 .menu-items {
@@ -342,7 +345,7 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: left;
-    background: #fff8f0;  /* Fondo color crema claro */
+    background: #fff8f0;
     border: 1px solid #ffe0b2;
     padding: 20px;
     border-radius: 10px;
@@ -527,7 +530,7 @@ body {
 }
 
 .social-icons a {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0 10px;
     transition: all 0.3s ease;
 }
@@ -548,19 +551,23 @@ body {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.footer-bottom p {
+.footer-dark-text {
+    color: #464646;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.footer-created-by {
     color: #bbb;
     font-size: 0.9rem;
+    margin-top: 0;
 }
 
-/* Estilo para el texto oscuro en el footer */
-.footer-dark-text {
-    color: #464646; /* Tonalidad más oscura */
-}
-
-/* Efecto brillo para el creador */
 .creator-name {
     color: var(--primary-color);
     text-decoration: none;
@@ -695,7 +702,7 @@ body {
         background-color: var(--primary-dark);
         flex-direction: column;
         align-items: center;
-        justify-content: center; /*flex-start aaaaa*/
+        justify-content: flex-start; 
         padding-top: 20px;
         transition: left 0.3s ease;
         margin: 0;
@@ -736,19 +743,19 @@ body {
     /* Footer responsive */
     .footer-content {
         flex-direction: column;
-        align-items: center; /* Cambiado para centrar todo el contenido */
+        align-items: center;
     }
 
     .logo-section {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centra el logo horizontalmente */
-        text-align: center; /* Centra el texto debajo del logo */
+        align-items: center;
+        text-align: center;
     }
 
     .footer-logo {
-        margin-bottom: 10px; /* Espaciado entre el logo y el texto */
-        max-width: 120px; /* Ajusta el tamaño del logo si es necesario */
+        margin-bottom: 10px;
+        max-width: 120px;
         width: 100%;
         height: auto;
     }
@@ -960,27 +967,27 @@ body {
 
     .footer-content {
         display: flex;
-        flex-wrap: wrap; /* Permite que las secciones se ajusten si es necesario */
-        justify-content: space-between; /* Separa las secciones horizontalmente */
-        align-items: flex-start; /* Alinea las secciones al inicio verticalmente */
-        gap: 100px; /* Aumenta el espacio entre las secciones  50px */
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 100px;
     }
 
     .footer-section {
-        flex: 1 1 45%; /* Cada sección ocupa el 45% del ancho disponible */
-        max-width: 400px; /* Limita el ancho máximo de cada sección */
-        text-align: center; /* Centra el contenido dentro de cada sección */
+        flex: 1 1 45%;
+        max-width: 400px;
+        text-align: center;
     }
 
     .footer-description {
-        max-width: 350px; /* Limita el ancho del texto */
-        margin: 0 auto; /* Centra el texto dentro de su contenedor */
-        text-align: center; /* Asegura que el texto esté centrado */
-        line-height: 1.6; /* Mejora la legibilidad */
+        max-width: 350px;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 1.6;
     }
 
     .social-section {
-        text-align: center; /* Centra el contenido de la sección de redes sociales */
+        text-align: center;
     }
 }
 
@@ -1037,16 +1044,16 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 15px; /* Reduce el espacio entre secciones */
+        gap: 15px;
     }
 
     .footer-description {
-        max-width: 80%; /* Limita el ancho del texto */
-        font-size: 0.9rem; /* Reduce el tamaño de la fuente */
+        max-width: 80%;
+        font-size: 0.9rem;
     }
 
     .logo-section {
-        margin-bottom: 20px; /* Espaciado adicional debajo del logo */
+        margin-bottom: 20px;
     }
 
     .social-section {
@@ -1055,11 +1062,11 @@ body {
 
     .social-icons {
         justify-content: center;
-        gap: 10px; /* Reduce el espacio entre íconos */
+        gap: 10px;
     }
 
     .social-icons a {
-        font-size: 1.2rem; /* Ajusta el tamaño de los íconos */
+        font-size: 1.2rem;
     }
 }
 
@@ -1114,13 +1121,13 @@ body {
     .logo-section {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centra el logo horizontalmente */
-        text-align: center; /* Centra el texto debajo del logo */
+        align-items: center;
+        text-align: center;
     }
 
     .footer-logo {
-        margin-bottom: 10px; /* Espaciado entre el logo y el texto */
-        max-width: 100px; /* Ajusta el tamaño del logo si es necesario */
+        margin-bottom: 10px;
+        max-width: 100px;
         width: 100%;
         height: auto;
     }
@@ -1131,7 +1138,7 @@ body {
 
     /* About Section adjustments */
     .about-text p {
-        text-align: center; /* Alinea el texto hacia la izquierda */
+        text-align: center;
     }
 }
 
