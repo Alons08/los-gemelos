@@ -159,6 +159,9 @@ body {
     padding: 60px 0;
     text-align: center;
     background-color: var(--background-light);
+    /* Añade estas dos líneas: */
+    padding-top: 80px; /* Mismo valor que la altura del navbar */
+    margin-top: -80px; /* Compensa el espacio adicional */
 }
 
 .menu-filters {
@@ -557,7 +560,7 @@ body {
 }
 
 .footer-dark-text {
-    color: #666666;
+    color: #888; /* Texto más claro para el footer */
     font-weight: 500;
     margin-bottom: 0;
 }
