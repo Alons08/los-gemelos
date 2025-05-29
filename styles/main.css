@@ -695,7 +695,7 @@ body {
         background-color: var(--primary-dark);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center; /*flex-start aaaaa*/
         padding-top: 20px;
         transition: left 0.3s ease;
         margin: 0;
