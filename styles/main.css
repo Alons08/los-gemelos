@@ -156,12 +156,9 @@ body {
 
 /* Menu Section */
 .menu {
-    padding: 60px 0;
+    padding: 80px 0;
     text-align: center;
     background-color: var(--background-light);
-    /* Añade estas dos líneas: */
-    padding-top: 80px; /* Mismo valor que la altura del navbar */
-    margin-top: -80px; /* Compensa el espacio adicional */
 }
 
 .menu-filters {
