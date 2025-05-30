@@ -124,16 +124,16 @@ const products = [
         category: "bebidas",
         price: 4.00,
         description: "Sabor único y refrescante en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-500ml.jpg",
+        image: "./images/menu/gaseosa-coca-500ml.jpg",
         available: true
     },
     {
         id: 103,
-        name: "Gaseosa Inka Cola 1/2L",
+        name: "Gaseosa Inca Kola 1/2L",
         category: "bebidas",
         price: 4.00,
         description: "Dulce y auténtica bebida peruana en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-500ml.jpg",
+        image: "./images/menu/gaseosa-inka-500ml.jpg",
         available: true
     },
     {
@@ -142,7 +142,7 @@ const products = [
         category: "bebidas",
         price: 4.00,
         description: "Refrescante con un sabor inconfundible en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-500ml.jpg",
+        image: "./images/menu/gaseosa-pepsi-500ml.jpg",
         available: true
     }, 
     {
@@ -151,16 +151,16 @@ const products = [
         category: "bebidas",
         price: 8.00,
         description: "Refrescante y con un sabor único en la presentación de un litro.",
-        image: "./images/menu/gaseosa-1l.jpg",
+        image: "./images/menu/gaseosa-coca-1l.jpg",
         available: true
     },
     {
         id: 106,
-        name: "Gaseosas Inka Cola 1L",
+        name: "Gaseosas Inca Kola 1L",
         category: "bebidas",
         price: 8.00,
         description: "Dulce y auténtica bebida peruana en la presentación de un litro.",
-        image: "./images/menu/gaseosa-1l.jpg",
+        image: "./images/menu/gaseosa-inka-1l.jpg",
         available: true
     },
     {
@@ -169,7 +169,7 @@ const products = [
         category: "bebidas",
         price: 8.00,
         description: "Refrescante con un sabor inconfundible en la presentación de un litro.",
-        image: "./images/menu/gaseosa-1l.jpg",
+        image: "./images/menu/gaseosa-pepsi-1l.jpg",
         available: true
     },
     {
