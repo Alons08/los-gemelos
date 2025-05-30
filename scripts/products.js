@@ -110,25 +110,79 @@ const products = [
     },
         /* BEBIDASSSSSSSSS */
     {
-        id: 100,
-        name: "Gaseosas 1L",
-        category: "bebidas",
-        price: 8.00,
-        description: "Refrescos gaseosos de 1 litro. Sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
-        image: "./images/menu/gaseosa-1l.jpg",
-        available: true
-    },
-    {
         id: 101,
-        name: "Gaseosa 1/2L",
+        name: "Agua Mineral",
         category: "bebidas",
-        price: 4.00,
-        description: "Refrescos gaseosos de 1/2 litro. Sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
-        image: "./images/menu/gaseosa-500ml.jpg",
+        price: 2.00,
+        description: "Agua mineral sin gas de 500ml.",
+        image: "./images/menu/agua-mineral.jpg",
         available: true
     },
     {
         id: 102,
+        name: "Gaseosa Coca Cola 1/2L",
+        category: "bebidas",
+        price: 4.00,
+        description: "Sabor único y refrescante en la presentación de medio litro.",
+        image: "./images/menu/gaseosa-500ml.jpg",
+        available: true
+    },
+    {
+        id: 103,
+        name: "Gaseosa Inka Cola 1/2L",
+        category: "bebidas",
+        price: 4.00,
+        description: "Dulce y auténtica bebida peruana en la presentación de medio litro.",
+        image: "./images/menu/gaseosa-500ml.jpg",
+        available: true
+    },
+    {
+        id: 104,
+        name: "Gaseosa Pepsi 1/2L",
+        category: "bebidas",
+        price: 4.00,
+        description: "Refrescante con un sabor inconfundible en la presentación de medio litro.",
+        image: "./images/menu/gaseosa-500ml.jpg",
+        available: true
+    }, 
+    {
+        id: 105,
+        name: "Gaseosas Coca Cola 1L",
+        category: "bebidas",
+        price: 8.00,
+        description: "Refrescante y con un sabor único en la presentación de un litro.",
+        image: "./images/menu/gaseosa-1l.jpg",
+        available: true
+    },
+    {
+        id: 106,
+        name: "Gaseosas Inka Cola 1L",
+        category: "bebidas",
+        price: 8.00,
+        description: "Dulce y auténtica bebida peruana en la presentación de un litro.",
+        image: "./images/menu/gaseosa-1l.jpg",
+        available: true
+    },
+    {
+        id: 107,
+        name: "Gaseosas Pepsi 1L",
+        category: "bebidas",
+        price: 8.00,
+        description: "Refrescante con un sabor inconfundible en la presentación de un litro.",
+        image: "./images/menu/gaseosa-1l.jpg",
+        available: true
+    },
+    {
+        id: 108,
+        name: "Chicha Morada",
+        category: "bebidas",
+        price: 15.00,
+        description: "Refrescante bebida peruana hecha con maíz morado, frutas y especias.",
+        image: "./images/menu/chicha-morada.jpg",
+        available: true
+    },
+    {
+        id: 109,
         name: "Cerveza Pilsen",
         category: "bebidas",
         price: 9.00,
@@ -137,7 +191,7 @@ const products = [
         available: true
     },
     {
-        id: 103,
+        id: 110,
         name: "Cerveza Cusqueña Trigo",
         category: "bebidas",
         price: 10.00,
@@ -146,30 +200,12 @@ const products = [
         available: true
     },
     {
-        id: 104,
+        id: 111,
         name: "Cerveza Cusqueña Negra",
         category: "bebidas",
         price: 10.00,
         description: "Cerveza negra con notas de malta tostada y un sabor intenso.",
         image: "./images/menu/cerveza-negra.jpg",
-        available: true
-    },
-    {
-        id: 105,
-        name: "Agua Mineral",
-        category: "bebidas",
-        price: 2.00,
-        description: "Agua mineral sin gas de 500ml.",
-        image: "./images/menu/agua-mineral.jpg",
-        available: true
-    }, 
-    {
-        id: 106,
-        name: "Chicha Morada",
-        category: "bebidas",
-        price: 15.00,
-        description: "Refrescante bebida peruana hecha con maíz morado, frutas y especias.",
-        image: "./images/menu/chicha-morada.jpg",
         available: true
     }
 ];
