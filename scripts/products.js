@@ -5,7 +5,7 @@ const products = [
         name: "Picante de Cuy 1/2",
         category: "comidas",
         price: 45.00,
-        description: "Delicioso cuy al horno acompañado de papas doradas y salsa de maní.",
+        description: "Delicioso cuy al horno acompañado de papas doradas y arroz.",
         image: "./images/menu/picante-de-cuy.jpg",
         available: true
     },
@@ -34,7 +34,7 @@ const products = [
         price: 35.00,
         description: "Exquisito cabrito preparado al estilo norteño con frijoles y yuca.",
         image: "./images/menu/cabrito-norteno.jpg",
-        available: false
+        available: true
     },
     {
         id: 5,
@@ -70,7 +70,7 @@ const products = [
         price: 35.00,
         description: "Fresco ceviche de pescado con leche de tigre, camote y cancha serrana.",
         image: "./images/menu/ceviche.jpg",
-        available: false
+        available: true
     },
     {
         id: 9,
@@ -81,6 +81,34 @@ const products = [
         image: "./images/menu/chicharron-pescado.jpg",
         available: true
     },
+    {
+        id: 10,
+        name: "Chancho a la Caja China",
+        category: "comidas",
+        price: 30.00,
+        description: "Chancho cocinado en caja china con ensalada y papas doradas.",
+        image: "./images/menu/chancho-caja-china.jpg",
+        available: true
+    },
+    {
+        id: 11,
+        name: "Chuleta de Chancho",
+        category: "comidas",
+        price: 30.00,
+        description: "Chuleta de cerdo a la parrilla con ensalada y papas doradas.",
+        image: "./images/menu/chuleta-chancho.jpg",
+        available: true
+    },
+    {
+        id: 12,
+        name: "Shambar",
+        category: "comidas",
+        price: 15.00,
+        description: "Tradicional sopa norteña preparada con trigo, menestras y carne.",
+        image: "./images/menu/shambar.jpg",
+        available: false
+    },
+        /* BEBIDASSSSSSSSS */
     {
         id: 100,
         name: "Gaseosas 1L",
@@ -94,27 +122,54 @@ const products = [
         id: 101,
         name: "Gaseosa 1/2L",
         category: "bebidas",
-        price: 5.00,
+        price: 4.00,
         description: "Refrescos gaseosos de 1/2 litro. Sabores: Coca Cola, Inca Kola, Sprite, Fanta.",
         image: "./images/menu/gaseosa-500ml.jpg",
         available: true
     },
     {
         id: 102,
-        name: "Cervezas",
+        name: "Cerveza Pilsen",
         category: "bebidas",
-        price: 10.00,
-        description: "Cervezas nacionales e internacionales. Consultar por marcas disponibles.",
-        image: "./images/menu/cervezas.jpg",
+        price: 9.00,
+        description: "Refrescante cerveza nacional, perfecta para acompañar tus comidas.",
+        image: "./images/menu/cerveza-pilsen.jpg",
         available: true
     },
     {
         id: 103,
+        name: "Cerveza Cusqueña Trigo",
+        category: "bebidas",
+        price: 10.00,
+        description: "Cerveza artesanal de trigo con un sabor suave y único.",
+        image: "./images/menu/cerveza-trigo.jpg",
+        available: true
+    },
+    {
+        id: 103,
+        name: "Cerveza Cusqueña Negra",
+        category: "bebidas",
+        price: 10.00,
+        description: "Cerveza negra con notas de malta tostada y un sabor intenso.",
+        image: "./images/menu/cerveza-negra.jpg",
+        available: true
+    },
+    {
+        id: 105,
         name: "Agua Mineral",
         category: "bebidas",
-        price: 4.00,
+        price: 2.00,
         description: "Agua mineral sin gas de 500ml.",
         image: "./images/menu/agua-mineral.jpg",
+        available: true
+    }, 
+    {
+        id: 106,
+        name: "Chicha Morada",
+        category: "bebidas",
+        price: 15.00,
+        description: "Refrescante bebida peruana hecha con maíz morado, frutas y especias.",
+        image: "./images/menu/chicha-morada.jpg",
         available: true
     }
 ];
