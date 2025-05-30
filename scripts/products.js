@@ -146,7 +146,7 @@ const products = [
         available: true
     },
     {
-        id: 103,
+        id: 104,
         name: "Cerveza Cusqueña Negra",
         category: "bebidas",
         price: 10.00,
