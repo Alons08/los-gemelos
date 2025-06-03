@@ -87,13 +87,14 @@ body {
 }
 
 .btn-outline {
-    border: 2px solid var(--white);
-    color: var(--white);
+    border: 2px solid #e74c3c; /* Rojo */
+    background-color: #e74c3c; /* Rojo */
+    color: var(--white); /* Letra blanca */
 }
 
 .btn-outline:hover {
-    background-color: var(--white);
-    color: var(--black);
+    background-color: #c0392b; /* Rojo más oscuro al pasar el mouse */
+    color: var(--white); /* Mantener letra blanca */
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
