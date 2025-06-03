@@ -87,16 +87,32 @@ body {
 }
 
 .btn-outline {
-    border: 2px solid #e74c3c; /* Rojo */
-    background-color: #e74c3c; /* Rojo */
-    color: var(--white); /* Letra blanca */
+    border: 2px solid var(--white);
+    color: var(--white);
 }
 
 .btn-outline:hover {
-    background-color: #c0392b; /* Rojo más oscuro al pasar el mouse */
-    color: var(--white); /* Mantener letra blanca */
+    background-color: var(--white);
+    color: var(--black);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el botón Cancelar NUEVOOOOOOOO*/
+#cancel-order {
+    background-color: var(--danger-color); /* Rojo */
+    color: var(--white); /* Letra blanca */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    font-size: 0.9rem;
+}
+
+#cancel-order:hover {
+    background-color: #c0392b; /* Rojo más oscuro al pasar el mouse */
 }
 
 /* Section Styles */
