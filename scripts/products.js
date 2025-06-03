@@ -275,6 +275,7 @@ function setupFilters() {
 function setupProductEvents() {
     // Evento delegado para controles de cantidad
     document.addEventListener('click', function(e) {
+        // Control de cantidad
         const quantityBtn = e.target.closest('.quantity-btn');
         if (quantityBtn) {
             const input = quantityBtn.parentElement.querySelector('.quantity-input');
@@ -285,21 +286,34 @@ function setupProductEvents() {
             } else if (quantityBtn.classList.contains('plus')) {
                 input.value = value + 1;
             }
+            return; // Salir para no procesar el clic como add-to-cart
         }
         
         // Evento para añadir al carrito
-        if (e.target.classList.contains('add-to-cart')) {
-            const productId = parseInt(e.target.dataset.id);
+        const addToCartBtn = e.target.closest('.add-to-cart');
+        if (addToCartBtn) {
+            const productId = parseInt(addToCartBtn.dataset.id);
             const product = window.restaurantProducts.find(p => p.id === productId);
             
             if (product) {
-                const quantityInput = e.target.closest('.item-actions').querySelector('.quantity-input');
+                const quantityInput = addToCartBtn.closest('.item-actions').querySelector('.quantity-input');
                 const quantity = parseInt(quantityInput.value) || 1;
                 
+                // Disparar evento personalizado con la cantidad correcta
                 const event = new CustomEvent('productAddedToCart', {
                     detail: { product, quantity }
                 });
                 document.dispatchEvent(event);
+                
+                // Mostrar feedback visual
+                const notification = document.createElement('div');
+                notification.className = 'add-to-cart-feedback';
+                notification.textContent = `+${quantity}`;
+                addToCartBtn.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 1000);
             }
         }
     });

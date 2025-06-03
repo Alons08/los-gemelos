@@ -14,6 +14,7 @@ function loadCartWithExpiration() {
         if (now - parseInt(cartTimestamp) < expirationTime) {
             cart = JSON.parse(cartData);
             startCartExpirationTimer(expirationTime - (now - parseInt(cartTimestamp)));
+            updateCart(); // Actualizar la vista del carrito al cargar
             return true;
         } else {
             clearCart();
@@ -24,9 +25,13 @@ function loadCartWithExpiration() {
 
 // Guardar carrito con timestamp
 function saveCartWithTimestamp() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('cartTimestamp', new Date().getTime().toString());
-    startCartExpirationTimer(20 * 60 * 1000); // 20 minutos
+    if (cart.length > 0) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cartTimestamp', new Date().getTime().toString());
+        startCartExpirationTimer(20 * 60 * 1000); // 20 minutos
+    } else {
+        clearCart(); // Limpiar completamente si el carrito está vacío
+    }
 }
 
 // Iniciar temporizador de expiración
@@ -35,7 +40,7 @@ function startCartExpirationTimer(duration) {
     cartExpirationTimer = setTimeout(clearCart, duration);
 }
 
-// Limpiar carrito
+// Limpiar carrito completamente
 function clearCart() {
     cart = [];
     localStorage.removeItem('cart');
@@ -84,10 +89,6 @@ function initCart() {
     // Mostrar siempre el paso 1 al abrir el carrito
     cartElements.step1.classList.add('active');
     cartElements.step2.classList.remove('active');
-    
-    document.addEventListener('productAddedToCart', (e) => {
-        addToCart(e.detail.product, e.detail.quantity);
-    });
 }
 
 // Configurar eventos de tipo de entrega
@@ -120,6 +121,11 @@ function setupCartEvents() {
     if (cartElements.backToCart) cartElements.backToCart.addEventListener('click', backToCart);
     if (cartElements.cancelOrder) cartElements.cancelOrder.addEventListener('click', backToCart);
     if (cartElements.submitOrder) cartElements.submitOrder.addEventListener('click', submitOrder);
+    
+    // Evento personalizado para agregar productos al carrito
+    document.addEventListener('productAddedToCart', (e) => {
+        addToCart(e.detail.product, e.detail.quantity);
+    });
 }
 
 // Mostrar notificación
@@ -183,6 +189,7 @@ function updateCart() {
         cartElements.items.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
         if (cartElements.total) cartElements.total.textContent = 'S/0.00';
         updateCartCount();
+        saveCartWithTimestamp(); // Guardar estado vacío
         return;
     }
     
@@ -243,7 +250,9 @@ function setupCartItemEvents() {
     document.querySelectorAll('.cart-item .quantity-input').forEach(input => {
         input.addEventListener('change', function() {
             const id = parseInt(this.dataset.id);
-            updateCartItem(id, Math.max(1, parseInt(this.value) || 1));
+            const newQuantity = Math.max(1, parseInt(this.value) || 1);
+            this.value = newQuantity; // Asegurar que el valor sea válido
+            updateCartItem(id, newQuantity);
         });
     });
     
@@ -265,7 +274,7 @@ function addToCart(product, quantity = 1) {
     }
     
     updateCart();
-    showNotification(`${product.name} añadido al carrito`);
+    showNotification(`${product.name} añadido al carrito (${quantity})`, 'success');
 }
 
 function updateCartItem(id, quantity) {
@@ -385,11 +394,25 @@ function submitOrder() {
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
     // Abrir WhatsApp
-    window.open(`https://wa.me/51931088900?text=${encodeURIComponent(message)}`, '_blank');
+    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
     
-    // Limpiar carrito después de enviar
+    // Limpiar carrito y formulario inmediatamente después de enviar
     clearCart();
+    resetForm();
     hideCart();
+    
+    // Mostrar confirmación
+    showNotification('Pedido enviado correctamente', 'success');
+}
+
+// Resetear formulario
+function resetForm() {
+    if (cartElements.form) {
+        cartElements.form.reset();
+        cartElements.pickupFields.classList.remove('active');
+        cartElements.deliveryFields.classList.remove('active');
+    }
 }
 
 // Inicializar al cargar
