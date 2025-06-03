@@ -376,7 +376,6 @@ function submitOrder() {
     }
 
     // Construir mensaje para WhatsApp
-    // Construir mensaje para WhatsApp
     let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
     message += `*DATOS DEL CLIENTE*\n`;
     message += `🙍‍♂️ *Nombre:* ${customerName}\n`;
@@ -392,7 +391,7 @@ function submitOrder() {
     });
 
     message += `\n💰 *Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
-    message += `\n✅ Por favor, confirmen mi pedido. ¡Gracias!`;
+    message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
             
     // Abrir WhatsApp
     const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
