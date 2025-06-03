@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavbar();
     initHero();
     initScrollAnimations();
+    
+    // Verificar y actualizar el carrito al cargar la página
+    if (typeof initCart === 'function') {
+        initCart();
+    }
 });
 
 function loadFragments() {

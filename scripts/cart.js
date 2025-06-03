@@ -14,10 +14,12 @@ function loadCartWithExpiration() {
         if (now - parseInt(cartTimestamp) < expirationTime) {
             cart = JSON.parse(cartData);
             startCartExpirationTimer(expirationTime - (now - parseInt(cartTimestamp)));
+            return true;
         } else {
             clearCart();
         }
     }
+    return false;
 }
 
 // Guardar carrito con timestamp
@@ -39,6 +41,15 @@ function clearCart() {
     localStorage.removeItem('cart');
     localStorage.removeItem('cartTimestamp');
     updateCart();
+    updateCartCount();
+}
+
+// Actualizar contador del carrito
+function updateCartCount() {
+    const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+    if (cartElements.count) {
+        cartElements.count.textContent = itemCount;
+    }
 }
 
 // Elementos del DOM
@@ -68,6 +79,7 @@ function initCart() {
     loadCartWithExpiration();
     setupCartEvents();
     setupDeliveryToggle();
+    updateCartCount();
     
     // Mostrar siempre el paso 1 al abrir el carrito
     cartElements.step1.classList.add('active');
@@ -170,7 +182,7 @@ function updateCart() {
     if (cart.length === 0) {
         cartElements.items.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
         if (cartElements.total) cartElements.total.textContent = 'S/0.00';
-        if (cartElements.count) cartElements.count.textContent = '0';
+        updateCartCount();
         return;
     }
     
@@ -204,8 +216,7 @@ function updateCart() {
     });
     
     if (cartElements.total) cartElements.total.textContent = `S/${total.toFixed(2)}`;
-    if (cartElements.count) cartElements.count.textContent = itemCount;
-    
+    updateCartCount();
     saveCartWithTimestamp();
     setupCartItemEvents();
 }
