@@ -364,14 +364,16 @@ function submitOrder() {
         paymentMethod = form.querySelector('input[name="payment"]:checked').value;
         notes = form['pickup-notes'].value.trim();
 
+        // Construir mensaje para recoger en el local
         deliveryInfo = `*Recoger en el Local*\n` +
-                    (notes ? `*Observaciones:* ${notes}\n` : '');
+                    (notes ? `*Observaciones:* ${notes}\n` : ''); // Eliminar método de pago aquí
     } else if (deliveryType === 'delivery') {
         paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
         const address = form['delivery-address'].value.trim();
         const reference = form['delivery-reference'].value.trim();
         notes = form['delivery-notes'].value.trim();
 
+        // Construir mensaje para delivery
         deliveryInfo = `*Delivery*\n` +
                     `*Dirección:* ${address}\n` +
                     (reference ? `*Referencia:* ${reference}\n` : '') +
@@ -383,7 +385,7 @@ function submitOrder() {
     message += `*DATOS DEL CLIENTE*\n`;
     message += `*Nombre:* ${customerName}\n`;
     message += `*Teléfono:* ${customerPhone}\n`;
-    message += `*Método de Pago:* ${paymentMethod}\n\n`; // Mover método de pago aquí
+    message += `*Método de Pago:* ${paymentMethod}\n\n`; // Método de pago solo aquí
 
     message += `*DETALLES DE ENTREGA*\n`;
     message += deliveryInfo + '\n';
@@ -395,7 +397,7 @@ function submitOrder() {
 
     message += `\n*Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*`;
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
-    
+        
     // Abrir WhatsApp
     const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
