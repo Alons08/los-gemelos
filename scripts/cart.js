@@ -409,7 +409,15 @@ function submitOrder() {
 // Resetear formulario
 function resetForm() {
     if (cartElements.form) {
-        cartElements.form.reset();
+        cartElements.form.reset(); // Limpia los valores del formulario estándar
+
+        // Limpia los campos dinámicos manualmente
+        document.getElementById('pickup-notes').value = ''; // Observaciones para recoger en el local
+        document.getElementById('delivery-address').value = ''; // Dirección de entrega
+        document.getElementById('delivery-reference').value = ''; // Referencia de entrega
+        document.getElementById('delivery-notes').value = ''; // Observaciones para delivery
+
+        // Oculta los campos específicos
         cartElements.pickupFields.classList.remove('active');
         cartElements.deliveryFields.classList.remove('active');
     }
