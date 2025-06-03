@@ -156,6 +156,15 @@
                         <input type="tel" id="customer-phone" required>
                     </div>
                     <div class="form-group">
+                            <label for="pickup-payment">Tipo de Pago *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="payment" value="Efectivo" required> Efectivo</label>
+                                <label><input type="radio" name="payment" value="Yape"> Yape</label>
+                                <label><input type="radio" name="payment" value="Plin"> Plin</label>
+                                <label><input type="radio" name="payment" value="Otro"> Otro</label>
+                            </div>
+                    </div>
+                    <div class="form-group">
                         <label for="delivery-type">Tipo de Entrega *</label>
                         <select id="delivery-type" required>
                             <option value="">Seleccionar</option>
@@ -167,30 +176,12 @@
                     <!-- Campos para Recoger en Local -->
                     <div class="delivery-fields" id="pickup-fields">
                         <div class="form-group">
-                            <label for="pickup-payment">Tipo de Pago *</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="payment" value="Efectivo" required> Efectivo</label>
-                                <label><input type="radio" name="payment" value="Yape"> Yape</label>
-                                <label><input type="radio" name="payment" value="Plin"> Plin</label>
-                                <label><input type="radio" name="payment" value="Otro"> Otro</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="pickup-notes">Observaciones</label>
                             <textarea id="pickup-notes" rows="2"></textarea>
                         </div>
                     </div>
                     
                     <!-- Campos para Delivery -->
-                     <div class="form-group">
-                            <label for="delivery-payment">Tipo de Pago *</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="delivery-payment" value="Efectivo" required> Efectivo</label>
-                                <label><input type="radio" name="delivery-payment" value="Yape"> Yape</label>
-                                <label><input type="radio" name="delivery-payment" value="Plin"> Plin</label>
-                                <label><input type="radio" name="delivery-payment" value="Otro"> Otro</label>
-                            </div>
-                        </div>
                     <div class="delivery-fields" id="delivery-fields">
                         <div class="form-group">
                             <label for="delivery-address">Dirección de Entrega *</label>
