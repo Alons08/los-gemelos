@@ -363,37 +363,36 @@ function submitOrder() {
     if (deliveryType === 'pickup') {
         paymentMethod = form.querySelector('input[name="payment"]:checked').value;
         notes = form['pickup-notes'].value.trim();
-        
+
         deliveryInfo = `*Recoger en el Local*\n` +
-                      `*Método de Pago:* ${paymentMethod}\n` +
-                      (notes ? `*Observaciones:* ${notes}\n` : '');
+                    (notes ? `*Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
         const address = form['delivery-address'].value.trim();
         const reference = form['delivery-reference'].value.trim();
         notes = form['delivery-notes'].value.trim();
-        
+
         deliveryInfo = `*Delivery*\n` +
-                       `*Dirección:* ${address}\n` +
-                       (reference ? `*Referencia:* ${reference}\n` : '') +
-                       `*Método de Pago:* ${paymentMethod}\n` +
-                       (notes ? `*Observaciones:* ${notes}\n` : '');
+                    `*Dirección:* ${address}\n` +
+                    (reference ? `*Referencia:* ${reference}\n` : '') +
+                    (notes ? `*Observaciones:* ${notes}\n` : '');
     }
-    
+
     // Construir mensaje para WhatsApp
     let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
     message += `*DATOS DEL CLIENTE*\n`;
     message += `*Nombre:* ${customerName}\n`;
-    message += `*Teléfono:* ${customerPhone}\n\n`;
-    
+    message += `*Teléfono:* ${customerPhone}\n`;
+    message += `*Método de Pago:* ${paymentMethod}\n\n`; // Mover método de pago aquí
+
     message += `*DETALLES DE ENTREGA*\n`;
     message += deliveryInfo + '\n';
-    
+
     message += `*PEDIDO*\n`;
     cart.forEach(item => {
         message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
-    
+
     message += `\n*Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*`;
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
