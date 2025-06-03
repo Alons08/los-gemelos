@@ -111,22 +111,26 @@ function setupDeliveryToggle() {
     }
 }
 
-// Configurar eventos
-function setupCartEvents() {
-    if (cartElements.btn) cartElements.btn.addEventListener('click', showCart);
-    if (cartElements.close) cartElements.close.addEventListener('click', hideCart);
-    if (cartElements.close2) cartElements.close2.addEventListener('click', hideCart);
-    if (cartElements.overlay) cartElements.overlay.addEventListener('click', hideCart);
-    if (cartElements.checkout) cartElements.checkout.addEventListener('click', goToCheckout);
-    if (cartElements.backToCart) cartElements.backToCart.addEventListener('click', backToCart);
-    if (cartElements.cancelOrder) cartElements.cancelOrder.addEventListener('click', backToCart);
-    if (cartElements.submitOrder) cartElements.submitOrder.addEventListener('click', submitOrder);
-    
-    // Evento personalizado para agregar productos al carrito
-    document.addEventListener('productAddedToCart', (e) => {
-        addToCart(e.detail.product, e.detail.quantity);
-    });
-}
+    let eventsConfigured = false;
+
+    function setupCartEvents() {
+        if (eventsConfigured) return; // Evitar duplicación
+        eventsConfigured = true;
+
+        if (cartElements.btn) cartElements.btn.addEventListener('click', showCart);
+        if (cartElements.close) cartElements.close.addEventListener('click', hideCart);
+        if (cartElements.close2) cartElements.close2.addEventListener('click', hideCart);
+        if (cartElements.overlay) cartElements.overlay.addEventListener('click', hideCart);
+        if (cartElements.checkout) cartElements.checkout.addEventListener('click', goToCheckout);
+        if (cartElements.backToCart) cartElements.backToCart.addEventListener('click', backToCart);
+        if (cartElements.cancelOrder) cartElements.cancelOrder.addEventListener('click', backToCart);
+        if (cartElements.submitOrder) cartElements.submitOrder.addEventListener('click', submitOrder);
+
+        document.addEventListener('productAddedToCart', (e) => {
+            console.log('Evento productAddedToCart disparado:', e.detail);
+            addToCart(e.detail.product, e.detail.quantity);
+        });
+    }
 
 // Mostrar notificación
 function showNotification(message, type = 'success') {
