@@ -373,13 +373,11 @@ function submitOrder() {
                       (notes ? `📝 *Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         const address = form['delivery-address'].value.trim();
-        const reference = form['delivery-reference'].value.trim();
         const notes = form['delivery-notes'].value.trim();
 
         // Construir mensaje para delivery
         deliveryInfo = `🚚 *Delivery*\n` +
                     `🗺️ *Dirección:* ${address}\n` +
-                    (reference ? `📍 *Referencia:* ${reference}\n` : '') +
                     (notes ? `📝 *Observaciones:* ${notes}\n` : '');
     }
 
