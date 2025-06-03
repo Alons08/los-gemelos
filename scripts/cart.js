@@ -364,11 +364,17 @@ function submitOrder() {
         paymentMethod = form.querySelector('input[name="payment"]:checked').value;
         notes = form['pickup-notes'].value.trim();
 
-        // Construir mensaje para recoger en el local (sin método de pago aquí)
+        // Construir mensaje para recoger en el local
         deliveryInfo = `*Recoger en el Local*\n` +
                     (notes ? `*Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
-        paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
+        const selectedPayment = form.querySelector('input[name="delivery-payment"]:checked');
+        if (!selectedPayment) {
+            alert('Por favor, selecciona un método de pago para Delivery.');
+            return; // Detener la ejecución si no se selecciona un método de pago
+        }
+        paymentMethod = selectedPayment.value;
+
         const address = form['delivery-address'].value.trim();
         const reference = form['delivery-reference'].value.trim();
         notes = form['delivery-notes'].value.trim();
