@@ -50,17 +50,42 @@ const cartElements = {
     total: document.getElementById('cart-total'),
     count: document.getElementById('cart-count'),
     close: document.getElementById('close-cart'),
-    checkout: document.getElementById('checkout')
+    checkout: document.getElementById('checkout'),
+    form: document.getElementById('order-form'),
+    deliveryType: document.getElementById('delivery-type'),
+    pickupFields: document.getElementById('pickup-fields'),
+    deliveryFields: document.getElementById('delivery-fields')
 };
 
 // Inicializar carrito
 function initCart() {
     loadCartWithExpiration();
     setupCartEvents();
+    setupDeliveryToggle();
     
     document.addEventListener('productAddedToCart', (e) => {
         addToCart(e.detail.product, e.detail.quantity);
     });
+}
+
+// Configurar eventos de tipo de entrega
+function setupDeliveryToggle() {
+    if (cartElements.deliveryType) {
+        cartElements.deliveryType.addEventListener('change', function() {
+            const deliveryType = this.value;
+            
+            // Ocultar todos los campos primero
+            cartElements.pickupFields.classList.remove('active');
+            cartElements.deliveryFields.classList.remove('active');
+            
+            // Mostrar los campos correspondientes
+            if (deliveryType === 'pickup') {
+                cartElements.pickupFields.classList.add('active');
+            } else if (deliveryType === 'delivery') {
+                cartElements.deliveryFields.classList.add('active');
+            }
+        });
+    }
 }
 
 // Configurar eventos
@@ -82,9 +107,9 @@ function showNotification(message, type = 'success') {
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.classList.remove('show'); // Inicia la transición de salida
-        setTimeout(() => notification.remove(), 500); // Espera 0.5 segundos para eliminar el elemento del DOM
-    }, 2000); // Tiempo que la notificación permanece visible
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 500);
+    }, 2000);
 }
 
 // Mostrar/ocultar carrito
@@ -208,7 +233,50 @@ function updateCartItem(id, quantity) {
 function removeFromCart(id) {
     cart = cart.filter(item => item.product.id !== id);
     updateCart();
-    // Eliminada la línea que mostraba la notificación al eliminar
+}
+
+// Validar formulario
+function validateForm() {
+    const form = cartElements.form;
+    const deliveryType = cartElements.deliveryType.value;
+    
+    // Validar campos obligatorios comunes
+    if (!form['customer-name'].value.trim()) {
+        showNotification('Por favor ingresa tu nombre', 'error');
+        return false;
+    }
+    
+    if (!form['customer-phone'].value.trim()) {
+        showNotification('Por favor ingresa tu teléfono', 'error');
+        return false;
+    }
+    
+    if (!deliveryType) {
+        showNotification('Por favor selecciona el tipo de entrega', 'error');
+        return false;
+    }
+    
+    // Validar campos específicos según el tipo de entrega
+    if (deliveryType === 'delivery') {
+        if (!form['delivery-address'].value.trim()) {
+            showNotification('Por favor ingresa la dirección de entrega', 'error');
+            return false;
+        }
+        
+        const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
+        if (!paymentSelected) {
+            showNotification('Por favor selecciona el método de pago', 'error');
+            return false;
+        }
+    } else if (deliveryType === 'pickup') {
+        const paymentSelected = form.querySelector('input[name="payment"]:checked');
+        if (!paymentSelected) {
+            showNotification('Por favor selecciona el método de pago', 'error');
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 // Finalizar compra
@@ -218,7 +286,51 @@ function checkout() {
         return;
     }
     
-    let message = '¡Hola! Quiero realizar el siguiente pedido:\n\n';
+    if (!validateForm()) {
+        return;
+    }
+    
+    const form = cartElements.form;
+    const deliveryType = cartElements.deliveryType.value;
+    
+    // Obtener datos del formulario
+    const customerName = form['customer-name'].value.trim();
+    const customerPhone = form['customer-phone'].value.trim();
+    
+    let paymentMethod = '';
+    let deliveryInfo = '';
+    let notes = '';
+    
+    if (deliveryType === 'pickup') {
+        paymentMethod = form.querySelector('input[name="payment"]:checked').value;
+        notes = form['pickup-notes'].value.trim();
+        
+        deliveryInfo = `*Recoger en el Local*\n` +
+                      `*Método de Pago:* ${paymentMethod}\n` +
+                      (notes ? `*Observaciones:* ${notes}\n` : '');
+    } else if (deliveryType === 'delivery') {
+        paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
+        const address = form['delivery-address'].value.trim();
+        const reference = form['delivery-reference'].value.trim();
+        notes = form['delivery-notes'].value.trim();
+        
+        deliveryInfo = `*Delivery*\n` +
+                       `*Dirección:* ${address}\n` +
+                       (reference ? `*Referencia:* ${reference}\n` : '') +
+                       `*Método de Pago:* ${paymentMethod}\n` +
+                       (notes ? `*Observaciones:* ${notes}\n` : '');
+    }
+    
+    // Construir mensaje para WhatsApp
+    let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
+    message += `*Datos del Cliente*\n`;
+    message += `*Nombre:* ${customerName}\n`;
+    message += `*Teléfono:* ${customerPhone}\n\n`;
+    
+    message += `*Detalles de Entrega*\n`;
+    message += deliveryInfo + '\n';
+    
+    message += `*Pedido*\n`;
     cart.forEach(item => {
         message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
@@ -226,7 +338,12 @@ function checkout() {
     message += `\n*Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*`;
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
+    // Abrir WhatsApp
     window.open(`https://wa.me/51931088900?text=${encodeURIComponent(message)}`, '_blank');
+    
+    // Limpiar carrito después de enviar
+    clearCart();
+    hideCart();
 }
 
 // Inicializar al cargar
