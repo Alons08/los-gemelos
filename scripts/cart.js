@@ -398,7 +398,7 @@ function submitOrder() {
     message += '\n\nPor favor, confirmen mi pedido. ¡Gracias!';
     
     // Abrir WhatsApp
-    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
     
     // Limpiar carrito y formulario inmediatamente después de enviar
