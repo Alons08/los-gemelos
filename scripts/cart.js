@@ -328,7 +328,7 @@ function validateForm() {
             return false;
         }
     } else if (deliveryType === 'pickup') {
-        const paymentSelected = form.querySelector('input[name="payment"]:checked');
+        const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
         if (!paymentSelected) {
             showNotification('Por favor selecciona el método de pago', 'error');
             return false;
