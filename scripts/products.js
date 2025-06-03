@@ -5,7 +5,7 @@ const products = [
         name: "Picante de Cuy 1/2",
         category: "comidas",
         price: 45.00,
-        description: "Delicioso cuy al horno acompañado de papas doradas y arroz.",
+        description: "Delicioso cuy al horno acompañado de papas doradas y trigo.",
         image: "./images/menu/picante-de-cuy.jpg",
         available: true
     },
@@ -14,7 +14,7 @@ const products = [
         name: "Chicharrón de Chancho",
         category: "comidas",
         price: 35.00,
-        description: "Crujiente chicharrón de cerdo servido con camote frito, mote y salsa criolla.",
+        description: "Crujiente chicharrón de cerdo servido con papas, mote y salsa criolla.",
         image: "./images/menu/chicharron-de-chancho.jpg",
         available: true
     },
@@ -23,7 +23,7 @@ const products = [
         name: "Frejolada de Pato",
         category: "comidas",
         price: 35.00,
-        description: "Tradicional frejolada preparada con pato tierno y especias.",
+        description: "Tradicional frejolada de pato con arroz y menestra.",
         image: "./images/menu/frejolada-de-pato.jpg",
         available: true
     },
@@ -41,7 +41,7 @@ const products = [
         name: "Costillar",
         category: "comidas",
         price: 35.00,
-        description: "Costillar de cerdo glaseado con salsa barbacoa, acompañado de puré de papas.",
+        description: "Costillar de cerdo acompañado de camote frito y ensalada.",
         image: "./images/menu/costillar.jpg",
         available: true
     },
@@ -50,7 +50,7 @@ const products = [
         name: "Pepian Pavita de Corral",
         category: "comidas",
         price: 35.00,
-        description: "Pavita criolla en salsa de pepian con arroz y papas.",
+        description: "Pavita criolla en salsa de pepian con arroz y yuca.",
         image: "./images/menu/pepian-pavita.jpg",
         available: true
     },
@@ -59,7 +59,7 @@ const products = [
         name: "Caldo de Gallina",
         category: "comidas",
         price: 25.00,
-        description: "Reconfortante caldo preparado con gallina criolla, fideos y hierbas aromáticas.",
+        description: "Reconfortante caldo de gallina acompañada de cancha, limón y cebolla china picada.",
         image: "./images/menu/caldo-gallina.jpg",
         available: true
     },
@@ -68,7 +68,7 @@ const products = [
         name: "Ceviche",
         category: "comidas",
         price: 35.00,
-        description: "Fresco ceviche de pescado con leche de tigre, camote y cancha serrana.",
+        description: "Fresco ceviche de pescado con leche de tigre, camote, choclo y cancha.",
         image: "./images/menu/ceviche.jpg",
         available: true
     },
@@ -77,7 +77,7 @@ const products = [
         name: "Chicharrón de Pescado",
         category: "comidas",
         price: 35.00,
-        description: "Filete de pescado empanizado y frito, servido con yuca y salsa tartara.",
+        description: "chicharrón de pescado empanizado y frito, servido con yuca y ensalada.",
         image: "./images/menu/chicharron-pescado.jpg",
         available: true
     },
