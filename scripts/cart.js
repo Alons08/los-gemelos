@@ -50,11 +50,17 @@ const cartElements = {
     total: document.getElementById('cart-total'),
     count: document.getElementById('cart-count'),
     close: document.getElementById('close-cart'),
+    close2: document.getElementById('close-cart-2'),
     checkout: document.getElementById('checkout'),
+    backToCart: document.getElementById('back-to-cart'),
+    cancelOrder: document.getElementById('cancel-order'),
+    submitOrder: document.getElementById('submit-order'),
     form: document.getElementById('order-form'),
     deliveryType: document.getElementById('delivery-type'),
     pickupFields: document.getElementById('pickup-fields'),
-    deliveryFields: document.getElementById('delivery-fields')
+    deliveryFields: document.getElementById('delivery-fields'),
+    step1: document.getElementById('cart-step-1'),
+    step2: document.getElementById('cart-step-2')
 };
 
 // Inicializar carrito
@@ -62,6 +68,10 @@ function initCart() {
     loadCartWithExpiration();
     setupCartEvents();
     setupDeliveryToggle();
+    
+    // Mostrar siempre el paso 1 al abrir el carrito
+    cartElements.step1.classList.add('active');
+    cartElements.step2.classList.remove('active');
     
     document.addEventListener('productAddedToCart', (e) => {
         addToCart(e.detail.product, e.detail.quantity);
@@ -92,8 +102,12 @@ function setupDeliveryToggle() {
 function setupCartEvents() {
     if (cartElements.btn) cartElements.btn.addEventListener('click', showCart);
     if (cartElements.close) cartElements.close.addEventListener('click', hideCart);
+    if (cartElements.close2) cartElements.close2.addEventListener('click', hideCart);
     if (cartElements.overlay) cartElements.overlay.addEventListener('click', hideCart);
-    if (cartElements.checkout) cartElements.checkout.addEventListener('click', checkout);
+    if (cartElements.checkout) cartElements.checkout.addEventListener('click', goToCheckout);
+    if (cartElements.backToCart) cartElements.backToCart.addEventListener('click', backToCart);
+    if (cartElements.cancelOrder) cartElements.cancelOrder.addEventListener('click', backToCart);
+    if (cartElements.submitOrder) cartElements.submitOrder.addEventListener('click', submitOrder);
 }
 
 // Mostrar notificación
@@ -118,12 +132,33 @@ function showCart(e) {
     cartElements.modal.classList.add('active');
     cartElements.overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Mostrar siempre el paso 1 al abrir el carrito
+    cartElements.step1.classList.add('active');
+    cartElements.step2.classList.remove('active');
 }
 
 function hideCart() {
     cartElements.modal.classList.remove('active');
     cartElements.overlay.classList.remove('active');
     document.body.style.overflow = '';
+}
+
+// Ir al formulario de checkout
+function goToCheckout() {
+    if (cart.length === 0) {
+        showNotification('El carrito está vacío', 'error');
+        return;
+    }
+    
+    cartElements.step1.classList.remove('active');
+    cartElements.step2.classList.add('active');
+}
+
+// Volver al carrito desde el formulario
+function backToCart() {
+    cartElements.step2.classList.remove('active');
+    cartElements.step1.classList.add('active');
 }
 
 // Actualizar vista del carrito
@@ -133,7 +168,7 @@ function updateCart() {
     cartElements.items.innerHTML = '';
     
     if (cart.length === 0) {
-        cartElements.items.innerHTML = '';
+        cartElements.items.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
         if (cartElements.total) cartElements.total.textContent = 'S/0.00';
         if (cartElements.count) cartElements.count.textContent = '0';
         return;
@@ -279,8 +314,8 @@ function validateForm() {
     return true;
 }
 
-// Finalizar compra
-function checkout() {
+// Enviar pedido
+function submitOrder() {
     if (cart.length === 0) {
         showNotification('El carrito está vacío', 'error');
         return;
