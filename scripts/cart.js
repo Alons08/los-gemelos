@@ -94,13 +94,13 @@ function initCart() {
 // Configurar eventos de tipo de entrega
 function setupDeliveryToggle() {
     if (cartElements.deliveryType) {
-        cartElements.deliveryType.addEventListener('change', function() {
+        cartElements.deliveryType.addEventListener('change', function () {
             const deliveryType = this.value;
-            
+
             // Ocultar todos los campos primero
             cartElements.pickupFields.classList.remove('active');
             cartElements.deliveryFields.classList.remove('active');
-            
+
             // Mostrar los campos correspondientes
             if (deliveryType === 'pickup') {
                 cartElements.pickupFields.classList.add('active');
