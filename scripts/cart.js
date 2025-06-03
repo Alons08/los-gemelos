@@ -374,22 +374,22 @@ function submitOrder() {
         notes = form['delivery-notes'].value.trim();
         
         deliveryInfo = `*Delivery*\n` +
+                       `*Método de Pago:* ${paymentMethod}\n` +
                        `*Dirección:* ${address}\n` +
                        (reference ? `*Referencia:* ${reference}\n` : '') +
-                       `*Método de Pago:* ${paymentMethod}\n` +
                        (notes ? `*Observaciones:* ${notes}\n` : '');
     }
     
     // Construir mensaje para WhatsApp
     let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
-    message += `*Datos del Cliente*\n`;
+    message += `*DATOS DEL CLIENTE*\n`;
     message += `*Nombre:* ${customerName}\n`;
     message += `*Teléfono:* ${customerPhone}\n\n`;
     
-    message += `*Detalles de Entrega*\n`;
+    message += `*DETALLES DE ENTREGA*\n`;
     message += deliveryInfo + '\n';
     
-    message += `*Pedido*\n`;
+    message += `*PEDIDO*\n`;
     cart.forEach(item => {
         message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
