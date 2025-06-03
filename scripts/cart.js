@@ -365,7 +365,6 @@ function submitOrder() {
         notes = form['pickup-notes'].value.trim();
         
         deliveryInfo = `*Recoger en el Local*\n` +
-                      `*Método de Pago:* ${paymentMethod}\n` +
                       (notes ? `*Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
