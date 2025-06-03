@@ -333,6 +333,12 @@ function validateForm() {
             showNotification('Por favor selecciona el método de pago', 'error');
             return false;
         }
+
+        const pickupTime = form['pickup-time'].value;
+        if (!pickupTime) {
+            showNotification('Por favor selecciona el tiempo estimado para recoger', 'error');
+            return false;
+        }
     }
     
     return true;
@@ -358,11 +364,13 @@ function submitOrder() {
     const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
 
     if (deliveryType === 'pickup') {
+        const pickupTime = form['pickup-time'].value;
         const notes = form['pickup-notes'].value.trim();
 
         // Construir mensaje para recoger en el local
         deliveryInfo = `🏠 *Recoger en el Local*\n` +
-                    (notes ? `📝 *Observaciones:* ${notes}\n` : '');
+                       `⏳ *Tiempo estimado:* ${pickupTime}\n` +
+                      (notes ? `📝 *Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         const address = form['delivery-address'].value.trim();
         const reference = form['delivery-reference'].value.trim();
@@ -413,6 +421,7 @@ function resetForm() {
 
         // Limpia los campos dinámicos manualmente
         document.getElementById('pickup-notes').value = ''; // Observaciones para recoger en el local
+        document.getElementById('pickup-time').value = ''; // Tiempo estimado para recoger
         document.getElementById('delivery-address').value = ''; // Dirección de entrega
         document.getElementById('delivery-reference').value = ''; // Referencia de entrega
         document.getElementById('delivery-notes').value = ''; // Observaciones para delivery

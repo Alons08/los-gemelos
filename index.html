@@ -176,6 +176,15 @@
                     <!-- Campos para Recoger en Local -->
                     <div class="delivery-fields" id="pickup-fields">
                         <div class="form-group">
+                            <label for="pickup-time">Tiempo estimado para recoger *</label>
+                            <select id="pickup-time" required>
+                                <option value="">Seleccionar</option>
+                                <option value="20-25">20 - 25 minutos</option>
+                                <option value="25-30">25 - 30 minutos</option>
+                                <option value="30-plus">30 minutos a más</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="pickup-notes">Observaciones</label>
                             <textarea id="pickup-notes" rows="2"></textarea>
                         </div>

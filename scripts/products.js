@@ -95,7 +95,7 @@ const products = [
         name: "Chuleta de Chancho",
         category: "comidas",
         price: 30.00,
-        description: "Chuleta de cerdo a la parrilla con ensalada y papas doradas.",
+        description: "Chuleta de cerdo a la parrilla con choclo y papas doradas.",
         image: "./images/menu/chuleta-chancho.jpg",
         available: true
     },
