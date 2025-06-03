@@ -361,7 +361,7 @@ function submitOrder() {
     let notes = '';
 
     if (deliveryType === 'pickup') {
-        paymentMethod = form.querySelector('input[name="payment"]:checked').value;
+        paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
         notes = form['pickup-notes'].value.trim();
 
         // Construir mensaje para recoger en el local
