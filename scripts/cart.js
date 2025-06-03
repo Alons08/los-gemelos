@@ -369,7 +369,7 @@ function submitOrder() {
 
         // Construir mensaje para recoger en el local
         deliveryInfo = `🏠 *Recoger en el Local*\n` +
-                       `⏳ *Tiempo estimado:* ${pickupTime}\n` +
+                       `⏳ *Tiempo estimado:* ${pickupTime} minutos\n` +
                       (notes ? `📝 *Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         const address = form['delivery-address'].value.trim();
