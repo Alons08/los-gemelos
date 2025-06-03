@@ -94,13 +94,13 @@ function initCart() {
 // Configurar eventos de tipo de entrega
 function setupDeliveryToggle() {
     if (cartElements.deliveryType) {
-        cartElements.deliveryType.addEventListener('change', function () {
+        cartElements.deliveryType.addEventListener('change', function() {
             const deliveryType = this.value;
-
+            
             // Ocultar todos los campos primero
             cartElements.pickupFields.classList.remove('active');
             cartElements.deliveryFields.classList.remove('active');
-
+            
             // Mostrar los campos correspondientes
             if (deliveryType === 'pickup') {
                 cartElements.pickupFields.classList.add('active');
@@ -355,23 +355,18 @@ function submitOrder() {
     // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
     const customerPhone = form['customer-phone'].value.trim();
-    
-    let paymentMethod = '';
-    let deliveryInfo = '';
-    let notes = '';
+    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
 
     if (deliveryType === 'pickup') {
-        paymentMethod = form.querySelector('input[name="payment"]:checked').value; // Cambiado a "payment"
-        notes = form['pickup-notes'].value.trim();
+        const notes = form['pickup-notes'].value.trim();
 
         // Construir mensaje para recoger en el local
         deliveryInfo = `*Recoger en el Local*\n` +
                     (notes ? `*Observaciones:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
-        paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Mantener "delivery-payment"
         const address = form['delivery-address'].value.trim();
         const reference = form['delivery-reference'].value.trim();
-        notes = form['delivery-notes'].value.trim();
+        const notes = form['delivery-notes'].value.trim();
 
         // Construir mensaje para delivery
         deliveryInfo = `*Delivery*\n` +
