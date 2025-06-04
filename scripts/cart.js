@@ -298,50 +298,80 @@ function removeFromCart(id) {
 function validateForm() {
     const form = cartElements.form;
     const deliveryType = cartElements.deliveryType.value;
-    
+    let isValid = true;
+
+    // Limpiar estados previos de validación
+    document.querySelectorAll('.form-group').forEach(group => {
+        group.classList.remove('invalid');
+        const errorMsg = group.querySelector('.error-message');
+        if (errorMsg) errorMsg.remove();
+    });
+
     // Validar campos obligatorios comunes
     if (!form['customer-name'].value.trim()) {
-        showNotification('Por favor ingresa tu nombre', 'error');
-        return false;
+        markFieldInvalid(form['customer-name'], 'Por favor ingresa tu nombre');
+        isValid = false;
     }
-    
+
     if (!form['customer-phone'].value.trim()) {
-        showNotification('Por favor ingresa tu teléfono', 'error');
-        return false;
+        markFieldInvalid(form['customer-phone'], 'Por favor ingresa tu teléfono');
+        isValid = false;
     }
-    
-    if (!deliveryType) {
-        showNotification('Por favor selecciona el tipo de entrega', 'error');
-        return false;
+
+    // Validar método de pago
+    const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
+    if (!paymentSelected) {
+        const paymentGroup = document.querySelector('.form-group:nth-child(3)');
+        paymentGroup.classList.add('invalid');
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Por favor selecciona el método de pago';
+        paymentGroup.appendChild(errorMsg);
+        isValid = false;
     }
-    
+
     // Validar campos específicos según el tipo de entrega
     if (deliveryType === 'delivery') {
         if (!form['delivery-address'].value.trim()) {
-            showNotification('Por favor ingresa la dirección de entrega', 'error');
-            return false;
-        }
-        
-        const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
-        if (!paymentSelected) {
-            showNotification('Por favor selecciona el método de pago', 'error');
-            return false;
+            markFieldInvalid(form['delivery-address'], 'Por favor ingresa la dirección de entrega');
+            isValid = false;
         }
     } else if (deliveryType === 'pickup') {
-        const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
-        if (!paymentSelected) {
-            showNotification('Por favor selecciona el método de pago', 'error');
-            return false;
+        if (!form['pickup-time'].value) {
+            markFieldInvalid(form['pickup-time'], 'Por favor selecciona el tiempo estimado para recoger');
+            isValid = false;
         }
+    } else {
+        // Si no ha seleccionado tipo de entrega
+        const deliveryGroup = document.querySelector('.form-group:nth-child(4)');
+        deliveryGroup.classList.add('invalid');
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Por favor selecciona el tipo de entrega';
+        deliveryGroup.appendChild(errorMsg);
+        isValid = false;
+    }
 
-        const pickupTime = form['pickup-time'].value;
-        if (!pickupTime) {
-            showNotification('Por favor selecciona el tiempo estimado para recoger', 'error');
-            return false;
+    if (!isValid) {
+        // Hacer scroll al primer error
+        const firstError = document.querySelector('.invalid');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
+
+    return isValid;
+}
+
+// Función auxiliar para marcar campos inválidos
+function markFieldInvalid(field, message) {
+    const formGroup = field.closest('.form-group');
+    formGroup.classList.add('invalid');
     
-    return true;
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'error-message';
+    errorMsg.textContent = message;
+    formGroup.appendChild(errorMsg);
 }
 
 // Enviar pedido
