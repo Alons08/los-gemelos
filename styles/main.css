@@ -910,21 +910,18 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-/* Radio buttons mejorados */
 .radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: flex; /* Coloca los radios en una sola línea */
+    gap: 15px; /* Espaciado horizontal entre los radios */
 }
 
 .radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    display: inline-flex; /* Asegura que el texto y el radio estén alineados */
+    align-items: center; /* Centra verticalmente el texto y el botón */
+    gap: 5px; /* Espaciado entre el botón y el texto */
+    padding: 0; /* Elimina el cuadro alrededor */
+    border: none; /* Elimina los bordes */
+    background: none; /* Elimina el fondo */
 }
 
 .radio-group label:hover {
