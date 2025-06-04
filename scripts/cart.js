@@ -85,7 +85,11 @@ function initCart() {
     setupCartEvents();
     setupDeliveryToggle();
     updateCartCount();
-    
+
+    // Ocultar campos de entrega al cargar
+    cartElements.pickupFields.classList.remove('active');
+    cartElements.deliveryFields.classList.remove('active');
+
     // Mostrar siempre el paso 1 al abrir el carrito
     cartElements.step1.classList.add('active');
     cartElements.step2.classList.remove('active');
@@ -96,11 +100,11 @@ function setupDeliveryToggle() {
     if (cartElements.deliveryType) {
         cartElements.deliveryType.addEventListener('change', function() {
             const deliveryType = this.value;
-            
+
             // Ocultar todos los campos primero
             cartElements.pickupFields.classList.remove('active');
             cartElements.deliveryFields.classList.remove('active');
-            
+
             // Mostrar los campos correspondientes
             if (deliveryType === 'pickup') {
                 cartElements.pickupFields.classList.add('active');
@@ -110,7 +114,6 @@ function setupDeliveryToggle() {
         });
     }
 }
-
     let eventsConfigured = false;
 
     function setupCartEvents() {
