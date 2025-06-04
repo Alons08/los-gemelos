@@ -5,7 +5,7 @@ const products = [
         name: "Picante de Cuy 1/2",
         category: "comidas",
         price: 45.00,
-        description: "Delicioso cuy al horno acompañado de papas doradas y trigo.",
+        description: "Cuy frito acompañado de ajiaco de papa con trigo o arroz, y ensalada criolla.",
         image: "./images/menu/picante-de-cuy.jpg",
         available: true
     },
@@ -14,7 +14,7 @@ const products = [
         name: "Chicharrón de Chancho",
         category: "comidas",
         price: 35.00,
-        description: "Crujiente chicharrón de cerdo servido con papas, mote y salsa criolla.",
+        description: "Crujiente chicharrón de cerdo servido con mote, cancha, yuca y salsa criolla.",
         image: "./images/menu/chicharron-de-chancho.jpg",
         available: true
     },
@@ -41,7 +41,7 @@ const products = [
         name: "Costillar",
         category: "comidas",
         price: 35.00,
-        description: "Costillar de cerdo acompañado de camote frito y ensalada.",
+        description: "Costillar de res acompañado de yucas fritas y papas doradas con ensalada criolla y cremas. ",
         image: "./images/menu/costillar.jpg",
         available: true
     },
@@ -68,7 +68,7 @@ const products = [
         name: "Ceviche",
         category: "comidas",
         price: 35.00,
-        description: "Fresco ceviche de pescado con leche de tigre, camote, choclo y cancha.",
+        description: "Fresco ceviche de pescado con leche de tigre o clásico, camote, choclo y cancha.",
         image: "./images/menu/ceviche.jpg",
         available: true
     },
@@ -86,7 +86,7 @@ const products = [
         name: "Chancho a la Caja China",
         category: "comidas",
         price: 30.00,
-        description: "Chancho cocinado en caja china con ensalada y papas doradas.",
+        description: "Chancho cocinado en caja china con ensalada y papas y camote sanchochados.",
         image: "./images/menu/chancho-caja-china.jpg",
         available: true
     },
@@ -95,7 +95,7 @@ const products = [
         name: "Chuleta de Chancho",
         category: "comidas",
         price: 30.00,
-        description: "Chuleta de cerdo a la parrilla con choclo y papas doradas.",
+        description: "Chuleta de cerdo a la parrilla con choclo y papas sanchochadas.",
         image: "./images/menu/chuleta-chancho.jpg",
         available: true
     },
@@ -104,7 +104,7 @@ const products = [
         name: "Shambar",
         category: "comidas",
         price: 15.00,
-        description: "Tradicional sopa norteña preparada con trigo, menestras y carne.",
+        description: "Tradicional sopa norteña preparada con trigo, menestras, carne y tocino.",
         image: "./images/menu/shambar.jpg",
         available: false
     },
@@ -114,7 +114,7 @@ const products = [
         name: "Agua Mineral",
         category: "bebidas",
         price: 2.00,
-        description: "Agua mineral sin gas de 500ml.",
+        description: "Agua mineral sin gas de 625ml.",
         image: "./images/menu/agua-mineral.jpg",
         available: true
     },
