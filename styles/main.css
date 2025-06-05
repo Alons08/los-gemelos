@@ -1033,15 +1033,15 @@ body {
     
     .nav-links {
         position: fixed;
-        top: 70px;
+        top: 70px; /* Ajusta esto según la altura de tu navbar */
         left: -100%;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: calc(100vh - 70px); /* Ajusta para que coincida con el top */
         background-color: var(--primary-dark);
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 0;
+        padding-top: 0; /* Elimina el padding superior */
         transition: left 0.3s ease;
         margin: 0;
     }
@@ -1052,18 +1052,17 @@ body {
     
     .nav-links li {
         margin-left: 0;
-        margin: 0;
         width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding: 12px 0; /* Ajusta el padding vertical */
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    
+
     .nav-links a {
         color: var(--white) !important;
         display: block;
         width: 100%;
-        padding: 10px 0;
+        padding: 10px 0; /* Ajusta el padding */
     }
     
     .nav-links a:hover {
