@@ -209,10 +209,11 @@ body {
     transform: translateY(-2px);
 }
 
+/**/
 .menu-items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Reduce el tamaño mínimo de las cajas */
+    gap: 20px; /* Ajusta el espacio entre las cajas */
     margin-top: 40px;
 }
 
@@ -222,6 +223,9 @@ body {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén alineados verticalmente */
+    height: 350px; /* Ajusta la altura fija para uniformidad */
 }
 
 .menu-item:hover {
@@ -229,7 +233,7 @@ body {
 }
 
 .item-image {
-    height: 200px;
+    height: 200px; /* Mantiene las dimensiones de las imágenes */
     overflow: hidden;
     position: relative;
 }
@@ -245,6 +249,7 @@ body {
     transform: scale(1.1);
 }
 
+/**/
 .sold-out {
     position: absolute;
     top: 10px;
@@ -258,13 +263,17 @@ body {
 }
 
 .item-info {
-    padding: 20px;
+    padding: 15px;
     text-align: left;
+    flex: 1; /* Permite que el contenido se ajuste dinámicamente */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que los botones estén siempre en la misma posición */
 }
 
 .item-info h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--black);
 }
@@ -272,12 +281,13 @@ body {
 .description {
     color: var(--gray);
     margin-bottom: 15px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Permite que el texto ocupe espacio adicional si es necesario */
 }
 
 .price {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--primary-dark);
     margin-bottom: 15px;
     display: block;
@@ -287,7 +297,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin-top: auto; /* Empuja los botones hacia la parte inferior */
 }
 
 .quantity-control {
