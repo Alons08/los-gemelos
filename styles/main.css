@@ -1033,7 +1033,8 @@ body {
     
     .nav-links {
         position: fixed;
-        top: 80px;
+        top: 70px; /* Ajusta esto según la altura de tu navbar */
+        padding-top: 0; /* Elimina el padding superior */
         left: -100%;
         width: 100%;
         height: calc(100vh - 80px);
