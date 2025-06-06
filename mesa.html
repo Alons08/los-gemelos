@@ -96,7 +96,11 @@
                     </div>
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <p>Martes: 10:00 AM - 6:00 PM</p>
+                        <p>Martes: 7:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Lunes a Domingo: 10:00 AM - 6:00 PM</p>
                     </div>
                 </div>
                 <div class="contact-map">
@@ -132,6 +136,10 @@
                     <span>Total:</span>
                     <span id="cart-total">S/0.00</span>
                 </div>
+                <div class="call-waiter">
+                    <i class="fas fa-bell"></i>
+                    <span>Por favor, llame a la mesera para confirmar su pedido</span>
+                </div>
             </div>
         </div>
     </div>
@@ -139,5 +147,36 @@
     <script src="./scripts/products.js"></script>
     <script src="./scripts/cart.js"></script>
     <script src="./scripts/main.js"></script>
+
+    <style>
+        .call-waiter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background-color: #f8f4e5;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: #e67e22;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .call-waiter i {
+            font-size: 1.2rem;
+            animation: ring 2s infinite;
+        }
+        
+        @keyframes ring {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(15deg); }
+            20% { transform: rotate(-15deg); }
+            30% { transform: rotate(15deg); }
+            40% { transform: rotate(-15deg); }
+            50% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
 </body>
 </html>
