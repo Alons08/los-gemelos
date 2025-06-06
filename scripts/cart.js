@@ -433,7 +433,7 @@ function submitOrder() {
     message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
             
     // Abrir WhatsApp
-    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
+    const whatsappUrl = `https://wa.me/51961613910?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
     
     // Limpiar carrito y formulario inmediatamente después de enviar
