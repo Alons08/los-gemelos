@@ -384,63 +384,78 @@ function submitOrder() {
         return;
     }
     
-    if (!validateForm()) {
-        return;
-    }
-    
+    if (!validateForm()) return;
+
     const form = cartElements.form;
     const deliveryType = cartElements.deliveryType.value;
-    
-    // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
     const customerPhone = form['customer-phone'].value.trim();
-    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
+    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
 
+    // Emojis compatibles (funcionan en Android, iOS y navegadores)
+    const emojis = {
+        customer: '👤',      // Nombre
+        phone: '📱',         // Teléfono
+        payment: '💳',      // Método de pago
+        pickup: '🏠',       // Recoger en local
+        time: '⏳',         // Tiempo estimado
+        delivery: '🚚',     // Delivery
+        address: '📍',     // Dirección
+        notes: '📝',       // Observaciones
+        food: '🍽️',       // Pedido
+        total: '💰'        // Total
+    };
+
+    // Construir detalles de entrega según el tipo
+    let deliveryInfo = '';
     if (deliveryType === 'pickup') {
         const pickupTime = form['pickup-time'].value;
         const notes = form['pickup-notes'].value.trim();
-
-        // Construir mensaje para recoger en el local
-        deliveryInfo = `🏠 *Recoger en el Local*\n` +
-                       `⏳ *Tiempo estimado:* ${pickupTime} minutos\n` +
-                      (notes ? `📝 *Observaciones:* ${notes}\n` : '');
-    } else if (deliveryType === 'delivery') {
+        deliveryInfo = 
+            `${emojis.pickup} *Recoger en el Local*\n` +
+            `${emojis.time} *Tiempo estimado:* ${pickupTime} minutos\n` +
+            (notes ? `${emojis.notes} *Observaciones:* ${notes}\n` : '');
+    } 
+    else if (deliveryType === 'delivery') {
         const address = form['delivery-address'].value.trim();
         const notes = form['delivery-notes'].value.trim();
-
-        // Construir mensaje para delivery
-        deliveryInfo = `🚚 *Delivery*\n` +
-                    `🗺️ *Dirección:* ${address}\n` +
-                    (notes ? `📝 *Observaciones:* ${notes}\n` : '');
+        deliveryInfo = 
+            `${emojis.delivery} *Delivery*\n` +
+            `${emojis.address} *Dirección:* ${address}\n` +
+            (notes ? `${emojis.notes} *Observaciones:* ${notes}\n` : '');
     }
 
-    // Construir mensaje para WhatsApp
+    // Construir el mensaje final
     let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
     message += `*DATOS DEL CLIENTE*\n`;
-    message += `🙍‍♂️ *Nombre:* ${customerName}\n`;
-    message += `📞 *Teléfono:* ${customerPhone}\n`;
-    message += `💳 *Método de Pago:* ${paymentMethod}\n\n`; // Método de pago solo aquí
+    message += `${emojis.customer} *Nombre:* ${customerName}\n`;
+    message += `${emojis.phone} *Teléfono:* ${customerPhone}\n`;
+    message += `${emojis.payment} *Método de Pago:* ${paymentMethod}\n\n`;
+    message += `*DETALLES DE ENTREGA*\n${deliveryInfo}\n`;
+    message += `${emojis.food} *PEDIDO*\n`;
 
-    message += `*DETALLES DE ENTREGA*\n`;
-    message += deliveryInfo + '\n';
-
-    message += `🍽️ *PEDIDO*\n`;
+    // Agregar items del carrito
     cart.forEach(item => {
         message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
 
-    message += `\n💰 *Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
-    message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
-            
-    // Abrir WhatsApp 961613910
-    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
+    // Total
+    const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+    message += `\n${emojis.total} *Total: S/${total.toFixed(2)}*`;
+    message += `\n\nPor favor, confirmen mi pedido. ¡Gracias!`;
+
+    // Codificar para URL (usando encodeURIComponent)
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/51931088900?text=${encodedMessage}`;
+
+    // Abrir WhatsApp en una nueva pestaña
     window.open(whatsappUrl, '_blank');
-    
-    hideCart(); //ocultar el carrito
-    showNotification('Enviando pedido correctamente por WhatsApp', 'success'); // Notificación en pantalla de éxito
-    clearCart(); // Limpiar carrito
-    resetForm(); // Resetear formulario
- 
+
+    // Limpiar y notificar
+    hideCart();
+    showNotification('Pedido enviado por WhatsApp ✔️', 'success');
+    clearCart();
+    resetForm();
 }
 
 // Resetear formulario
