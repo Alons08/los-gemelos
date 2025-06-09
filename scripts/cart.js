@@ -432,17 +432,15 @@ function submitOrder() {
     message += `\n💰 *Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
     message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
             
-    // Abrir WhatsApp
-    const whatsappUrl = `https://wa.me/51961613910?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
+    // Abrir WhatsApp 961613910
+    const whatsappUrl = `https://wa.me/51931088900?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
     
-    // Limpiar carrito y formulario inmediatamente después de enviar
-    hideCart();
-    clearCart();
-    resetForm();
-    
-    // Mostrar confirmación
-    showNotification('Enivando pedido correctamente por WhatsApp', 'success');
+    hideCart(); //ocultar el carrito
+    showNotification('Enviando pedido correctamente por WhatsApp', 'success'); // Notificación en pantalla de éxito
+    clearCart(); // Limpiar carrito
+    resetForm(); // Resetear formulario
+ 
 }
 
 // Resetear formulario
