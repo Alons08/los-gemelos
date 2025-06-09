@@ -394,12 +394,13 @@ function submitOrder() {
     // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
     const customerPhone = form['customer-phone'].value.trim();
-    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value;
+    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
 
     if (deliveryType === 'pickup') {
         const pickupTime = form['pickup-time'].value;
         const notes = form['pickup-notes'].value.trim();
 
+        // Construir mensaje para recoger en el local
         deliveryInfo = `🏠 *Recoger en el Local*\n` +
                        `⏳ *Tiempo estimado:* ${pickupTime} minutos\n` +
                       (notes ? `📝 *Observaciones:* ${notes}\n` : '');
@@ -407,16 +408,18 @@ function submitOrder() {
         const address = form['delivery-address'].value.trim();
         const notes = form['delivery-notes'].value.trim();
 
+        // Construir mensaje para delivery
         deliveryInfo = `🚚 *Delivery*\n` +
                     `🗺️ *Dirección:* ${address}\n` +
                     (notes ? `📝 *Observaciones:* ${notes}\n` : '');
     }
 
+    // Construir mensaje para WhatsApp
     let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
     message += `*DATOS DEL CLIENTE*\n`;
     message += `🙍‍♂️ *Nombre:* ${customerName}\n`;
     message += `📞 *Teléfono:* ${customerPhone}\n`;
-    message += `💳 *Método de Pago:* ${paymentMethod}\n\n`;
+    message += `💳 *Método de Pago:* ${paymentMethod}\n\n`; // Método de pago solo aquí
 
     message += `*DETALLES DE ENTREGA*\n`;
     message += deliveryInfo + '\n';
@@ -429,20 +432,17 @@ function submitOrder() {
     message += `\n💰 *Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
     message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
             
-    const whatsappUrl = `https://wa.me/51961613910?text=${encodeURIComponent(message)}`;
+    // Abrir WhatsApp
+    const whatsappUrl = `https://wa.me/51961613910?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
     
+    // Limpiar carrito y formulario inmediatamente después de enviar
     hideCart();
+    clearCart();
+    resetForm();
     
     // Mostrar confirmación
-    showNotification('Pedido enviado correctamente', 'success');
-
-    // Limpiar carrito después de 5 minutos
-    setTimeout(() => {
-        clearCart();
-        resetForm();
-        showNotification('El carrito ha sido limpiado automáticamente después de 5 minutos', 'info');
-    }, 5 * 60 * 1000); // 5 minutos en milisegundos
+    showNotification('Enivando pedido correctamente por WhatsApp', 'success');
 }
 
 // Resetear formulario
