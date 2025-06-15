@@ -396,7 +396,7 @@ function submitOrder() {
     const customerPhone = form['customer-phone'].value.trim();
     const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
 
-    let = deliveryInfo = '';
+    let = deliveryInfo = ''; //ESTO SE AGREGO AL FINALLLLL
     
     if (deliveryType === 'pickup') {
         const pickupTime = form['pickup-time'].value;
