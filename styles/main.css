@@ -189,9 +189,9 @@ body {
 .filter-btn {
     padding: 8px 20px;
     background: var(--white);
-    border: 2px solid var(--primary-color);
+    border: 2px solid #17a2b8;
     border-radius: 8px;
-    color: var(--primary-dark);
+    color: #17a2b8;
     font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -200,13 +200,15 @@ body {
 }
 
 .filter-btn.active {
-    background: var(--primary-color);
+    background: #17a2b8;
     color: var(--white);
-    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+    border-color: #17a2b8;
+    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3);
 }
 
 .filter-btn:hover:not(.active) {
-    background: rgba(243, 156, 18, 0.1);
+    background: rgba(23, 162, 184, 0.1);
+    border-color: #138496;
     transform: translateY(-2px);
 }
 
